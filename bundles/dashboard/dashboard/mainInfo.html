@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript" language="javascript" src="fieldGroups.json"></script>
+		<script type="text/javascript" language="javascript" src="functions.js"></script>
+	</head>
+	<body id="mainInfoBody">
+		<div id="mainInfoFields"></div>
+		<div id="mainInfoSave">
+			<button id="mainInfoSaveButton">Save Main Info</button>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		$(document).ready(e => {
+			const fieldGroup = "mainInfo";
+			console.log(fieldGroup + " ready", e);
+
+			$("#mainInfoSaveButton").onclick = () => {};
+
+			var dashboardForm = new DashboardForm(fieldGroup);
+			dashboardForm.generateForm()
+
+
+		})
+	</script>
+</html>
