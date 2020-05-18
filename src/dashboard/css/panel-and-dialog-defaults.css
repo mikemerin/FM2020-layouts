@@ -1,0 +1,21 @@
+body {
+	font-family: 'Roboto', 'Noto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+label {
+    width: 150px;
+    margin-right: 10px;
+    text-align: right;
+    float: left;
+}
+
+input[type=text], input[type=number] {
+	width: 198px;
+}
+
+.group {
+	width: 200px;
+	margin-left: 160px;
+	border: 1px black solid;
+}

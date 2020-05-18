@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="gameInfo.css">
+	<script src="jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" language="javascript" src="fields.json"></script>
+</head>
+<body id="gameInfoBody">
+	<div id="gameInfo">
+	</div>
+
+	<!-- <label>Name:</label>
+	<input id="gameName" type="text"></input>
+	<br>
+	<label>Run Type:</label>
+	<input id="runType" type="text" placeholder="any%"></input>
+	<button id="submitButton">Submit</button> -->
+</body>
+
+<script type="text/javascript">
+	function generateMainForm() {
+		fields["Game Info"].forEach(({
+			fieldName,
+			type,
+			min,
+			max,
+			options,
+			orientation,
+			placeholder
+		}) => {
+			var label = $("<label>", { text: fieldName });
+			var inputId = sanitize(fieldName);
+			var input;
+			switch(type) {
+				case "text":
+				case "number":
+					placeholder = placeholder || "";
+					input = createTextBox(inputId, type, placeholder);
+					break;
+				case "radio":
+				case "checkbox":
+					input = createSelectGroup(inputId, type, "", options, orientation);
+					break;
+				case "dropdown":
+					input = createDropdown(inputId, "", options);
+					break;
+				default: ""; break;
+			}
+			console.log(label, inputId, input)
+			$("#gameInfo").append(label, input, "<br clear='all'><br>");
+		})
+	}
+
+	function createTextBox(inputId, type, placeholder) {
+		return $("<input>", {
+			id: inputId,
+			type: type,
+			placeholder: placeholder || ""
+		});
+	}
+
+	function createSelectGroup(inputId, type, selected, options, orientation) {
+		var group = $("<div class='" + type + "-group " + orientation + "'>", { id: inputId + "Group" });
+		var width = 1 / options.length;
+		options.forEach((text, i) => {
+			console.log(text)
+			var id = sanitize(text);
+			var radio = $("<input>", {
+				type: type,
+				id: id,
+				name: inputId,
+				value: text,
+				checked: text === selected
+			});
+			var label = $("<label>", {
+				for: id,
+				text: text
+			});
+			group.append(radio, label);
+		});
+		return group;
+	}
+
+	function createDropdown(inputId, selected, options) {
+		var dropdown = $("<select>", {
+			id: inputId
+		});
+
+		options.forEach(text => {
+			var option = $("<option>", {
+				value: sanitize(text),
+				selected: text === selected,
+				text: text
+			});
+			dropdown.append(option);
+		});
+
+		return dropdown;
+	}
+
+	function sanitize(str) {
+		var replace = {
+			"#": "number",
+			"-": ""
+		};
+		str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
+		return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
+	}
+
+	$(document).ready(e => {
+		console.log("ready", e)
+		generateMainForm();
+
+
+
+		// const gameName = document.querySelector('#gameName');
+		// const runType = document.querySelector('#runType');
+		// const submitButton = document.querySelector('#submitButton');
+		//
+		// const gameNameReplicant = nodecg.Replicant('gameName');
+		// const runTypeReplicant = nodecg.Replicant('runType');
+		//
+		// gameNameReplicant.on('change', (newValue, oldValue) => {
+		// 	// The value of the Replicant has changed somewhere in NodeCG,
+		// 	// this could be another dashboard panel, a server initiated change,
+		// 	// or the doing of another user accessing your dashboard panel.
+		// 	gameName.value = newValue;
+		// });
+		//
+		// runTypeReplicant.on('change', (newValue, oldValue) => {
+		// 	// The value of the Replicant has changed somewhere in NodeCG,
+		// 	// this could be another dashboard panel, a server initiated change,
+		// 	// or the doing of another user accessing your dashboard panel.
+		// 	runType.value = newValue;
+		// });
+		//
+		// submitButton.onclick = () => {
+		// 	// A Replicant can be modified by modifying its `value`.
+		// 	gameNameReplicant.value = gameName.value;
+		// 	runTypeReplicant.value = runType.value;
+		// };
+	})
+</script>
+</html>
