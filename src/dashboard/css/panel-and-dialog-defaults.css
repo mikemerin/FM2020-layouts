@@ -1,21 +1,75 @@
+:root {
+	--labelWidth: 100px;
+	--labelMarginWidth: 5px;
+	--fieldWidth: 95%;
+}
+
 body {
 	font-family: 'Roboto', 'Noto', sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 label {
-    width: 150px;
-    margin-right: 10px;
-    text-align: right;
+    width: var(--labelWidth);
+    text-align: left;
     float: left;
 }
 
 input[type=text], input[type=number] {
-	width: 198px;
+	width: calc(var(--fieldWidth) - 2px);
 }
 
-.group {
-	width: 200px;
-	margin-left: 160px;
-	border: 1px black solid;
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.radio-group label,
+.checkbox-group label {
+    background-color: #ddd;
+    text-align: center;
+    font-family: sans-serif, Arial;
+    font-size: 12px;
+    border: 1px solid #444;
+		margin-right: calc(var(--labelMarginWidth) / 2);
+    margin-bottom: 1px;
+}
+
+.radio-group label {
+  border-radius: 70px/50px;
+}
+
+.vertical label {
+  width: 100%;
+}
+
+.horizontal label {
+  width: 15%;
+}
+
+.radio-group input[type="radio"]:checked + label,
+.checkbox-group input[type="checkbox"]:checked + label {
+    background-color:#bfb;
+    border-color: #4c4;
+}
+
+.radio-group input[type="radio"]:focus + label,
+.checkbox-group input[type="checkbox"]:focus + label {
+    border: 1px solid #444;
+}
+
+.radio-group label:hover,
+.checkbox-group label:hover {
+  background-color: #dfd;
+}
+
+.radio-group,
+.checkbox-group {
+	width: var(--fieldWidth);
+}
+
+br {
+  display: block;
 }
