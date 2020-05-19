@@ -1,5 +1,8 @@
 // Main Functions
 
+// todo: for the inputs, make them their own classes
+// todo: make helper hashmap for types (text/number vs. radio/checkbox vs. dropdown)
+
 class DashboardForm {
 
   constructor(fieldGroup) {
@@ -18,7 +21,7 @@ class DashboardForm {
       options,
       placeholder
     }) => {
-      var input, inputId = sanitize(fieldName) + "Field";
+      var input, inputId = this.sanitize(fieldName) + "Field";
       var div = $("<div>", { id: inputId + "Div" });
       var label = $("<label>", { text: fieldName });
       if (optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
@@ -27,14 +30,14 @@ class DashboardForm {
       switch(type) {
         case "text":
         case "number":
-          input = createTextBox(inputId, type, placeholder);
+          input = this.createTextBox(inputId, type, placeholder);
           break;
         case "radio":
         case "checkbox":
-          input = createSelectGroup(inputId, type, "", options);
+          input = this.createSelectGroup(inputId, type, "", options);
           break;
         case "dropdown":
-          input = createDropdown(inputId, "", options);
+          input = this.createDropdown(inputId, "", options);
           break;
         default: ""; break;
       }
@@ -47,6 +50,16 @@ class DashboardForm {
       this.addSubmitAction(inputId);
     })
   };
+
+  sanitize(str) {
+    var replace = {
+      "#": "number",
+      "-": ""
+    };
+    str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
+    return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
+  }
+
 
   addFieldAction(inputId, type) {
     this.fieldActions[inputId] = {
@@ -100,71 +113,61 @@ class DashboardForm {
     })
   };
 
-}
+  // creators
 
-// Helpers, move into class or have an external helper class
-
-function createTextBox(inputId, type, placeholder) {
-  return $("<input>", {
-    id: inputId,
-    type: type,
-    placeholder: placeholder || ""
-  });
-}
-
-function createSelectGroup(inputId, type, selected, options) {
-  var group = $("<div class='" + type + "-group'>", { id: inputId + "Group" });
-  var objects = [];
-  var maxLength = Math.max.apply(null, [...options.map(x => x.toString().length)]);
-  var columns = Math.floor(31 / maxLength);
-  if (columns > 6) columns = 6;
-  var width = (100 / columns) - 2 + "%";
-  console.log(options, maxLength, columns, width)
-  // with Courier New, Courier, monospace, 32 max fits
-
-  options.forEach((text, i) => {
-    // console.log(text)
-    var id = sanitize(text);
-    var select = $("<input>", {
-      width: width,
+  createTextBox(inputId, type, placeholder) {
+    return $("<input>", {
+      id: inputId,
       type: type,
-      id: id,
-      name: inputId,
-      value: text,
-      checked: text === selected
+      placeholder: placeholder || ""
     });
-    var label = $("<label>", {
-      width: width,
-      for: id,
-      text: text,
-    });
-    group.append(select, label);
-  });
-  return group;
-}
-
-function createDropdown(inputId, selected, options) {
-  var dropdown = $("<select>", {
-    id: inputId
-  });
-
-  options.forEach(text => {
-    var option = $("<option>", {
-      value: sanitize(text),
-      selected: text === selected,
-      text: text
-    });
-    dropdown.append(option);
-  });
-
-  return dropdown;
-}
-
-function sanitize(str) {
-  var replace = {
-    "#": "number",
-    "-": ""
   };
-  str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
-  return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
+
+  createSelectGroup(inputId, type, selected, options) {
+    var group = $("<div class='" + type + "-group'>", { id: inputId + "Group" });
+    var objects = [];
+    var maxLength = Math.max.apply(null, [...options.map(x => x.toString().length)]);
+    var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits
+    if (columns > 6) columns = 6;
+    var width = (100 / columns) - 2 + "%";
+    // console.log(options, maxLength, columns, width)
+
+    options.forEach((text, i) => {
+      // console.log(text)
+      var id = this.sanitize(text);
+      var select = $("<input>", {
+        width: width,
+        type: type,
+        id: id,
+        name: inputId,
+        value: text,
+        checked: text === selected
+      });
+      var label = $("<label>", {
+        width: width,
+        for: id,
+        text: text,
+      });
+      group.append(select, label);
+    });
+    return group;
+  };
+
+  createDropdown(inputId, selected, options) {
+    var dropdown = $("<select>", {
+      id: inputId
+    });
+
+    options.forEach(text => {
+      var option = $("<option>", {
+        value: this.sanitize(text),
+        selected: text === selected,
+        text: text
+      });
+      dropdown.append(option);
+    });
+
+    return dropdown;
+  };
+
 }
