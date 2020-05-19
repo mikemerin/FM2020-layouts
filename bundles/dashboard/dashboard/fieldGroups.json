@@ -4,18 +4,17 @@ var fieldGroups = {
     "fields": [
       {
         "fieldName": "Game Name",
-        "inputType": "text",
+        "type": "text",
         "placeholder": "I Wanna ___"
       },
       {
         "fieldName": "Category",
-        "inputType": "text",
+        "type": "text",
         "placeholder": "any%"
       },
       {
         "fieldName": "Run Type",
-        "inputType": "radio",
-        "orientation": "vertical",
+        "type": "radio",
         "options": [
           "Co-op Run",
           "Event",
@@ -28,21 +27,25 @@ var fieldGroups = {
       },
       {
         "fieldName": "Estimate",
-        "inputType": "text",
+        "type": "text",
+        "placeholder": "0:10:00"
+      },
+      {
+        "fieldName": "World Record",
+        "optional": true,
+        "type": "text",
         "placeholder": "0:10:00"
       },
       {
         "fieldName": "# of Players",
-        "inputType": "radio",
-        "orientation": "horizontal",
+        "type": "radio",
         "options": [
-          1, 2, 3, 4
+          "1", "2", "3", "4"
         ]
       },
       {
         "fieldName": "Genres",
-        "inputType": "checkbox",
-        "orientation": "vertical",
+        "type": "checkbox",
         "options": [
           "100F",
           "Adventure",
@@ -72,8 +75,7 @@ var fieldGroups = {
       },
       {
         "fieldName": "Resolution",
-        "inputType": "radio",
-        "orientation": "horizontal",
+        "type": "radio",
         "options": [
           "600", "608", "16:9"
         ],
@@ -86,25 +88,24 @@ var fieldGroups = {
     "fields": [
       {
         "fieldName": "Player Name",
-        "inputType": "text",
+        "type": "text",
         "placeholder": "Naloa"
       },
       {
         "fieldName": "Twitch Handle",
-        "inputType": "text",
+        "type": "text",
         "placeholder": "Naloas"
       },
       {
         "fieldName": "Camera",
-        "inputType": "radio",
-        "orientation": "horizontal",
+        "type": "radio",
         "options": [
             "Yes", "No"
           ]
       },
       {
         "fieldName": "Player PB",
-        "inputType": "text",
+        "type": "text",
         "placeholder": "0:10:00"
       }
     ]

@@ -1,7 +1,6 @@
 :root {
-	--labelWidth: 100px;
 	--labelMarginWidth: 5px;
-	--fieldWidth: 95%;
+	--fieldWidth: 100%;
 }
 
 body {
@@ -10,7 +9,8 @@ body {
 }
 
 label {
-    width: var(--labelWidth);
+    width: var(--fieldWidth);
+		font-weight: bold;
     text-align: left;
     float: left;
 }
@@ -30,7 +30,8 @@ input[type=text], input[type=number] {
 .checkbox-group label {
     background-color: #ddd;
     text-align: center;
-    font-family: sans-serif, Arial;
+    font-family: "Courier New", Courier, monospace;
+		font-weight: normal;
     font-size: 12px;
     border: 1px solid #444;
 		margin-right: calc(var(--labelMarginWidth) / 2);
@@ -39,14 +40,6 @@ input[type=text], input[type=number] {
 
 .radio-group label {
   border-radius: 70px/50px;
-}
-
-.vertical label {
-  width: 100%;
-}
-
-.horizontal label {
-  width: 15%;
 }
 
 .radio-group input[type="radio"]:checked + label,
@@ -72,4 +65,8 @@ input[type=text], input[type=number] {
 
 br {
   display: block;
+}
+
+.smallLabel {
+	font-size: 10px;
 }
