@@ -95,7 +95,7 @@ class DashboardForm {
           break;
         default: ""; break;
       }
-      replicant.value = output
+      if (replicant.value != output) replicant.value = output;
       // console.log("after", output, "=>", replicant.value)
     })
   };
