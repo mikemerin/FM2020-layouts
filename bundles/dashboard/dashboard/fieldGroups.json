@@ -4,17 +4,17 @@ var fieldGroups = {
     "fields": [
       {
         "fieldName": "Game Name",
-        "type": "text",
+        "inputType": "text",
         "placeholder": "I Wanna ___"
       },
       {
         "fieldName": "Category",
-        "type": "text",
+        "inputType": "text",
         "placeholder": "any%"
       },
       {
         "fieldName": "Run Type",
-        "type": "radio",
+        "inputType": "radio",
         "orientation": "vertical",
         "options": [
           "Co-op Run",
@@ -28,12 +28,12 @@ var fieldGroups = {
       },
       {
         "fieldName": "Estimate",
-        "type": "text",
+        "inputType": "text",
         "placeholder": "0:10:00"
       },
       {
         "fieldName": "# of Players",
-        "type": "radio",
+        "inputType": "radio",
         "orientation": "horizontal",
         "options": [
           1, 2, 3, 4
@@ -41,7 +41,7 @@ var fieldGroups = {
       },
       {
         "fieldName": "Genres",
-        "type": "checkbox",
+        "inputType": "checkbox",
         "orientation": "vertical",
         "options": [
           "100F",
@@ -52,14 +52,14 @@ var fieldGroups = {
           "Needle",
           "Trap"
         ],
-        "other choices": [
+        "other Genres": [
           "???",
           "Creative",
           "Puzzle",
           "Quiz Show",
           "Relay"
         ],
-        "other games": [
+        "other Games": [
           "Celeste",
           "Mario",
           "Mario 64",
@@ -72,12 +72,10 @@ var fieldGroups = {
       },
       {
         "fieldName": "Resolution",
-        "type": "radio",
+        "inputType": "radio",
         "orientation": "horizontal",
         "options": [
-          "600",
-          "608",
-          "16:9"
+          "600", "608", "16:9"
         ],
         "other": true
       }
@@ -88,21 +86,25 @@ var fieldGroups = {
     "fields": [
       {
         "fieldName": "Player Name",
-        "type": "text",
-        "placeholder": "Stonk"
+        "inputType": "text",
+        "placeholder": "Naloa"
+      },
+      {
+        "fieldName": "Twitch Handle",
+        "inputType": "text",
+        "placeholder": "Naloas"
       },
       {
         "fieldName": "Camera",
-        "type": "radio",
+        "inputType": "radio",
         "orientation": "horizontal",
         "options": [
-            "Yes",
-            "No"
+            "Yes", "No"
           ]
       },
       {
         "fieldName": "Player PB",
-        "type": "text",
+        "inputType": "text",
         "placeholder": "0:10:00"
       }
     ]
