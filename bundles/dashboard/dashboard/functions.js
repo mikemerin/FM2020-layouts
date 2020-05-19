@@ -11,26 +11,27 @@ class DashboardForm {
   generateForm() {
     this.fields.forEach(({
       fieldName,
-      inputType,
+      type,
       min,
       max,
+      optional,
       options,
-      orientation,
       placeholder
     }) => {
       var input, inputId = sanitize(fieldName) + "Field";
       var div = $("<div>", { id: inputId + "Div" });
       var label = $("<label>", { text: fieldName });
+      if (optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
       var brClear = $("<br>", { clear: "all" });
 
-      switch(inputType) {
+      switch(type) {
         case "text":
         case "number":
-          input = createTextBox(inputId, inputType, placeholder);
+          input = createTextBox(inputId, type, placeholder);
           break;
         case "radio":
         case "checkbox":
-          input = createSelectGroup(inputId, inputType, "", options, orientation);
+          input = createSelectGroup(inputId, type, "", options);
           break;
         case "dropdown":
           input = createDropdown(inputId, "", options);
@@ -41,27 +42,27 @@ class DashboardForm {
       div.append( label, "<br>", input, brClear );
       $("#" + this.fieldGroup + "Fields").append(div, "<br>");
 
-      this.addFieldAction(inputId, inputType);
+      this.addFieldAction(inputId, type);
       this.addReplicantValue(inputId);
       this.addSubmitAction(inputId);
     })
   };
 
-  addFieldAction(inputId, inputType) {
+  addFieldAction(inputId, type) {
     this.fieldActions[inputId] = {
       field: $("#" + inputId),
-      inputType: inputType,
+      type: type,
       replicant: nodecg.Replicant(inputId)
     }
     // console.log("field", "#" + inputId + "Field", this.fieldActions[inputId].field);
   };
 
   addReplicantValue(inputId) {
-    const { field, inputType, replicant } = this.fieldActions[inputId];
+    const { field, type, replicant } = this.fieldActions[inputId];
     replicant.on('change', (newValue, oldValue) => {
       // console.log("t.fieldActions[iid], field, replicant", this.fieldActions[inputId], field, replicant);
       // console.log("new val:", newValue, "old val:", oldValue)
-      switch(inputType) {
+      switch(type) {
         case "text":
           field.val(newValue);
           break;
@@ -79,10 +80,10 @@ class DashboardForm {
 
   addSubmitAction(inputId) {
     $("#" + this.fieldGroup + "SaveButton")[0].addEventListener('click', () => {
-      const { field, inputType, replicant } = this.fieldActions[inputId];
-      // console.log(field, inputType, replicant, "input: ", replicant.value)
+      const { field, type, replicant } = this.fieldActions[inputId];
+      // console.log(field, type, replicant, "input: ", replicant.value)
       var output = "";
-      switch(inputType) {
+      switch(type) {
         case "text":
           output = field.val();
           break;
@@ -103,29 +104,39 @@ class DashboardForm {
 
 // Helpers, move into class or have an external helper class
 
-function createTextBox(inputId, inputType, placeholder) {
+function createTextBox(inputId, type, placeholder) {
   return $("<input>", {
     id: inputId,
-    inputType: inputType,
+    type: type,
     placeholder: placeholder || ""
   });
 }
 
-function createSelectGroup(inputId, inputType, selected, options, orientation) {
-  var group = $("<div class='" + inputType + "-group " + orientation + "'>", { id: inputId + "Group" });
+function createSelectGroup(inputId, type, selected, options) {
+  var group = $("<div class='" + type + "-group'>", { id: inputId + "Group" });
+  var objects = [];
+  var maxLength = Math.max.apply(null, [...options.map(x => x.toString().length)]);
+  var columns = Math.floor(31 / maxLength);
+  if (columns > 6) columns = 6;
+  var width = (100 / columns) - 2 + "%";
+  console.log(options, maxLength, columns, width)
+  // with Courier New, Courier, monospace, 32 max fits
+
   options.forEach((text, i) => {
     // console.log(text)
     var id = sanitize(text);
     var select = $("<input>", {
-      type: inputType,
+      width: width,
+      type: type,
       id: id,
       name: inputId,
       value: text,
       checked: text === selected
     });
     var label = $("<label>", {
+      width: width,
       for: id,
-      text: text
+      text: text,
     });
     group.append(select, label);
   });
