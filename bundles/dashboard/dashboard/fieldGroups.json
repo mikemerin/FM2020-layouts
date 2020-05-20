@@ -37,13 +37,6 @@ var fieldGroups = {
         "placeholder": "0:10:00"
       },
       {
-        "fieldName": "# of Players",
-        "type": "radio",
-        "options": [
-          "1", "2", "3", "4"
-        ]
-      },
-      {
         "fieldName": "Genres",
         "type": "checkbox",
         "options": [
@@ -87,14 +80,26 @@ var fieldGroups = {
     "name": "Player Info",
     "fields": [
       {
-        "fieldName": "Player Name",
-        "type": "text",
-        "placeholder": "Naloa"
-      },
+        "fieldName": "# of Players",
+        "type": "radio",
+        "options": [
+          "1", "2", "3", "4"
+        ]
+      }
+    ]
+  },
+  "player": {
+    "name": "Player",
+    "fields": [
       {
         "fieldName": "Twitch Handle",
         "type": "text",
         "placeholder": "Naloas"
+      },
+      {
+        "fieldName": "Display Name",
+        "type": "text",
+        "placeholder": "Naloa"
       },
       {
         "fieldName": "Camera",
@@ -104,9 +109,10 @@ var fieldGroups = {
           ]
       },
       {
-        "fieldName": "Player PB",
+        "fieldName": "PB",
+        "optional": true,
         "type": "text",
-        "placeholder": "0:10:00"
+        "placeholder": "0:00:00"
       }
     ]
   }

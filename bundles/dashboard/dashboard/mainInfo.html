@@ -16,13 +16,9 @@
 		$(document).ready(e => {
 			const fieldGroup = "mainInfo";
 			console.log(fieldGroup + " ready", e);
-
 			$("#mainInfoSaveButton").onclick = () => {};
-
 			var dashboardForm = new DashboardForm(fieldGroup);
-			dashboardForm.generateForm()
-
-
+			var players = new Players();			
 		})
 	</script>
 </html>
