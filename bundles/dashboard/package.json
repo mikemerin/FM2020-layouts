@@ -20,15 +20,15 @@
       {
         "name": "Player Info",
         "title": "Player Info",
-        "width": 6,
+        "width": 2,
         "file": "playerInfo.html",
         "headerColor": "#9f9bbd"
       },
       {
-        "name": "Graphics Info",
-        "title": "Graphics Info",
+        "name": "Admin Panel",
+        "title": "Admin Panel",
         "width": 2,
-        "file": "graphicsInfo.html",
+        "file": "adminPanel.html",
         "headerColor": "#9f9bbd"
       }
     ]
