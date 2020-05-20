@@ -16,51 +16,28 @@ class DashboardForm {
     this.fields.forEach(({
       fieldName,
       type,
-      min,
-      max,
       optional,
       options,
       placeholder
     }) => {
-      var input, inputId = "field_" + this.sanitize(fieldName);
+      var input, inputId = "field_" + sanitize(fieldName);
       var div = $("<div>", { id: inputId + "Div" });
       var label = $("<label>", { text: fieldName });
       if (optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
       var brClear = $("<br>", { clear: "all" });
 
-      switch(type) {
-        case "text":
-        case "number":
-          input = this.createTextBox(inputId, type, placeholder);
-          break;
-        case "radio":
-        case "checkbox":
-          input = this.createSelectGroup(inputId, type, options);
-          break;
-        case "dropdown":
-          input = this.createDropdown(inputId, options);
-          break;
-        default: ""; break;
-      }
+      var field = new Field(type, inputId, options, placeholder);
+
       // console.log(label, inputId, input)
-      div.append( label, "<br>", input, brClear );
+      div.append( label, "<br>", field.input, brClear );
       $("#" + this.fieldGroup + "Fields").append(div, "<br>");
 
       this.addFieldAction(inputId, type);
       this.addReplicantValue(inputId);
       this.addSubmitAction(inputId);
     })
+    this.addRadioUncheckListeners();
   };
-
-  sanitize(str) {
-    var replace = {
-      "#": "number",
-      "-": ""
-    };
-    str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
-    return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
-  }
-
 
   addFieldAction(inputId, type) {
     this.fieldActions[inputId] = {
@@ -84,7 +61,10 @@ class DashboardForm {
         case "checkbox":
           var choices = newValue ? newValue.split("; ") : "";
           $("input[name$='" + inputId + "']").each((i,x) => {
-            if (choices.includes(x.value)) $(x).prop("checked", true);
+            if (choices.includes(x.value)) {
+              $(x).prop("checked", true);
+              if (type === "radio") $(x).addClass("radioCheck");
+            }
           })
           break;
         default: ""; break;
@@ -114,34 +94,74 @@ class DashboardForm {
     })
   };
 
-  // creators
+  addRadioUncheckListeners() {
+    $("input:radio").on("click",function (e) {
+        var button = $(this);
+        if (button.is(".radioCheck")) {
+            button.prop("checked", false).removeClass("radioCheck");
+        } else {
+            $("buttonut:radio[name='" + button.prop("name") + "'].radioCheck").removeClass("radioCheck");
+            button.addClass("radioCheck");
+        }
+    });
+  }
 
-  createTextBox(inputId, type, placeholder) {
-    return $("<input>", {
-      id: inputId,
-      type: type,
-      placeholder: placeholder || ""
+
+};
+
+class Field {
+
+  constructor(type, inputId, options, placeholder) {
+    this.type = type;
+    this.inputId = inputId;
+    this.options = options;
+    this.placeholder = placeholder;
+    this.input;
+    this.create();
+  }
+
+  create() {
+    switch(this.type) {
+      case "text":
+      case "number":
+        this.createTextBox();
+        break;
+      case "radio":
+      case "checkbox":
+        this.createSelectGroup();
+        break;
+      case "dropdown":
+        this.createDropdown();
+        break;
+      default: ""; break;
+    }
+  }
+
+  createTextBox() {
+    this.input = $("<input>", {
+      id: this.inputId,
+      type: this.type,
+      placeholder: this.placeholder || ""
     });
   };
 
-  createSelectGroup(inputId, type, options) {
-    var group = $("<div class='" + type + "-group'>", { id: inputId + "Group" });
-    var objects = [];
-    var maxLength = Math.max.apply(null, [...options.map(x => x.toString().length)]);
-    var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits
+  createSelectGroup() {
+    var group = $("<div class='" + this.type + "-group'>", { id: this.inputId + "Group" });
+    var maxLength = Math.max.apply(null, [...this.options.map(x => x.toString().length)]);
+    var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
     if (columns > 6) columns = 6;
     var width = (100 / columns) - 2 + "%";
     // console.log(options, maxLength, columns, width)
 
-    options.forEach((text, i) => {
+    this.options.forEach((text, i) => {
       // console.log(text)
-      var id = this.sanitize(text);
+      var id = sanitize(text);
       var select = $("<input>", {
         width: width,
-        type: type,
+        type: this.type,
         id: id,
-        name: inputId,
-        value: text
+        name: this.inputId,
+        value: text,
       });
       var label = $("<label>", {
         width: width,
@@ -150,30 +170,30 @@ class DashboardForm {
       });
       group.append(select, label);
     });
-    return group;
+    this.input = group;
   };
+// $(input).is(":checked"))
+  // uncheckIfChecked() {
 
-  createDropdown(inputId, options) {
+  // }
+
+  createDropdown() {
     var dropdown = $("<select>", {
-      id: inputId
+      id: this.inputId
     });
 
-    options.forEach(text => {
+    this.options.forEach(text => {
       var option = $("<option>", {
-        value: this.sanitize(text),
+        value: sanitize(text),
         text: text
       });
       dropdown.append(option);
     });
 
-    return dropdown;
+    this.input = dropdown;
   };
 
-};
-
-class Field {
-
-  constructor() {
+  getValue() {
 
   }
 
@@ -187,4 +207,13 @@ class Players {
 
 
 
+}
+
+function sanitize(str) {
+  var replace = {
+    "#": "number",
+    "-": ""
+  };
+  str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
+  return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
 }

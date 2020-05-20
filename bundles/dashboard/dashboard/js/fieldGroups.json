@@ -13,6 +13,17 @@ var fieldGroups = {
         "placeholder": "any%"
       },
       {
+        "fieldName": "Estimate",
+        "type": "text",
+        "placeholder": "0:10:00"
+      },
+      {
+        "fieldName": "World Record",
+        "optional": true,
+        "type": "text",
+        "placeholder": "0:10:00"
+      },
+      {
         "fieldName": "Run Type",
         "type": "radio",
         "options": [
@@ -26,15 +37,12 @@ var fieldGroups = {
         "other": true
       },
       {
-        "fieldName": "Estimate",
-        "type": "text",
-        "placeholder": "0:10:00"
-      },
-      {
-        "fieldName": "World Record",
-        "optional": true,
-        "type": "text",
-        "placeholder": "0:10:00"
+        "fieldName": "Resolution",
+        "type": "radio",
+        "options": [
+          "600", "608", "16:9"
+        ],
+        "other": true
       },
       {
         "fieldName": "Genres",
@@ -47,15 +55,27 @@ var fieldGroups = {
           "Medley",
           "Needle",
           "Trap"
-        ],
-        "other Genres": [
+        ]
+      },
+      {
+        "fieldName": "Other Primary Genres",
+        "type": "radio",
+        "optional": true,
+        "options": [
+          "N/A",
           "???",
           "Creative",
           "Puzzle",
           "Quiz Show",
           "Relay"
-        ],
-        "other Games": [
+        ]
+      },
+      {
+        "fieldName": "Other Game Genres",
+        "type": "radio",
+        "optional": true,
+        "options": [
+          "N/A",
           "Celeste",
           "Mario",
           "Mario 64",
@@ -64,15 +84,7 @@ var fieldGroups = {
           "Rabi-Ribi",
           "Touhou",
           "Zelda"
-        ]
-      },
-      {
-        "fieldName": "Resolution",
-        "type": "radio",
-        "options": [
-          "600", "608", "16:9"
         ],
-        "other": true
       }
     ]
   },

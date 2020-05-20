@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<script src="/js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript" language="javascript" src="fieldGroups.json"></script>
-		<script type="text/javascript" language="javascript" src="functions.js"></script>
+		<script type="text/javascript" src="js/fieldGroups.json"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
 	</head>
 	<body id="mainInfoBody">
 		<div id="mainInfoFields"></div>
@@ -18,7 +18,7 @@
 			console.log(fieldGroup + " ready", e);
 			$("#mainInfoSaveButton").onclick = () => {};
 			var dashboardForm = new DashboardForm(fieldGroup);
-			var players = new Players();			
+			var players = new Players();
 		})
 	</script>
 </html>

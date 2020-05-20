@@ -36,6 +36,13 @@ input[type=text], input[type=number] {
     border: 1px solid #444;
 		margin-right: calc(var(--labelMarginWidth) / 2);
     margin-bottom: 1px;
+		-webkit-touch-callout: none; /* iOS Safari */
+	    -webkit-user-select: none; /* Safari */
+	     -khtml-user-select: none; /* Konqueror HTML */
+	       -moz-user-select: none; /* Old versions of Firefox */
+	        -ms-user-select: none; /* Internet Explorer/Edge */
+	            user-select: none; /* Non-prefixed version, currently
+	                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .radio-group label {
@@ -46,16 +53,26 @@ input[type=text], input[type=number] {
 .checkbox-group input[type="checkbox"]:checked + label {
     background-color:#bfb;
     border-color: #4c4;
+		cursor: pointer;
 }
 
 .radio-group input[type="radio"]:focus + label,
 .checkbox-group input[type="checkbox"]:focus + label {
     border: 1px solid #444;
+		cursor: pointer;
 }
 
 .radio-group label:hover,
 .checkbox-group label:hover {
   background-color: #dfd;
+}
+
+.radio-group label:hover,
+.checkbox-group label:hover,
+.radio-group input[type="radio"]:hover,
+.radio-group input[type="checkbox"]:hover
+ {
+	cursor: pointer;
 }
 
 .radio-group,
