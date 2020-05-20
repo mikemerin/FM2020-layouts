@@ -8,7 +8,8 @@ class DashboardForm {
   constructor(fieldGroup) {
     this.fieldGroup = fieldGroup,
     this.fields = fieldGroups[this.fieldGroup].fields,
-    this.fieldActions = {}
+    this.fieldActions = {},
+    this.generateForm()
   }
 
   generateForm() {
@@ -21,7 +22,7 @@ class DashboardForm {
       options,
       placeholder
     }) => {
-      var input, inputId = this.sanitize(fieldName) + "Field";
+      var input, inputId = "field_" + this.sanitize(fieldName);
       var div = $("<div>", { id: inputId + "Div" });
       var label = $("<label>", { text: fieldName });
       if (optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
@@ -34,10 +35,10 @@ class DashboardForm {
           break;
         case "radio":
         case "checkbox":
-          input = this.createSelectGroup(inputId, type, "", options);
+          input = this.createSelectGroup(inputId, type, options);
           break;
         case "dropdown":
-          input = this.createDropdown(inputId, "", options);
+          input = this.createDropdown(inputId, options);
           break;
         default: ""; break;
       }
@@ -65,7 +66,7 @@ class DashboardForm {
     this.fieldActions[inputId] = {
       field: $("#" + inputId),
       type: type,
-      replicant: nodecg.Replicant(inputId)
+      replicant: nodecg.Replicant(this.fieldGroup + "_" + inputId)
     }
     // console.log("field", "#" + inputId + "Field", this.fieldActions[inputId].field);
   };
@@ -81,7 +82,7 @@ class DashboardForm {
           break;
         case "radio":
         case "checkbox":
-          var choices = newValue.split("; ");
+          var choices = newValue ? newValue.split("; ") : "";
           $("input[name$='" + inputId + "']").each((i,x) => {
             if (choices.includes(x.value)) $(x).prop("checked", true);
           })
@@ -123,7 +124,7 @@ class DashboardForm {
     });
   };
 
-  createSelectGroup(inputId, type, selected, options) {
+  createSelectGroup(inputId, type, options) {
     var group = $("<div class='" + type + "-group'>", { id: inputId + "Group" });
     var objects = [];
     var maxLength = Math.max.apply(null, [...options.map(x => x.toString().length)]);
@@ -140,8 +141,7 @@ class DashboardForm {
         type: type,
         id: id,
         name: inputId,
-        value: text,
-        checked: text === selected
+        value: text
       });
       var label = $("<label>", {
         width: width,
@@ -153,7 +153,7 @@ class DashboardForm {
     return group;
   };
 
-  createDropdown(inputId, selected, options) {
+  createDropdown(inputId, options) {
     var dropdown = $("<select>", {
       id: inputId
     });
@@ -161,7 +161,6 @@ class DashboardForm {
     options.forEach(text => {
       var option = $("<option>", {
         value: this.sanitize(text),
-        selected: text === selected,
         text: text
       });
       dropdown.append(option);
@@ -169,5 +168,23 @@ class DashboardForm {
 
     return dropdown;
   };
+
+};
+
+class Field {
+
+  constructor() {
+
+  }
+
+}
+
+class Players {
+
+  constructor() {
+
+  }
+
+
 
 }

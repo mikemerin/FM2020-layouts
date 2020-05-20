@@ -6,12 +6,20 @@
 		<script type="text/javascript" language="javascript" src="functions.js"></script>
 	</head>
 	<body id="playerInfoBody">
+		<div id="playerInfoFields"></div>
+		<div id="playerFields"></div>
+		<div id="playerInfoSave">
+			<button id="playerInfoSaveButton">Save Player Info</button>
+		</div>
 	</body>
 
 	<script type="text/javascript">
 		$(document).ready(e => {
-			console.log("players ready", e);
+			const fieldGroup = "playerInfo";
+			console.log(fieldGroup + " ready", e);
+			$("#playerInfoSaveButton").onclick = () => {};
+			var dashboardForm = new DashboardForm(fieldGroup);
+			
 		})
-
 	</script>
 </html>

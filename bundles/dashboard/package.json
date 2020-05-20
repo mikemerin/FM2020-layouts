@@ -20,14 +20,14 @@
       {
         "name": "Player Info",
         "title": "Player Info",
-        "width": 4,
+        "width": 6,
         "file": "playerInfo.html",
         "headerColor": "#9f9bbd"
       },
       {
         "name": "Graphics Info",
         "title": "Graphics Info",
-        "width": 4,
+        "width": 2,
         "file": "graphicsInfo.html",
         "headerColor": "#9f9bbd"
       }
