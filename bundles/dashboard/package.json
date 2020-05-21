@@ -31,8 +31,38 @@
     ],
     "assetCategories": [
       {
-        "name": "baseLayouts",
-        "title": "Base Layouts",
+        "name": "baseLayouts1P",
+        "title": "Base Layouts - 1 Player",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "baseLayouts2P",
+        "title": "Base Layouts - 2 Player",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "baseLayouts3P",
+        "title": "Base Layouts - 3 Player",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "baseLayouts4P",
+        "title": "Base Layouts - 4 Player",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "baseLayoutsOther",
+        "title": "Base Layouts - Other",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "baseLayoutLayers",
+        "title": "Base Layout Layers",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "genreIcons",
+        "title": "Genre Icons",
         "allowedTypes": ["png"]
       },
       {
@@ -48,9 +78,9 @@
     ],
     "graphics": [
       {
-        "file": "layout_1_608.html",
-        "width": 1920,
-        "height": 1080
+        "file": "layout.html",
+        "width": 1280,
+        "height": 720
       }
     ]
   },
