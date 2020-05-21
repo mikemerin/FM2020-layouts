@@ -51,14 +51,14 @@ input[type=text], input[type=number] {
 
 .radio-group input[type="radio"]:checked + label,
 .checkbox-group input[type="checkbox"]:checked + label {
-    background-color:#bfb;
-    border-color: #4c4;
+    background-color:#afa;
+    border-color: #2b2;
 		cursor: pointer;
 }
 
 .radio-group input[type="radio"]:focus + label,
 .checkbox-group input[type="checkbox"]:focus + label {
-    border: 1px solid #444;
+    border: 1px solid #494;
 		cursor: pointer;
 }
 
@@ -86,4 +86,8 @@ br {
 
 .smallLabel {
 	font-size: 10px;
+}
+
+button {
+	border: 1px solid #555;
 }

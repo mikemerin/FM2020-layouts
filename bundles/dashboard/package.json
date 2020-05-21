@@ -12,21 +12,21 @@
         "title": "Main Info",
         "width": 2,
         "file": "mainInfo.html",
-        "headerColor": "#9f9bbd"
+        "headerColor": "#0D80A4"
       },
       {
         "name": "Player Info",
         "title": "Player Info",
         "width": 2,
         "file": "playerInfo.html",
-        "headerColor": "#9f9bbd"
+        "headerColor": "#0D80A4"
       },
       {
         "name": "Admin Panel",
         "title": "Admin Panel",
         "width": 2,
         "file": "adminPanel.html",
-        "headerColor": "#9f9bbd"
+        "headerColor": "#0D80A4"
       }
     ],
     "assetCategories": [
