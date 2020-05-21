@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Mike Merin",
   "nodecg": {
     "compatibleRange": ">=0.9",
@@ -30,6 +27,30 @@
         "width": 2,
         "file": "adminPanel.html",
         "headerColor": "#9f9bbd"
+      }
+    ],
+    "assetCategories": [
+      {
+        "name": "baseLayouts",
+        "title": "Base Layouts",
+        "allowedTypes": ["png"]
+      },
+      {
+        "name": "gameBackgrounds",
+        "title": "Game Backgrounds",
+        "allowedTypes": ["jpg", "jpeg", "png"]
+      },
+      {
+        "name": "titleCards",
+        "title": "Game Title Cards",
+        "allowedTypes": ["jpg", "jpeg", "png"]
+      }
+    ],
+    "graphics": [
+      {
+        "file": "layout_1_608.html",
+        "width": 1920,
+        "height": 1080
       }
     ]
   },

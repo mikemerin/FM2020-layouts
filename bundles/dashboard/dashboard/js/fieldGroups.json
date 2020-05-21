@@ -62,6 +62,7 @@ var fieldGroups = {
         "type": "radio",
         "optional": true,
         "options": [
+          "N/A",
           "???",
           "Creative",
           "Puzzle",
@@ -74,6 +75,7 @@ var fieldGroups = {
         "type": "radio",
         "optional": true,
         "options": [
+          "N/A",
           "Celeste",
           "Mario",
           "Mario 64",

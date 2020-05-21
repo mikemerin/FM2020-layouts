@@ -36,7 +36,7 @@ class DashboardForm {
       this.addReplicantValue(inputId);
       this.addSubmitAction(inputId);
     })
-    this.addRadioUncheckListeners();
+    // this.addRadioUncheckListeners();
   };
 
   addFieldAction(inputId, type) {
@@ -94,17 +94,17 @@ class DashboardForm {
     })
   };
 
-  addRadioUncheckListeners() {
-    $("input:radio").on("click",function (e) {
-        var button = $(this);
-        if (button.is(".radioCheck")) {
-            button.prop("checked", false).removeClass("radioCheck");
-        } else {
-            $("buttonut:radio[name='" + button.prop("name") + "'].radioCheck").removeClass("radioCheck");
-            button.addClass("radioCheck");
-        }
-    });
-  }
+  // addRadioUncheckListeners() {
+  //   $("input:radio").on("click", function(e) {
+  //       var button = $(this);
+  //       if (button.is(".radioCheck")) {
+  //           button.prop("checked", false).removeClass("radioCheck");
+  //       } else {
+  //           $("buttonut:radio[name='" + button.prop("name") + "'].radioCheck").removeClass("radioCheck");
+  //           button.addClass("radioCheck");
+  //       }
+  //   });
+  // }
 
 
 };
@@ -216,4 +216,37 @@ function sanitize(str) {
   };
   str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
   return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
+}
+
+
+function setLayoutButton() {
+  var layoutButton = $("#createLayoutButton");
+  var layoutInfo = {
+    "prefix": "layout",
+    "numberOfPlayers": "N/A",
+    "resolution": "N/A"
+  }
+
+  var numberOfPlayers = nodecg.Replicant("playerInfo_field_numberOfPlayers");
+  var resolution = nodecg.Replicant("mainInfo_field_resolution");
+
+  [numberOfPlayers, resolution].forEach(replicant => {
+    replicant.on('change', (newValue, oldValue) => {
+      const replicantName = replicant.name.split("_")[2]
+      layoutInfo[replicantName] = newValue || "N/A";
+
+      var { prefix, numberOfPlayers, resolution } = layoutInfo;
+      const layoutName = [prefix, numberOfPlayers, resolution].join("_");
+
+      layoutButton.text( "Load " + layoutName );
+      layoutButton.off();
+      layoutButton.on("click", (e) => {
+        e.preventDefault();
+        if (numberOfPlayers !== "N/A" && resolution !== "N/A") {
+          var url = "http://localhost:9090/bundles/dashboard/graphics/" + layoutName + ".html";
+          window.open(url);
+        };
+      });
+    });
+  })
 }
