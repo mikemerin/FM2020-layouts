@@ -70,7 +70,7 @@ class NcgDashboardPanel extends Polymer.PolymerElement {
 
 			#header {
 				position: relative;
-				color: var(--google-grey-100);
+				color: ##c5c3c3;
 				@apply --layout-horizontal;
 				@apply --layout-end-justified;
 				@apply --layout-center;

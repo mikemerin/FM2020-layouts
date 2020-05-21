@@ -12,7 +12,7 @@ class DashboardForm {
     this.generateForm()
   }
 
-  generateForm() {
+  generateForm = () => {
     this.fields.forEach(({
       fieldName,
       type,
@@ -39,7 +39,7 @@ class DashboardForm {
     // this.addRadioUncheckListeners();
   };
 
-  addFieldAction(inputId, type) {
+  addFieldAction = (inputId, type) => {
     this.fieldActions[inputId] = {
       field: $("#" + inputId),
       type: type,
@@ -48,7 +48,7 @@ class DashboardForm {
     // console.log("field", "#" + inputId + "Field", this.fieldActions[inputId].field);
   };
 
-  addReplicantValue(inputId) {
+  addReplicantValue = (inputId) => {
     const { field, type, replicant } = this.fieldActions[inputId];
     replicant.on('change', (newValue, oldValue) => {
       // console.log("t.fieldActions[iid], field, replicant", this.fieldActions[inputId], field, replicant);
@@ -72,7 +72,7 @@ class DashboardForm {
     });
   };
 
-  addSubmitAction(inputId) {
+  addSubmitAction = (inputId) => {
     $("#" + this.fieldGroup + "SaveButton")[0].addEventListener('click', () => {
       const { field, type, replicant } = this.fieldActions[inputId];
       // console.log(field, type, replicant, "input: ", replicant.value)
@@ -94,6 +94,7 @@ class DashboardForm {
     })
   };
 
+  // not using, css overlaps are causing more of a headache
   // addRadioUncheckListeners() {
   //   $("input:radio").on("click", function(e) {
   //       var button = $(this);
@@ -120,7 +121,7 @@ class Field {
     this.create();
   }
 
-  create() {
+  create = () => {
     switch(this.type) {
       case "text":
       case "number":
@@ -137,7 +138,7 @@ class Field {
     }
   }
 
-  createTextBox() {
+  createTextBox = () => {
     this.input = $("<input>", {
       id: this.inputId,
       type: this.type,
@@ -145,7 +146,7 @@ class Field {
     });
   };
 
-  createSelectGroup() {
+  createSelectGroup = () => {
     var group = $("<div class='" + this.type + "-group'>", { id: this.inputId + "Group" });
     var maxLength = Math.max.apply(null, [...this.options.map(x => x.toString().length)]);
     var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
@@ -177,7 +178,7 @@ class Field {
 
   // }
 
-  createDropdown() {
+  createDropdown = () => {
     var dropdown = $("<select>", {
       id: this.inputId
     });
@@ -193,7 +194,8 @@ class Field {
     this.input = dropdown;
   };
 
-  getValue() {
+  // todo: implement this, extracting the switch cases above
+  getValue = () => {
 
   }
 
@@ -209,7 +211,7 @@ class Players {
 
 }
 
-function sanitize(str) {
+const sanitize = (str) => {
   var replace = {
     "#": "number",
     "-": ""
@@ -219,7 +221,7 @@ function sanitize(str) {
 }
 
 
-function setLayoutButton() {
+const setLayoutButton = () => {
   var layoutButton = $("#createLayoutButton");
   var layoutInfo = {
     "prefix": "layout",
