@@ -90,4 +90,33 @@ br {
 
 button {
 	border: 1px solid #555;
+  cursor: pointer;
+}
+
+.saveButton {
+  position: relative;
+	font-size: 18px;
+	padding: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.saveButton:after {
+  content: "";
+  background: #afa;
+  display: block;
+  position: absolute;
+  padding-top: 3000%;
+  padding-left: 500%;
+  margin-left: -20px!important;
+  margin-top: -400%;
+  opacity: 0;
+  transition: all 1.5s
+}
+
+.saveButton:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
 }

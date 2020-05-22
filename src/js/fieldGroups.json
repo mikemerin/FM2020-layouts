@@ -34,6 +34,7 @@ var fieldGroups = {
           "Standard Race",
           "TAS Showcase"
         ],
+        "defaultValue": "Solo Run",
         "other": true
       },
       {
@@ -96,7 +97,8 @@ var fieldGroups = {
         "type": "radio",
         "options": [
           "1", "2", "3", "4"
-        ]
+        ],
+        "defaultValue": "1"
       }
     ]
   },
@@ -118,7 +120,8 @@ var fieldGroups = {
         "type": "radio",
         "options": [
             "Yes", "No"
-          ]
+          ],
+        "defaultValue": "No"
       },
       {
         "fieldName": "PB",
@@ -127,5 +130,16 @@ var fieldGroups = {
         "placeholder": "0:00:00"
       }
     ]
-  }
+  },
+  "adminPanel": {
+    "name": "Admin Panel",
+    "fields": [
+      {
+        "fieldName": "Preview Layout (TBD)",
+        "type": "button",
+        "value": "",
+        "defaultValue": "1"
+      }
+    ]
+  },
 }
