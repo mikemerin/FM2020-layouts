@@ -6,163 +6,145 @@
 class DashboardForm {
 
   constructor(fieldGroup) {
-    this.fieldGroup = fieldGroup,
-    this.fields = fieldGroups[this.fieldGroup].fields,
-    this.fieldActions = {},
-    this.generateForm()
+    this.name = fieldGroup;
+    this.fields = fieldGroups[fieldGroup].fields;
+    this.replicant;
+    this.replicantValues;
+    this.dashboardFields = [];
+    this.generateForm();
   }
 
   generateForm = () => {
-    this.fields.forEach(({
-      fieldName,
-      type,
-      optional,
-      options,
-      placeholder
-    }) => {
-      var input, inputId = "field_" + sanitize(fieldName);
-      var div = $("<div>", { id: inputId + "Div" });
-      var label = $("<label>", { text: fieldName });
-      if (optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
-      var brClear = $("<br>", { clear: "all" });
+    this.replicant = nodecg.Replicant("fieldValues");
+    var { name, namespace } = this.replicant;
 
-      var field = new Field(type, inputId, options, placeholder);
+    nodecg.readReplicant(name, namespace, replicantValues => {
+      this.replicantValues = replicantValues;
+      this.fields.forEach(fieldGroupField => {
+        const sanitizedFieldName = sanitize(fieldGroupField.fieldName);
+        const value = (this.replicantValues[this.name] ? this.replicantValues[this.name][sanitizedFieldName] : "");
 
-      // console.log(label, inputId, input)
-      div.append( label, "<br>", field.input, brClear );
-      $("#" + this.fieldGroup + "Fields").append(div, "<br>");
+        var dashboardField = new DashboardField({sanitizedFieldName, value, ...fieldGroupField});
 
-      this.addFieldAction(inputId, type);
-      this.addReplicantValue(inputId);
-      this.addSubmitAction(inputId);
+        var brClear = $("<br>", { clear: "all" });
+        $("#" + this.name + "Fields").append(dashboardField.dashboardField, brClear, "<br>");
+        this.dashboardFields.push(dashboardField);
+      })
     })
-    // this.addRadioUncheckListeners();
+    this.createSaveButton();
   };
 
-  addFieldAction = (inputId, type) => {
-    this.fieldActions[inputId] = {
-      field: $("#" + inputId),
-      type: type,
-      replicant: nodecg.Replicant(this.fieldGroup + "_" + inputId)
-    }
-    // console.log("field", "#" + inputId + "Field", this.fieldActions[inputId].field);
-  };
-
-  addReplicantValue = (inputId) => {
-    const { field, type, replicant } = this.fieldActions[inputId];
-    replicant.on('change', (newValue, oldValue) => {
-      // console.log("t.fieldActions[iid], field, replicant", this.fieldActions[inputId], field, replicant);
-      // console.log("new val:", newValue, "old val:", oldValue)
-      switch(type) {
-        case "text":
-          field.val(newValue);
-          break;
-        case "radio":
-        case "checkbox":
-          var choices = newValue ? newValue.split("; ") : "";
-          $("input[name$='" + inputId + "']").each((i,x) => {
-            if (choices.includes(x.value)) {
-              $(x).prop("checked", true);
-              if (type === "radio") $(x).addClass("radioCheck");
-            }
-          })
-          break;
-        default: ""; break;
+  createSaveButton() {
+    var button = $("<button>", {
+      text: "Save " + fieldGroups[this.name].name,
+      class: "saveButton",
+      click: (e) => {
+        e.preventDefault();
+        this.dashboardFields.forEach(({sanitizedFieldName, value}) => {
+          this.replicantValues[this.name][sanitizedFieldName] = value;
+        })
+        var { name, namespace } = this.replicant;
+        // todo: cleanup of this replicant, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
+        nodecg.readReplicant(name, namespace, replicantValues => {
+          var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
+          this.replicantValues = newValues;
+          this.replicant.value = this.replicantValues;
+        })
       }
     });
-  };
-
-  addSubmitAction = (inputId) => {
-    $("#" + this.fieldGroup + "SaveButton")[0].addEventListener('click', () => {
-      const { field, type, replicant } = this.fieldActions[inputId];
-      // console.log(field, type, replicant, "input: ", replicant.value)
-      var output = "";
-      switch(type) {
-        case "text":
-          output = field.val();
-          break;
-        case "radio":
-        case "checkbox":
-          var choices = [];
-          $("input[name$='" + inputId + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
-          output = choices.join("; ");
-          break;
-        default: ""; break;
-      }
-      if (replicant.value != output) replicant.value = output;
-      // console.log("after", output, "=>", replicant.value)
-    })
-  };
-
-  // not using, css overlaps are causing more of a headache
-  // addRadioUncheckListeners() {
-  //   $("input:radio").on("click", function(e) {
-  //       var button = $(this);
-  //       if (button.is(".radioCheck")) {
-  //           button.prop("checked", false).removeClass("radioCheck");
-  //       } else {
-  //           $("buttonut:radio[name='" + button.prop("name") + "'].radioCheck").removeClass("radioCheck");
-  //           button.addClass("radioCheck");
-  //       }
-  //   });
-  // }
-
+    $("#" + this.name + "Save").append(button);
+  }
 
 };
 
-class Field {
+class DashboardField {
 
-  constructor(type, inputId, options, placeholder) {
-    this.type = type;
-    this.inputId = inputId;
+  constructor({
+    defaultValue,
+    fieldName,
+    options,
+    optional,
+    placeholder,
+    replicantValues,
+    sanitizedFieldName,
+    type,
+    value
+  }) {
+    this.defaultValue = defaultValue;
+    this.fieldName = fieldName;
     this.options = options;
+    this.optional = optional;
     this.placeholder = placeholder;
-    this.input;
-    this.create();
+    this.sanitizedFieldName = sanitizedFieldName;
+    this.type = type;
+    this.value = value;
+    this.dashboardField;
+    this.createDashboardField();
   }
 
-  create = () => {
+  createDashboardField = () => {
+    this.dashboardField = $("<div>", { id: this.sanitizedFieldName + "Div" });
+    var label = $("<label>", { text: this.fieldName });
+    if (this.optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
+    var input;
+
     switch(this.type) {
       case "text":
       case "number":
-        this.createTextBox();
+        input = this.createTextBox();
         break;
       case "radio":
       case "checkbox":
-        this.createSelectGroup();
+        input = this.createSelectGroup();
         break;
       case "dropdown":
-        this.createDropdown();
+        input = this.createDropdown();
         break;
       default: ""; break;
     }
+    this.dashboardField.append(label, "<br>", input);
   }
 
   createTextBox = () => {
-    this.input = $("<input>", {
-      id: this.inputId,
+    // console.log(this.replicantValues)
+    return $("<input>", {
+      id: this.sanitizedFieldName,
+      value: this.value,
       type: this.type,
-      placeholder: this.placeholder || ""
+      placeholder: this.placeholder || "",
+      blur: () => { this.value = $("#" + this.sanitizedFieldName).val() }
     });
   };
 
   createSelectGroup = () => {
-    var group = $("<div class='" + this.type + "-group'>", { id: this.inputId + "Group" });
+    var group = $("<div class='" + this.type + "-group'>", { id: this.sanitizedFieldName + "Group" });
+
     var maxLength = Math.max.apply(null, [...this.options.map(x => x.toString().length)]);
     var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
     if (columns > 6) columns = 6;
     var width = (100 / columns) - 2 + "%";
     // console.log(options, maxLength, columns, width)
 
+    var values = this.value.split("; ");
+    if (values === "" && this.defaultValue) values = this.defaultValue;
+
     this.options.forEach((text, i) => {
       // console.log(text)
       var id = sanitize(text);
+
       var select = $("<input>", {
         width: width,
         type: this.type,
         id: id,
-        name: this.inputId,
+        name: this.sanitizedFieldName,
         value: text,
+        checked: values.includes(text),
+        click: () => {
+          var choices = [];
+          $("input[name$='" + this.sanitizedFieldName + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
+          this.value = choices.join("; ");
+
+        }
       });
       var label = $("<label>", {
         width: width,
@@ -171,27 +153,24 @@ class Field {
       });
       group.append(select, label);
     });
-    this.input = group;
+    return group;
   };
-// $(input).is(":checked"))
-  // uncheckIfChecked() {
 
-  // }
-
-  createDropdown = () => {
+  createDropdown = () => { // note: untested
     var dropdown = $("<select>", {
-      id: this.inputId
+      id: this.sanitizedFieldName
     });
 
     this.options.forEach(text => {
       var option = $("<option>", {
         value: sanitize(text),
-        text: text
+        text: text,
+        // click: () => {  } // todo: implement this
       });
       dropdown.append(option);
     });
 
-    this.input = dropdown;
+    return dropdown;
   };
 
   // todo: implement this, extracting the switch cases above
@@ -242,4 +221,4 @@ const setLayoutButton = () => {
       });
     });
   })
-}
+};
