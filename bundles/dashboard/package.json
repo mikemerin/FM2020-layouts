@@ -17,7 +17,7 @@
       {
         "name": "Player Info",
         "title": "Player Info",
-        "width": 2,
+        "width": 4,
         "file": "playerInfo.html",
         "headerColor": "#0D80A4"
       },

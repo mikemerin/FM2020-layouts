@@ -102,32 +102,29 @@ var fieldGroups = {
       }
     ]
   },
-  "player": {
-    "name": "Player",
+  "individualPlayerInfo": {
+    "name": "Individual Player Info",
     "fields": [
       {
         "fieldName": "Twitch Handle",
         "type": "text",
-        "placeholder": "Naloas"
+        "placeholder": "ShadowsDieAway"
       },
       {
         "fieldName": "Display Name",
         "type": "text",
-        "placeholder": "Naloa"
+        "placeholder": "Shadow"
       },
       {
         "fieldName": "Camera",
-        "type": "radio",
-        "options": [
-            "Yes", "No"
-          ],
+        "type": "slider",
         "defaultValue": "No"
       },
       {
         "fieldName": "PB",
         "optional": true,
         "type": "text",
-        "placeholder": "0:00:00"
+        "placeholder": "0:20:00"
       }
     ]
   },
