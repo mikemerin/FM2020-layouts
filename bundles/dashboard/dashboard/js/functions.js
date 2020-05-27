@@ -104,12 +104,10 @@ class DashboardForm {
     // swap player button
   }
 
-  createSaveButton = ({
-    all = false
-  }) => {
+  createSaveButton = (all = false) => {
     // todo: make "all panels" type
     if (all) {
-      $()
+
     } else {
       var button = $("<button>", {
         text: "Save " + fieldGroups[this.name].name,
@@ -204,7 +202,7 @@ class DashboardField {
 
   toggleSaveChangesOn = () => {
     $("#" + this.parent.name + "Save > button").addClass("saveChanges");
-    // debugger
+    debugger
     // $("#adminPanelSave > button").addClass("saveChanges");
     $("#createLayoutButton").addClass("disabled");
   }
