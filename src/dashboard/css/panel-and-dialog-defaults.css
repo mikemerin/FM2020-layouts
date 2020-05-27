@@ -180,6 +180,10 @@ button {
   cursor: pointer;
 }
 
+.moveButton {
+	cursor: pointer;
+}
+
 .saveChanges {
 	border: 2px ridge #2e2;
 	background-color: rgba(100,255,100,.25);
@@ -220,17 +224,33 @@ button {
 
 .disabled input, .disabled .slider {
 	opacity: 30%;
+	color: #f33;
 }
 
+
+.disabled input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fbb;
+}
+.disabled input::-moz-placeholder { /* Firefox 19+ */
+  color: #fbb;
+}
+.disabled input:-ms-input-placeholder { /* IE 10+ */
+  color: #fbb;
+}
+.disabled input:-moz-placeholder { /* Firefox 18- */
+  color: #fbb;
+}
+
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #bbb;
+  color: #ddd;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #bbb;
+  color: #ddd;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #bbb;
+  color: #ddd;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #bbb;
+  color: #ddd;
 }
