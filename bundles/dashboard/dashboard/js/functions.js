@@ -42,9 +42,8 @@ class DashboardForm {
     var players = new Array(maxPlayers + 1).fill(x => x).map((x,i) => i);
     var playerTable = $("<table>", { id: "playerTable" });
 
-    console.log(players)
     players.forEach(playerNumber => {
-      var row = $("<tr>").append(
+      var row = $("<tr>", { class: "playerRow row" + playerNumber }).append(
         !playerNumber ? $("<th>", { text: "P#" }) : $("<td>", { text: playerNumber })
       );
 
@@ -64,20 +63,34 @@ class DashboardForm {
       playerTable.append(row);
     });
     $("#playerFields").append(playerTable);
-    // players.forEach(player => {
-    //
-    //   this.updatePlayerFields(this.replicantValues.playerInfo[player]);
-    // })
+    $("input[name$=numberOfPlayers]").each((i,x) => {
+        $(x).click(() => this.updatePlayerFields(x.id));
+    });
+    const numberOfPlayers = this.replicantValues[this.name] ? this.replicantValues[this.name]["numberOfPlayers"] || 1 : 1;
+    this.updatePlayerFields(numberOfPlayers);
   }
 
-  updatePlayerFields() {
+  updatePlayerFields(numberOfPlayers) {
+    var playersChosen = parseInt(numberOfPlayers, 10);
 
-    var playersChosen = parseInt(this.replicantValues.playerInfo.numberOfPlayers, 10);
-    const className = (playerNumber <= maxPlayers ? "" : "in") + "activePlayer";
+    $(".playerRow").each((i,playerRow) => {
+        var player = parseInt( playerRow.className.match(/\d+/)[0] );
+        if (playersChosen < player) {
+            $(playerRow).children().slice(1).each((j, field) => {
+                $(field).addClass("disabled");
+            })
+        } else {
+            $(playerRow).children().slice(1).each((j, field) => {
+                $(field).removeClass("disabled");
+            })
+        }
+    })
+
+    // const className = (playerNumber <= maxPlayers ? "" : "in") + "activePlayer";
     //
     // for (let i - )
     // // this.replicantValues.playerInfo[1]
-    debugger
+    // debugger
     // fieldGroups.players.forEach(({name, fields}) => {
     //   var playerField = $("<div id="">);
     //     fields.forEach(field => {
@@ -102,7 +115,6 @@ class DashboardForm {
         nodecg.readReplicant(name, namespace, replicantValues => {
           var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
           this.replicant.value = this.replicantValues = newValues;
-          console.log(newValues)
         })
       }
     });
@@ -169,9 +181,11 @@ class DashboardField {
         break;
       default: ""; break;
     }
-    this.dashboardField.append(
-      this.playerField ? (input) : (label, "<br>", input)
-    );
+    if (this.playerField) {
+      this.dashboardField.append( input );
+    } else {
+      this.dashboardField.append(label, "<br>", input);
+    };
   }
 
   createTextBox = () => {
