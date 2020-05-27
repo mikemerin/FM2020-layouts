@@ -1,7 +1,15 @@
 // Main Functions
 
 // todo: for the inputs, make them their own classes
-// todo: make helper hashmap for types (text/number vs. radio/checkbox vs. dropdown)
+// todo: make helper hashmap for types (text/number vs. radio/checkbox vs. dropdown)\
+
+class MasterList {
+
+  constructor() {
+
+  }
+
+}
 
 class DashboardForm {
 
@@ -59,11 +67,14 @@ class DashboardForm {
           row.append( $("<th>", { text: fieldName }) );
         } else {
           const playerField = true;
-          const dashboardField = this.createDashboardField({field, playerField, playerNumber});
+          var dashboardField = this.createDashboardField({field, playerField, playerNumber});
           row.append(dashboardField.dashboardField);
           this.dashboardFields.push(dashboardField);
         }
       });
+      if (!!playerNumber) {
+        this.generateMoveButtons(playerNumber, maxPlayers).forEach(button => row.append(button));
+      }
       playerTable.append(row);
     });
     $("#playerFields").append(playerTable);
@@ -72,6 +83,71 @@ class DashboardForm {
     });
     const numberOfPlayers = this.replicantValues[this.name] ? this.replicantValues[this.name]["numberOfPlayers"] || 1 : 1;
     this.updatePlayerFields(numberOfPlayers);
+  }
+
+  generateMoveButtons = (playerNumber, maxPlayers) => {
+    var up = $("<td>");
+    var down = $("<td>");
+    var clear = $("<td>", {
+      text: "X",
+      class: "moveButton",
+      click: () => { this.changeValues(playerNumber, "off") }
+    });
+
+    playerNumber = parseInt(playerNumber, 10);
+    maxPlayers = parseInt(maxPlayers, 10);
+
+    if (playerNumber > 1) {
+      up = $("<td>", {
+        text: "↑",
+        class: "moveButton",
+        click: () => { this.changeValues(playerNumber, "up") }
+      });
+    }
+    if (playerNumber < maxPlayers) {
+      down = $("<td>", {
+        text: "↓",
+        class: "moveButton",
+        click: () => { this.changeValues(playerNumber, "down") }
+      });
+    }
+    return [up, down, clear];
+  }
+
+  changeValues = (playerNumber, changeType) => {
+    var operator = (changeType === "up" ? -1 : 1);
+    if (changeType === "off") {
+      const confirm = window.confirm("Are you sure you want to clear out player " + playerNumber + "'s info?");
+      if (!confirm) return;
+    }
+
+    fieldGroups.individualPlayerInfo.fields.forEach(({fieldName, type}) => {
+      var sanitizedFieldName = sanitize(fieldName);
+      var field1 = $("#player" + playerNumber + "_" + sanitizedFieldName);
+      if (changeType === "off") {
+        if (type === "text") {
+          field1.val("");
+          field1.blur();
+        } else if (type === "slider") {
+          if (field1.is(":checked")) field1.click();
+        }
+      } else {
+        var field2 = $("#player" + (playerNumber + 1*operator) + "_" + sanitizedFieldName);
+
+        if (type === "text") {
+          var tmpValue = field1.val();
+          field1.val( field2.val() );
+          field2.val(tmpValue);
+          field1.blur();
+          field2.blur();
+        } else if (type === "slider") {
+          if (field1.is(":checked") !== field2.is(":checked")) {
+            field1.click();
+            field2.click();
+          }
+        }
+      }
+    })
   }
 
   updatePlayerFields = (numberOfPlayers) => {
@@ -88,20 +164,7 @@ class DashboardForm {
                 $(field).removeClass("disabled");
             })
         }
-    })
-
-    // const className = (playerNumber <= maxPlayers ? "" : "in") + "activePlayer";
-    //
-    // for (let i - )
-    // // this.replicantValues.playerInfo[1]
-    // debugger
-    // fieldGroups.players.forEach(({name, fields}) => {
-    //   var playerField = $("<div id="">);
-    //     fields.forEach(field => {
-    //       this.createDashboardField(field);
-    //     })
-    // })
-    // swap player button
+    });
   }
 
   createSaveButton = (all = false) => {
@@ -202,7 +265,7 @@ class DashboardField {
 
   toggleSaveChangesOn = () => {
     $("#" + this.parent.name + "Save > button").addClass("saveChanges");
-    debugger
+    // debugger
     // $("#adminPanelSave > button").addClass("saveChanges");
     $("#createLayoutButton").addClass("disabled");
   }
@@ -270,7 +333,7 @@ class DashboardField {
           id: this.id,
           checked: !!this.value,
           change: () => {
-            this.value = $("#" + this.id)[0].innerText === this.dataOn;
+            this.value = $("#" + this.id).is(":checked");
             this.toggleSaveChangesOn();
           }
         })
