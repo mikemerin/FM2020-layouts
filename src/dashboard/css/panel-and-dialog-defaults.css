@@ -180,7 +180,12 @@ button {
   cursor: pointer;
 }
 
-.saveButton {
+.saveChanges {
+	border: 2px ridge #2e2;
+	background-color: rgba(100,255,100,.25);
+}
+
+.saveButton, .loadButton {
   position: relative;
 	font-size: 18px;
 	padding: 10px;
@@ -208,8 +213,9 @@ button {
   transition: 0s
 }
 
-.disabled input {
+.disabled input, .disabled button, button:disabled {
 	background-color: rgba(255,150,150,0.5);
+	cursor: not-allowed;
 }
 
 .disabled input, .disabled .slider {

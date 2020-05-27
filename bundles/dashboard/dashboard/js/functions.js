@@ -20,24 +20,30 @@ class DashboardForm {
 
     nodecg.readReplicant(name, namespace, replicantValues => {
       this.replicantValues = replicantValues;
-      this.fields.forEach(fieldGroupField => {
-        this.createDashboardField(fieldGroupField);
+      this.fields.forEach(field => {
+        const dashboardField = this.createDashboardField({field});
+        const brClear = $("<br>", { clear: "all" });
+        $("#" + this.name + "Fields").append(dashboardField.dashboardField, brClear, "<br>");
       })
       if (this.name === "playerInfo") this.createPlayerTable();
     })
     this.createSaveButton();
   };
 
-  createDashboardField(fieldGroupField) {
-    const sanitizedFieldName = sanitize(fieldGroupField.fieldName);
+  createDashboardField = ({
+    field,
+    playerField = false,
+    playerNumber
+  }) => {
+    const sanitizedFieldName = (!!playerField ? "player" + playerNumber + "_" : "") + sanitize(field.fieldName);
     const value = (this.replicantValues[this.name] ? this.replicantValues[this.name][sanitizedFieldName] : "");
-    const dashboardField = new DashboardField({sanitizedFieldName, value, ...fieldGroupField});
-    const brClear = $("<br>", { clear: "all" });
-    $("#" + this.name + "Fields").append(dashboardField.dashboardField, brClear, "<br>");
+    const parent = this;
+    const dashboardField = new DashboardField({parent, playerField, sanitizedFieldName, value, ...field});
     this.dashboardFields.push(dashboardField);
+    return dashboardField;
   }
 
-  createPlayerTable() {
+  createPlayerTable = () => {
     var maxPlayers = Math.max.apply(null, fieldGroups.playerInfo.fields.find(field => field.fieldName === "# of Players").options);
     var players = new Array(maxPlayers + 1).fill(x => x).map((x,i) => i);
     var playerTable = $("<table>", { id: "playerTable" });
@@ -52,10 +58,8 @@ class DashboardForm {
         if (!playerNumber) {
           row.append( $("<th>", { text: fieldName }) );
         } else {
-          const sanitizedFieldName = "player" + playerNumber + "_" + sanitize(fieldName);
-          const value = (this.replicantValues[this.name] ? this.replicantValues[this.name][sanitizedFieldName] : "");
           const playerField = true;
-          const dashboardField = new DashboardField({playerField, sanitizedFieldName, value, ...field});
+          const dashboardField = this.createDashboardField({field, playerField, playerNumber});
           row.append(dashboardField.dashboardField);
           this.dashboardFields.push(dashboardField);
         }
@@ -70,7 +74,7 @@ class DashboardForm {
     this.updatePlayerFields(numberOfPlayers);
   }
 
-  updatePlayerFields(numberOfPlayers) {
+  updatePlayerFields = (numberOfPlayers) => {
     var playersChosen = parseInt(numberOfPlayers, 10);
 
     $(".playerRow").each((i,playerRow) => {
@@ -100,24 +104,32 @@ class DashboardForm {
     // swap player button
   }
 
-  createSaveButton() {
-    // todo: make three types: subpanel (each player), entire panel, all panels
-    var button = $("<button>", {
-      text: "Save " + fieldGroups[this.name].name,
-      class: "saveButton",
-      click: (e) => {
-        e.preventDefault();
-        this.dashboardFields.forEach(({sanitizedFieldName, value}) => {
-          this.replicantValues[this.name][sanitizedFieldName] = value;
-        });
-        const { name, namespace } = this.replicant;
-        // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
-        nodecg.readReplicant(name, namespace, replicantValues => {
-          var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
-          this.replicant.value = this.replicantValues = newValues;
-        })
-      }
-    });
+  createSaveButton = ({
+    all = false
+  }) => {
+    // todo: make "all panels" type
+    if (all) {
+      $()
+    } else {
+      var button = $("<button>", {
+        text: "Save " + fieldGroups[this.name].name,
+        class: "saveButton",
+        click: (e) => {
+          e.preventDefault();
+          this.dashboardFields.forEach(({sanitizedFieldName, value}) => {
+            this.replicantValues[this.name][sanitizedFieldName] = value;
+          });
+          const { name, namespace } = this.replicant;
+          // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
+          nodecg.readReplicant(name, namespace, replicantValues => {
+            var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
+            this.replicant.value = this.replicantValues = newValues;
+          })
+          $(e.target).removeClass("saveChanges");
+        }
+      });
+    }
+
     $("#" + this.name + "Save").append(button);
   }
 
@@ -126,6 +138,7 @@ class DashboardForm {
 class DashboardField {
 
   constructor({
+    parent,
     dataOff,
     dataOn,
     defaultValue,
@@ -139,6 +152,7 @@ class DashboardField {
     type,
     value
   }) {
+    this.parent = parent;
     this.dataOff = dataOff || "No";
     this.dataOn = dataOn || "Yes";
     this.defaultValue = defaultValue;
@@ -188,6 +202,15 @@ class DashboardField {
     };
   }
 
+  toggleSaveChangesOn = () => {
+    $("#" + this.parent.name + "Save > button").addClass("saveChanges");
+    // debugger
+    // $("#adminPanelSave > button").addClass("saveChanges");
+    $("#createLayoutButton").addClass("disabled");
+  }
+
+  // create fields below
+
   createTextBox = () => {
     // console.log(this.replicantValues)
     return $("<input>", {
@@ -195,7 +218,10 @@ class DashboardField {
       value: this.value,
       type: this.type,
       placeholder: this.placeholder || "",
-      blur: () => { this.value = $("#" + this.id).val() }
+      blur: () => {
+        this.value = $("#" + this.id).val();
+        this.toggleSaveChangesOn();
+      }
     });
   };
 
@@ -225,6 +251,7 @@ class DashboardField {
           var choices = [];
           $("input[name$='" + this.id + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
           this.value = choices.join("; ");
+          this.toggleSaveChangesOn();
         }
       });
       const label = $("<label>", {
@@ -246,6 +273,7 @@ class DashboardField {
           checked: !!this.value,
           change: () => {
             this.value = $("#" + this.id)[0].innerText === this.dataOn;
+            this.toggleSaveChangesOn();
           }
         })
       );
@@ -269,7 +297,7 @@ class DashboardField {
     var dropdown = $("<select>", {
       id: this.id
     });
-
+    // this.toggleSaveChangesOn();
     this.options.forEach(text => {
       var option = $("<option>", {
         value: sanitize(text),
