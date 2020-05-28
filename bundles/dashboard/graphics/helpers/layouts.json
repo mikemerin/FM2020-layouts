@@ -1,0 +1,45 @@
+var layouts = {
+  "z-index": {
+    "base": -1,
+    "genre": 3,
+    "genreBorder": 5
+  },
+  "1P": {
+    "600": {
+      "genreBorder": {
+        "left": 25,
+        "top": 448
+      },
+      "genre": {
+        "100f": {
+          "left": 29,
+          "top": 453
+        },
+        "adventure": {
+          "left": 86,
+          "top": 453
+        },
+        "avoidance": {
+          "left": 144,
+          "top": 453
+        },
+        "gimmick": {
+          "left": 199,
+          "top": 453
+        },
+        "medley": {
+          "left": 258,
+          "top": 453
+        },
+        "needle": {
+          "left": 315,
+          "top": 453
+        },
+        "trap": {
+          "left": 373,
+          "top": 453
+        }
+      }
+    }
+  }
+}
