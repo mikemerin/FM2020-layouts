@@ -1,3 +1,33 @@
+@font-face { font-family: Limerick; src: url('/fonts/Limerick-Serial-Regular DB.ttf'); }
+
+body {
+  margin: 0px;
+}
+
+.base         { z-index: -1; }
+.genre        { z-index:  3; }
+.primary      { z-index:  6; }
+.border       { z-index: 10; }
+
+#container {
+  width: 1280px;
+  height: 720px;
+  position: relative;
+  background-color: #0f0;
+  z-index: -10;
+}
+
+.primary {
+  font-family: Limerick;
+  /* color: #fff; */
+  color: #fff;
+  position: absolute;
+}
+
+#hashtag        { font-size: 44px; }
+#runInfo        { font-size: 24px; }
+[id^="player"]  { font-size: 48px; }
+
 img {
   position: absolute;
 }

@@ -3,14 +3,6 @@
 // todo: for the inputs, make them their own classes
 // todo: make helper hashmap for types (text/number vs. radio/checkbox vs. dropdown)\
 
-class MasterList {
-
-  constructor() {
-
-  }
-
-}
-
 class DashboardForm {
 
   constructor(fieldGroup) {
@@ -20,7 +12,7 @@ class DashboardForm {
     this.replicantValues;
     this.dashboardFields = [];
     this.generateForm();
-  }
+  };
 
   generateForm = () => {
     this.replicant = nodecg.Replicant("fieldValues");
@@ -32,9 +24,9 @@ class DashboardForm {
         const dashboardField = this.createDashboardField({field});
         const brClear = $("<br>", { clear: "all" });
         $("#" + this.name + "Fields").append(dashboardField.dashboardField, brClear, "<br>");
-      })
+      });
       if (this.name === "playerInfo") this.createPlayerTable();
-    })
+    });
     this.createSaveButton();
   };
 
@@ -49,7 +41,7 @@ class DashboardForm {
     const dashboardField = new DashboardField({parent, playerField, sanitizedFieldName, value, ...field});
     this.dashboardFields.push(dashboardField);
     return dashboardField;
-  }
+  };
 
   createPlayerTable = () => {
     var maxPlayers = Math.max.apply(null, fieldGroups.playerInfo.fields.find(field => field.fieldName === "# of Players").options);
@@ -70,11 +62,9 @@ class DashboardForm {
           var dashboardField = this.createDashboardField({field, playerField, playerNumber});
           row.append(dashboardField.dashboardField);
           this.dashboardFields.push(dashboardField);
-        }
+        };
       });
-      if (!!playerNumber) {
-        this.generateMoveButtons(playerNumber, maxPlayers).forEach(button => row.append(button));
-      }
+      if (!!playerNumber) this.generateMoveButtons(playerNumber, maxPlayers).forEach(button => row.append(button));
       playerTable.append(row);
     });
     $("#playerFields").append(playerTable);
@@ -83,7 +73,7 @@ class DashboardForm {
     });
     const numberOfPlayers = this.replicantValues[this.name] ? this.replicantValues[this.name]["numberOfPlayers"] || 1 : 1;
     this.updatePlayerFields(numberOfPlayers);
-  }
+  };
 
   generateMoveButtons = (playerNumber, maxPlayers) => {
     var up = $("<td>");
@@ -103,23 +93,23 @@ class DashboardForm {
         class: "moveButton",
         click: () => { this.changeValues(playerNumber, "up") }
       });
-    }
+    };
     if (playerNumber < maxPlayers) {
       down = $("<td>", {
         text: "↓",
         class: "moveButton",
         click: () => { this.changeValues(playerNumber, "down") }
       });
-    }
+    };
     return [up, down, clear];
-  }
+  };
 
   changeValues = (playerNumber, changeType) => {
     var operator = (changeType === "up" ? -1 : 1);
     if (changeType === "off") {
       const confirm = window.confirm("Are you sure you want to clear out player " + playerNumber + "'s info?");
       if (!confirm) return;
-    }
+    };
 
     fieldGroups.individualPlayerInfo.fields.forEach(({fieldName, type}) => {
       var sanitizedFieldName = sanitize(fieldName);
@@ -130,7 +120,7 @@ class DashboardForm {
           field1.blur();
         } else if (type === "slider") {
           if (field1.is(":checked")) field1.click();
-        }
+        };
       } else {
         var field2 = $("#player" + (playerNumber + 1*operator) + "_" + sanitizedFieldName);
 
@@ -144,11 +134,11 @@ class DashboardForm {
           if (field1.is(":checked") !== field2.is(":checked")) {
             field1.click();
             field2.click();
-          }
-        }
-      }
-    })
-  }
+          };
+        };
+      };
+    });
+  };
 
   updatePlayerFields = (numberOfPlayers) => {
     var playersChosen = parseInt(numberOfPlayers, 10);
@@ -156,19 +146,19 @@ class DashboardForm {
     $(".playerRow").each((i,playerRow) => {
         var player = parseInt( playerRow.className.match(/\d+/)[0] );
         if (playersChosen < player) {
-            $(playerRow).children().slice(1).each((j, field) => {
-                $(field).addClass("disabled");
-            })
+          $(playerRow).children().slice(1).each((j, field) => {
+              $(field).addClass("disabled");
+          });
         } else {
-            $(playerRow).children().slice(1).each((j, field) => {
-                $(field).removeClass("disabled");
-            })
-        }
+          $(playerRow).children().slice(1).each((j, field) => {
+              $(field).removeClass("disabled");
+          });
+        };
     });
-  }
+  };
 
   createSaveButton = (all = false) => {
-    // todo: make "all panels" type
+    // todo: make "all panels" type (if can be done, seems like nodecg panels can't share info, which seems to be confirmed by the official docs)
     if (all) {
 
     } else {
@@ -182,17 +172,18 @@ class DashboardForm {
           });
           const { name, namespace } = this.replicant;
           // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
+          // example from before: delete(this.replicantValues.playerInfo[1])
           nodecg.readReplicant(name, namespace, replicantValues => {
             var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
             this.replicant.value = this.replicantValues = newValues;
-          })
+          });
           $(e.target).removeClass("saveChanges");
         }
       });
-    }
+    };
 
     $("#" + this.name + "Save").append(button);
-  }
+  };
 
 };
 
@@ -229,11 +220,11 @@ class DashboardField {
     this.dashboardField;
     this.id;
     this.createDashboardField();
-  }
+  };
 
   createDashboardField = () => {
     const fieldTag = ( this.playerField ? "Td" : "Div" );
-    this.id = this.sanitizedFieldName
+    this.id = this.sanitizedFieldName;
     this.dashboardField = $("<" + fieldTag + ">", { id: this.id + fieldTag });
     var label = $("<label>", { text: this.fieldName });
     if (this.optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
@@ -255,13 +246,13 @@ class DashboardField {
         input = this.createDropdown();
         break;
       default: ""; break;
-    }
+    };
     if (this.playerField) {
       this.dashboardField.append( input );
     } else {
       this.dashboardField.append(label, "<br>", input);
     };
-  }
+  };
 
   toggleSaveChangesOn = () => {
     $("#" + this.parent.name + "Save > button").addClass("saveChanges");
@@ -371,16 +362,7 @@ class DashboardField {
     return dropdown;
   };
 
-}
-
-// class Players {
-//
-//   constructor() {
-//
-//   }
-//
-// }
-
+};
 
 const setLayoutButton = () => {
   const layoutButton = $("#createLayoutButton");

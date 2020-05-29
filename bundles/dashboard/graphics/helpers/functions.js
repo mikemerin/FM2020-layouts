@@ -3,112 +3,180 @@ class Layout {
   constructor() {
     this.replicant;
     this.replicantValues;
+    this.fields = {};
 
     this.baseImageSrc;
-    this.players;
-    this.resolutions;
 
     this.start();
-  }
+  };
 
   start = () => {
     this.replicant = nodecg.Replicant("fieldValues");
     const { name, namespace } = this.replicant;
 
     nodecg.readReplicant(name, namespace, replicantValues => {
-      this.replicantValues = replicantValues;
+      this.setFields(replicantValues);
+      this.setLayoutResolutionIfShared();
       this.setLayoutName();
+
       this.setBaseImage();
-      this.setFields();
-    })
-  }
+      this.setHashtag();
+      this.setRunInfo();
+      this.setGenres();
+      this.setTitleCard();
+
+      this.setPlayerInfo();
+    });
+  };
+
+  setFields = (replicantValues) => {
+    this.replicantValues = replicantValues;
+    // future: will have "adminPanel"
+    ["mainInfo", "playerInfo"].forEach(fieldGroup => {
+      const fields = this.replicantValues[fieldGroup];
+      Object.keys(fields).forEach(field => {
+        this.fields[field] = fields[field];
+      });
+    });
+  };
+
+  setLayoutResolutionIfShared = () => {
+    const resolutions = layouts[this.fields.numberOfPlayers + "P"];
+    Object.keys(resolutions).forEach(resolution => {
+      var split = resolution.split("|");
+      if (split.length > 1 && split.includes(this.fields.resolution)) {
+          layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution] = resolutions[resolution];
+          return;
+      };
+    });
+  };
 
   setLayoutName = () => {
-    this.players = this.replicantValues.playerInfo.numberOfPlayers;
-    var { gameName, resolution } = this.replicantValues.mainInfo;
-    this.resolution = resolution;
-    this.baseImageSrc = "/assets/dashboard/baseLayouts" + this.players + "P/base" + this.resolution + ".png";
+    this.baseImageSrc = "/assets/dashboard/baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png";
+    // this.baseImageSrc = "/assets/dashboard/baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
 
-    gameName = gameName.replace(/I Wanna /i, "");
-    if (resolution === "600" || resolution === "608") resolution = "800x" + resolution;
-    document.title = this.players + "P " + resolution + " - " + gameName;
+    const gameName = this.fields.gameName.replace(/I Wanna /i, "");
+    const pixelNames = ["600", "608"];
+    const resolution = (pixelNames.indexOf(this.fields.resolution) >= 0 ? "800x" : "") + this.fields.resolution;
+    document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameName;
+  };
 
-    // var asset = nodecg.Replicant("assets:baseLayouts" + players + "P");
-    // const { name, namespace } = asset;
-    //
-    // nodecg.readReplicant(name, namespace, replicantValues => {
-    //   console.log(name, namespace, replicantValues)
-    // })
-  }
 
   setBaseImage = () => {
     const baseImage = $("<img>", {
       id: "baseImage",
+      class: "base",
       src: this.baseImageSrc
     });
-    baseImage.css({ "z-index": layouts["z-index"]["base"] });
-    $("body").append(baseImage);
-  }
+    $("#container").append(baseImage);
+  };
 
-  setFields = () => {
+  setHashtag = () => {
+    const id = "hashtag";
+    const className = "primary";
+    const text = "#FangameMarathon";
+    const locationInfo = this.getLocationInfo(id);
+    this.createElement(id, className, text, locationInfo, "text");
+  };
 
+  setRunInfo = () => {
+    const { gameName, category, estimate } = this.fields;
+    const id = "runInfo";
+    const className = "primary";
+    const text = gameName;
+    const text2 = category + " - estimate: " + estimate;
 
-    this.setGenres();
-    // debugger
-    // ["mainInfo", "playerInfo"].forEach(fieldGroup => {
-    //     fieldGroups[fieldGroup].fields.forEach(field => {
-    //       // console.log(field)
-    //       var fieldSanitized = sanitize(field.fieldName);
-    //       console.log(fieldSanitized)
-    //       var replicant = nodecg.Replicant(fieldGroup + "_field_" + fieldSanitized);
-    //       this.fields[fieldSanitized] = {
-    //         replicant: replicant
-    //       }
-    //       this.replicants.push(replicant);
-    //     })
-    // })
-    // console.log(this.fields)
-  }
+    const locationInfo = this.getLocationInfo(id);
+    const locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+
+    this.createElement(id, className, text, locationInfo, "text");
+    this.createElement(id, className, text2, locationInfo2, "text");
+  };
 
   setGenres = () => {
-    // debugger
+    const id = "genreBorder";
+    const className = "border";
+    const src = "baseLayoutLayers/" + id + ".png";
+    var locationInfo = this.getLocationInfo(id);
+    this.createElement(id, className, src, locationInfo, "img");
 
-    var id = className = "genreBorder";
-    var src = "baseLayoutsOther/" + id + ".png";
-    var layoutInfo = layouts[this.players + "P"][this.resolution][id];
-    this.createImage({id, className, src, layoutInfo});
+    const gameGenres = this.fields.genres.split("; ");
+    fieldGroups.mainInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
+      if (gameGenres.includes(field)) {
+        const id = sanitize(field);
+        const className = "genre";
+        const src = "genreIcons/" + id + ".png";
+        const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[id]);
+        this.createElement(id, className, src, genreLocationInfo, "img");
+      };
+    });
+  };
 
-    var id = "gimmick";
-    var className = "genre";
-    var src = "genreIcons/" + id + ".png";
-    var layoutInfo = layouts[this.players + "P"][this.resolution][className][id];
+  setTitleCard = () => {
 
-    this.createImage({id, className, src, layoutInfo});
-  }
+  };
+
+
+  setPlayerInfo = () => {
+    var players = parseInt(this.fields.numberOfPlayers, 10);
+    const tId = "twitchIcon";
+    const tClassName = "primary";
+    const src = "baseLayoutLayers/" + tId + ".png";
+
+    for (let playerNumber = 1; playerNumber <= players; playerNumber++) {
+      const pId = "player" + playerNumber;
+      const pClassName = "primary";
+      const text = this.fields["player" + playerNumber + "_twitchHandle"];
+
+      const tLocationInfo = this.getLocationInfo(tId, playerNumber);
+      const offsetInfo = this.getLocationInfo("offset", playerNumber);
+      const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
+
+      this.createElement(tId, tClassName, src,  tLocationInfo, "img");
+      this.createElement(pId, pClassName, text, pLocationInfo, "text");
+    };
+  };
+
 
   // helpers
 
-  createImage = ({ id, className, src, layoutInfo }) => {
-    console.log(id)
-    console.log(className)
-    console.log(src)
-    console.log(layoutInfo)
-    var { left, top } = layoutInfo;
-    var img = $("<img>", {
+  getLocationInfo = (id, playerNumber = false) => {
+    const layout = layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution];
+    return (playerNumber ? layout["player" + playerNumber][id] : layout[id]);
+  };
+
+  getOffsetLocationInfo = (locationInfo, offsets) => {
+    return Object.keys(offsets).reduce((hashmap, direction) => {
+      hashmap[direction] = locationInfo[direction] + offsets[direction];
+      return hashmap;
+    }, {});
+  };
+
+  createElement = (id, className, output, locationInfo, type) => {
+    var { left, top, right, bottom } = locationInfo;
+
+    var element, outputKey;
+    switch(type) {
+      case "img":
+        element = "<img>";
+        outputKey = "src";
+        output = "/assets/dashboard/" + output;
+        break;
+      case "text":
+      default:
+        element = "<div>";
+        outputKey = "text";
+        break;
+    };
+
+    var div = $(element, {
       id: id,
       class: className,
-      src: "/assets/dashboard/" + src,
-      css: {
-        left: left,
-        top: top,
-        "z-index": this.getZindex(className)
-      }
-    })
-    $("body").append( img );
-  }
+      [outputKey]: output,
+      css: { left: left, top: top, right: right, bottom: bottom }
+    });
 
-  getZindex = (name) => {
-    return layouts["z-index"][name];
-  }
+    $("#container").append( div );
+  };
 
-}
+};

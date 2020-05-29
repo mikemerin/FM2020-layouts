@@ -51,8 +51,8 @@
         "allowedTypes": ["png"]
       },
       {
-        "name": "baseLayoutsOther",
-        "title": "Base Layouts - Other",
+        "name": "baseLayoutsOtherP",
+        "title": "Base Layouts - Other Players",
         "allowedTypes": ["png"]
       },
       {
