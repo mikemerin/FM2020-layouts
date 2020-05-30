@@ -23,7 +23,7 @@ class Layout {
       this.setHashtag();
       this.setRunInfo();
       this.setGenres();
-      this.setTitleCard();
+      this.setBorders();
 
       this.setPlayerInfo();
     });
@@ -41,12 +41,15 @@ class Layout {
   };
 
   setLayoutResolutionIfShared = () => {
+    // todo: this overwrites, need to merge (sometimes there's a 600 along with a 600|800)
+    // pick up with gameBorder start/offset and test out with 600 and 608
+    var layoutFields = {};
+    // do above and ...spread
     const resolutions = layouts[this.fields.numberOfPlayers + "P"];
     Object.keys(resolutions).forEach(resolution => {
       var split = resolution.split("|");
       if (split.length > 1 && split.includes(this.fields.resolution)) {
           layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution] = resolutions[resolution];
-          return;
       };
     });
   };
@@ -54,6 +57,7 @@ class Layout {
   setLayoutName = () => {
     this.baseImageSrc = "/assets/dashboard/baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png";
     // this.baseImageSrc = "/assets/dashboard/baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // this.baseImageSrc = "/assets/dashboard/baseLayoutLayers/background.png"; // todo: debugging tool as reference, change as needed, remove when done
 
     const gameName = this.fields.gameName.replace(/I Wanna /i, "");
     const pixelNames = ["600", "608"];
@@ -112,10 +116,48 @@ class Layout {
     });
   };
 
-  setTitleCard = () => {
-
+  setBorders = () => {
+    this.setBorder("titleCard");
+    this.setBorder("timer");
   };
 
+  setBorder = (type, playerNumber = false) => {
+    const { left: sL, top: sT } = this.getLocationInfo("start", type, playerNumber);
+    const { left: oL, top: oT } = this.getLocationInfo("offset", type, playerNumber);
+
+    console.log(type, playerNumber, sL, sT, oL, oT)
+
+    const size = layouts.border[type];
+    const cornerSize = layouts.border.cornerSize[size];
+    const sideOffset = cornerSize - 3;
+    const sideWidth  = oL - cornerSize;
+    const sideHeight = oT - cornerSize;
+
+    console.log(size, cornerSize, sideOffset, sideWidth, sideHeight)
+
+    var locationInfo = {
+      "TL": { left: 0,  top: 0  },
+      "TR": { left: oL, top: 0  },
+      "BR": { left: oL, top: oT },
+      "BL": { left: 0,  top: oT },
+      "T":  { left: cornerSize,       top: 0,               height: 3,  width:  sideWidth  },
+      "R":  { left: oL + sideOffset,  top: cornerSize,      width: 3,   height: sideHeight },
+      "B":  { left: cornerSize,       top: oT + sideOffset, height: 3,  width:  sideWidth  },
+      "L":  { left: 0,                top: cornerSize,      width: 3,   height: sideHeight }
+    };
+
+    console.log(type, playerNumber, locationInfo)
+
+    Object.keys(locationInfo).forEach(id => {
+      locationInfo[id].left += sL;
+      locationInfo[id].top += sT;
+
+      const borderId = "title" + id;
+      const className = "border";
+      const src = "baseLayoutLayers/border" + (id.length > 1 ? size : "") + id + ".png";
+      this.createElement(id, className, src, locationInfo[id], "img");
+    });
+  }
 
   setPlayerInfo = () => {
     var players = parseInt(this.fields.numberOfPlayers, 10);
@@ -128,20 +170,36 @@ class Layout {
       const pClassName = "primary";
       const text = this.fields["player" + playerNumber + "_twitchHandle"];
 
-      const tLocationInfo = this.getLocationInfo(tId, playerNumber);
-      const offsetInfo = this.getLocationInfo("offset", playerNumber);
+      const tLocationInfo = this.getLocationInfo(tId, "player", playerNumber);
+      const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
       const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
+
+      this.setBorder("game", playerNumber);
 
       this.createElement(tId, tClassName, src,  tLocationInfo, "img");
       this.createElement(pId, pClassName, text, pLocationInfo, "text");
     };
   };
 
-
   // helpers
 
-  getLocationInfo = (id, playerNumber = false) => {
+  getLocationInfo = (id, type = false, playerNumber = false) => {
     const layout = layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution];
+    switch(type) {
+      case "player":
+        return layout["player" + playerNumber][id];
+        break;
+      case "game":
+        return layout["player" + playerNumber][type][id];
+        break;
+      case "titleCard":
+      case "timer":
+        return layout["borders"][type][id];
+        break;
+      default:
+        return layout[id]
+        break;
+    }
     return (playerNumber ? layout["player" + playerNumber][id] : layout[id]);
   };
 
@@ -153,7 +211,7 @@ class Layout {
   };
 
   createElement = (id, className, output, locationInfo, type) => {
-    var { left, top, right, bottom } = locationInfo;
+    var { left, top, right, bottom, width, height } = locationInfo;
 
     var element, outputKey;
     switch(type) {
@@ -173,7 +231,7 @@ class Layout {
       id: id,
       class: className,
       [outputKey]: output,
-      css: { left: left, top: top, right: right, bottom: bottom }
+      css: { left: left, top: top, right: right, bottom: bottom, width: width, height: height }
     });
 
     $("#container").append( div );
