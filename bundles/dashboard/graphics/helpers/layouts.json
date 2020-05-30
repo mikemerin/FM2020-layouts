@@ -9,19 +9,40 @@ var layouts = {
       "needle":     { "left": 288,  "top": 3    },
       "trap":       { "left": 346,  "top": 5    }
     },
-    "border": {
-
-    },
     "runInfo2":       { "left": 0,    "top": 29  }
+  },
+  "border": {
+    "game": "large",
+    "timer": "small",
+    "titleCard": "small",
+    "cornerSize": {
+      "small": 8,
+      "large": 11
+    }
   },
   "1P": {
     "600|608": {
+      "camera": true,
       "genreBorder":  { "left": 25,   "top": 448 },
       "hashtag":      { "left": 36,   "top": 42  },
       "runInfo":      { "left": 456,  "top": 647 },
       "player1": {
         "twitchIcon": { "right": 24, "bottom": 21 },
-        "offset":     { "right": 47, "bottom": -8 }
+        "offset":     { "right": 47, "bottom": -8 },
+        "game": {
+          "start":    { "left": 453,  "top": 21  },
+          "offset":   { "left": 795,  "top": 603 }
+        }
+      },
+      "borders": {
+        "titleCard": {
+          "start":    { "left": 25,   "top": 114 },
+          "offset":   { "left": 396,  "top": 300 }
+        },
+        "timer": {
+          "start":    { "left": 25,   "top": 555 },
+          "offset":   { "left": 396,  "top": 72  }
+        }
       }
     }
   }

@@ -5,9 +5,9 @@ body {
 }
 
 .base         { z-index: -1; }
-.genre        { z-index:  3; }
+.genre        { z-index:  3;  image-rendering: pixelated; }
 .primary      { z-index:  6; }
-.border       { z-index: 10; }
+.border       { z-index: 10; image-rendering: pixelated; }
 
 #container {
   width: 1280px;
