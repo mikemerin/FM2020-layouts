@@ -12,9 +12,30 @@ var layouts = {
     "runInfo2":       { "left": 0,    "top": 29  }
   },
   "border": {
-    "gameBorder": "large",
-    "timer": "small",
-    "titleCard": "small",
+    "gameBorder": {
+      "cornerSize": "large",
+      "fill": {
+        "type": "solid",
+        "color": "#0f0"
+      }
+    },
+    "timer": {
+      "cornerSize": "small",
+      "fill": {
+        "type": "gradient",
+        "color": {
+          "left": "#444",
+          "right": "#606060"
+        }
+      }
+    },
+    "titleCard": {
+      "cornerSize": "small",
+      "fill": {
+        "type": "solid",
+        "color": "#0f0"
+      }
+    },
     "cornerSize": {
       "small": 8,
       "large": 11
