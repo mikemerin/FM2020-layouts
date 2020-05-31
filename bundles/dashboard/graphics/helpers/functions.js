@@ -130,7 +130,7 @@ class Layout {
 
     // console.log(type, playerNumber, sL, sT, oL, oT)
 
-    const size = layouts.border[type];
+    const size = layouts.border[type].cornerSize;
     const cornerSize = layouts.border.cornerSize[size];
     const sideOffset = cornerSize - 3;
     const sideWidth  = oL - cornerSize;
