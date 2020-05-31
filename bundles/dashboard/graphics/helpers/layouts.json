@@ -12,7 +12,7 @@ var layouts = {
     "runInfo2":       { "left": 0,    "top": 29  }
   },
   "border": {
-    "game": "large",
+    "gameBorder": "large",
     "timer": "small",
     "titleCard": "small",
     "cornerSize": {
@@ -28,11 +28,7 @@ var layouts = {
       "runInfo":      { "left": 456,  "top": 647 },
       "player1": {
         "twitchIcon": { "right": 24, "bottom": 21 },
-        "offset":     { "right": 47, "bottom": -8 },
-        "game": {
-          "start":    { "left": 453,  "top": 21  },
-          "offset":   { "left": 795,  "top": 603 }
-        }
+        "offset":     { "right": 47, "bottom": -8 }
       },
       "borders": {
         "titleCard": {
@@ -42,6 +38,22 @@ var layouts = {
         "timer": {
           "start":    { "left": 25,   "top": 555 },
           "offset":   { "left": 396,  "top": 72  }
+        }
+      }
+    },
+    "600": {
+      "player1": {
+        "gameBorder": {
+          "start":    { "left": 453,  "top": 29  },
+          "offset":   { "left": 795,  "top": 595 }
+        }
+      }
+    },
+    "608": {
+      "player1": {
+        "gameBorder": {
+          "start":    { "left": 453,  "top": 21  },
+          "offset":   { "left": 795,  "top": 603 }
         }
       }
     }

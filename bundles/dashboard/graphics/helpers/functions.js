@@ -49,7 +49,10 @@ class Layout {
     Object.keys(resolutions).forEach(resolution => {
       var split = resolution.split("|");
       if (split.length > 1 && split.includes(this.fields.resolution)) {
-          layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution] = resolutions[resolution];
+        layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution] = deepMerge(
+          layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution],
+          resolutions[resolution]
+        );
       };
     });
   };
@@ -125,7 +128,7 @@ class Layout {
     const { left: sL, top: sT } = this.getLocationInfo("start", type, playerNumber);
     const { left: oL, top: oT } = this.getLocationInfo("offset", type, playerNumber);
 
-    console.log(type, playerNumber, sL, sT, oL, oT)
+    // console.log(type, playerNumber, sL, sT, oL, oT)
 
     const size = layouts.border[type];
     const cornerSize = layouts.border.cornerSize[size];
@@ -133,7 +136,7 @@ class Layout {
     const sideWidth  = oL - cornerSize;
     const sideHeight = oT - cornerSize;
 
-    console.log(size, cornerSize, sideOffset, sideWidth, sideHeight)
+    // console.log(size, cornerSize, sideOffset, sideWidth, sideHeight)
 
     var locationInfo = {
       "TL": { left: 0,  top: 0  },
@@ -146,7 +149,7 @@ class Layout {
       "L":  { left: 0,                top: cornerSize,      width: 3,   height: sideHeight }
     };
 
-    console.log(type, playerNumber, locationInfo)
+    // console.log(type, playerNumber, locationInfo)
 
     Object.keys(locationInfo).forEach(id => {
       locationInfo[id].left += sL;
@@ -174,7 +177,7 @@ class Layout {
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
       const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
 
-      this.setBorder("game", playerNumber);
+      this.setBorder("gameBorder", playerNumber);
 
       this.createElement(tId, tClassName, src,  tLocationInfo, "img");
       this.createElement(pId, pClassName, text, pLocationInfo, "text");
@@ -189,7 +192,7 @@ class Layout {
       case "player":
         return layout["player" + playerNumber][id];
         break;
-      case "game":
+      case "gameBorder":
         return layout["player" + playerNumber][type][id];
         break;
       case "titleCard":
