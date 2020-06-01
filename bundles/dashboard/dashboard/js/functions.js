@@ -365,7 +365,13 @@ class DashboardField {
 };
 
 const setLayoutButton = () => {
-  const layoutButton = $("#createLayoutButton");
+  const id = "createLayoutButton";
+  $("#createLayout").append(
+    $("<button>", {
+      id: id,
+      class: "loadButton"
+    })
+  );
 
   const replicant = nodecg.Replicant("fieldValues");
 
@@ -373,7 +379,7 @@ const setLayoutButton = () => {
     const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
     const resolution = newValue["mainInfo"]["resolution"];
     const text = " Load layout_" + numberOfPlayers + "_" + resolution;
-    layoutButton.text(text).off().on("click", (e) => {
+    $("#" + id).text(text).off().on("click", (e) => {
       e.preventDefault();
       if (numberOfPlayers !== "N/A" && resolution !== "N/A") {
         var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";
