@@ -175,6 +175,9 @@ class DashboardForm {
           // example from before: delete(this.replicantValues.playerInfo[1])
           nodecg.readReplicant(name, namespace, replicantValues => {
             var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
+            if (this.name === "mainInfo") {
+              this.replicantValues.mainInfo.gameNameTitle = this.replicantValues.mainInfo.gameName.replace(/\bI Wanna |\bBe the /gi, "");
+            }
             this.replicant.value = this.replicantValues = newValues;
           });
           $(e.target).removeClass("saveChanges");
@@ -258,7 +261,7 @@ class DashboardField {
     $("#" + this.parent.name + "Save > button").addClass("saveChanges");
     // debugger
     // $("#adminPanelSave > button").addClass("saveChanges");
-    $("#createLayoutButton").addClass("disabled");
+    $("#loadLayoutButton").addClass("disabled");
   }
 
   // create fields below
@@ -364,12 +367,23 @@ class DashboardField {
 
 };
 
-const setLayoutButton = () => {
-  const id = "createLayoutButton";
-  $("#createLayout").append(
+const setLoadLayoutInfo = () => {
+  const text = "Layout window for";
+  const newId = "Open New Window";
+
+  $("#loadLayout").append(
+    $("<div>", {
+      id: sanitize(text),
+      class: "loadButton",
+      text: text
+    })
+  );
+
+  $("#loadLayout").append(
     $("<button>", {
-      id: id,
-      class: "loadButton"
+      id: sanitize(newId) + "Window",
+      class: "loadButton",
+      text: newId
     })
   );
 
@@ -377,9 +391,11 @@ const setLayoutButton = () => {
 
   replicant.on("change", (newValue, oldValue) => {
     const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
-    const resolution = newValue["mainInfo"]["resolution"];
-    const text = " Load layout_" + numberOfPlayers + "_" + resolution;
-    $("#" + id).text(text).off().on("click", (e) => {
+    const { resolution, gameNameTitle } = newValue["mainInfo"];
+    const labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
+
+    $("#" + sanitize(text)).html(labelText);
+    $("#" + sanitize(newId) + "Window").on("click", (e) => {
       e.preventDefault();
       if (numberOfPlayers !== "N/A" && resolution !== "N/A") {
         var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";

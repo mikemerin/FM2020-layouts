@@ -61,7 +61,7 @@ class Layout {
   };
 
   setLayoutName = () => {
-    const gameName = this.fields.gameName.replace(/\bI Wanna |\bBe the/gi, "");
+    const gameName = this.fields.gameNameTitle;
     const pixelNames = ["600", "608"];
     const resolution = (pixelNames.indexOf(this.fields.resolution) >= 0 ? "800x" : "") + this.fields.resolution;
     document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameName;
@@ -76,22 +76,18 @@ class Layout {
     this.createElement(id, className, output, "", "img");
   };
 
-  setGameImage = (type = "BG") => {
-    var id = "gameImage";
-    var className = "gameImage";
-    var bgInfo;
+  setGameImage = (locationInfo) => {
+    const id = "gameImage";
+    const className = "gameImage";
     const output = "gameBackgrounds/" + this.fields.gameName + ".png";
+    // const gameEdge = cornerSize - 6;
 
-    if (type === "BG") {
-      id += "BG";
-      className += " fullSize dim";
-      bgInfo = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
-    }
-
-    // full size
-    this.createElement(id, className, output, bgInfo, "img");
-
-    // if (layout  camera && player's camera on) //titleCard
+    if (!locationInfo) {
+      const bgInfo = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
+      this.createElement(id + "BG", className + " fullSize dim", output, bgInfo, "img");
+    } else {
+      this.createElement(id, className + " primary", output, locationInfo, "img");
+    };
   };
 
   setHashtag = () => {
@@ -175,8 +171,8 @@ class Layout {
       "L":  { left: 0,                top: cornerSize,      width: 3,   height: sideHeight }
     };
 
-    const gameEdge = cornerSize - 2;
-    var fillLocationInfo = { left: sL + 1, top: sT + 1, width: oL + gameEdge, height: oT + gameEdge, borderRadius: cornerSize + "px" };
+    const gameEdge = cornerSize - 6;
+    var fillLocationInfo = { left: sL + 3, top: sT + 3, width: oL + gameEdge, height: oT + gameEdge };
 
     Object.keys(locationInfo).forEach(id => {
       locationInfo[id].left += sL;
@@ -189,7 +185,12 @@ class Layout {
     });
 
     // console.log(locationInfo, fillLocationInfo)
-    this.createElement(type + "Fill", "fill fill" + fillClass, "fill", fillLocationInfo, "fill");
+    console.log("type, this.locations.camera, this.fields.player1_camera:", type, this.locations.camera, this.fields.player1_camera);
+    if (type === "titleCard" && (!this.locations.camera || !this.fields.player1_camera) ) { // todo: fix for more than 1 player
+      this.setGameImage(fillLocationInfo);
+    } else {
+      this.createElement(type + "Fill", "fill fill" + fillClass, "fill", fillLocationInfo, "fill");
+    }
   }
 
   setPlayerInfo = () => {
