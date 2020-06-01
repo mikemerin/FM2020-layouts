@@ -9,7 +9,8 @@ var layouts = {
       "needle":     { "left": 288,  "top": 3    },
       "trap":       { "left": 346,  "top": 5    }
     },
-    "runInfo2":       { "left": 0,    "top": 29  }
+    "runInfo2":       { "left": 0,    "top": 29  },
+    "hashtagOutline": { "left": 10,   "top":  -9  }
   },
   "border": {
     "gameBorder": {
