@@ -1,4 +1,5 @@
 // // todo: convert this to the global scope class to be able to just call them anywhere
+
 const sanitize = (str) => {
   var replace = {
     "#": "number",

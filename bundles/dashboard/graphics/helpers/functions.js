@@ -61,7 +61,7 @@ class Layout {
   };
 
   setLayoutName = () => {
-    const gameName = this.fields.gameName.replace(/I Wanna /i, "");
+    const gameName = this.fields.gameName.replace(/\bI Wanna |\bBe the/gi, "");
     const pixelNames = ["600", "608"];
     const resolution = (pixelNames.indexOf(this.fields.resolution) >= 0 ? "800x" : "") + this.fields.resolution;
     document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameName;
