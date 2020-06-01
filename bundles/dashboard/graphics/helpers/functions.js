@@ -131,6 +131,7 @@ class Layout {
     // console.log(type, playerNumber, sL, sT, oL, oT)
 
     const size = layouts.border[type].cornerSize;
+    const fillClass = layouts.border[type].fill;
     const cornerSize = layouts.border.cornerSize[size];
     const sideOffset = cornerSize - 3;
     const sideWidth  = oL - cornerSize;
@@ -149,17 +150,21 @@ class Layout {
       "L":  { left: 0,                top: cornerSize,      width: 3,   height: sideHeight }
     };
 
-    // console.log(type, playerNumber, locationInfo)
+    const gameEdge = cornerSize - 2;
+    var fillLocationInfo = { left: sL + 1, top: sT + 1, width: oL + gameEdge, height: oT + gameEdge, borderRadius: cornerSize + "px" };
 
     Object.keys(locationInfo).forEach(id => {
       locationInfo[id].left += sL;
       locationInfo[id].top += sT;
-
-      const borderId = "title" + id;
+      const borderId = type + id;
       const className = "border";
-      const src = "baseLayoutLayers/border" + (id.length > 1 ? size : "") + id + ".png";
-      this.createElement(id, className, src, locationInfo[id], "img");
+      var sizeName = (id.length > 1 ? size : "");
+      const src = "baseLayoutLayers/border" + sizeName + id + ".png";
+      this.createElement(borderId, className, src, locationInfo[id], "img");
     });
+
+    // console.log(locationInfo, fillLocationInfo)
+    this.createElement(type + "Fill", "fill fill" + fillClass, "fill", fillLocationInfo, "fill");
   }
 
   setPlayerInfo = () => {
@@ -214,7 +219,13 @@ class Layout {
   };
 
   createElement = (id, className, output, locationInfo, type) => {
-    var { left, top, right, bottom, width, height } = locationInfo;
+    var { left, top, right, bottom, width, height, backgroundColor, borderRadius } = locationInfo;
+
+    // console.log("id:", id);
+    // console.log("className:", className);
+    // console.log("output:", output);
+    // console.log("locationInfo:", locationInfo);
+    // console.log("type:", type);
 
     var element, outputKey;
     switch(type) {
@@ -222,6 +233,10 @@ class Layout {
         element = "<img>";
         outputKey = "src";
         output = "/assets/dashboard/" + output;
+        break;
+      case "fill":
+        element = "<div>";
+        outputKey = "fill";
         break;
       case "text":
       default:
@@ -234,9 +249,11 @@ class Layout {
       id: id,
       class: className,
       [outputKey]: output,
-      css: { left: left, top: top, right: right, bottom: bottom, width: width, height: height }
+      css: { left: left, top: top, right: right, bottom: bottom, width: width, height: height, "background-color": backgroundColor, "border-radius": borderRadius }
     });
 
+    // console.log("div[0]:", div[0]);
+    // console.log("-------------------------------------------------------------")
     $("#container").append( div );
   };
 

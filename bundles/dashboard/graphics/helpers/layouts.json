@@ -14,27 +14,15 @@ var layouts = {
   "border": {
     "gameBorder": {
       "cornerSize": "large",
-      "fill": {
-        "type": "solid",
-        "color": "#0f0"
-      }
+      "fill": "GS"
     },
     "timer": {
       "cornerSize": "small",
-      "fill": {
-        "type": "gradient",
-        "color": {
-          "left": "#444",
-          "right": "#606060"
-        }
-      }
+      "fill": "Grey"
     },
     "titleCard": {
       "cornerSize": "small",
-      "fill": {
-        "type": "solid",
-        "color": "#0f0"
-      }
+      "fill": "GS"
     },
     "cornerSize": {
       "small": 8,

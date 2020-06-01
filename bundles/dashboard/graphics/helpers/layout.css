@@ -5,7 +5,8 @@ body {
 }
 
 .base         { z-index: -1; }
-.genre        { z-index:  3;  image-rendering: pixelated; }
+.genre        { z-index:  3; image-rendering: pixelated; }
+.fill         { z-index:  5; image-rendering: pixelated; }
 .primary      { z-index:  6; }
 .border       { z-index: 10; image-rendering: pixelated; }
 
@@ -13,7 +14,7 @@ body {
   width: 1280px;
   height: 720px;
   position: relative;
-  background-color: #0f0;
+  /* background-color: #0f0; */
   z-index: -10;
 }
 
@@ -28,6 +29,15 @@ body {
 #runInfo        { font-size: 24px; }
 [id^="player"]  { font-size: 48px; }
 
-img {
+img, .fill {
   position: absolute;
+}
+
+.fillGS {
+  background-color: #0f0;
+}
+
+.fillGrey {
+  background-color: #444; /* fallback if browser doesn't support */
+  background-image: linear-gradient(to right, #444, #606060);
 }
