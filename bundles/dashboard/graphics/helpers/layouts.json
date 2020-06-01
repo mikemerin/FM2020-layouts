@@ -16,9 +16,13 @@ var layouts = {
       "cornerSize": "large",
       "fill": "GS"
     },
-    "timer": {
+    "genres": {
       "cornerSize": "small",
       "fill": "Grey"
+    },
+    "timer": {
+      "cornerSize": "small",
+      "fill": "GreyGradient"
     },
     "titleCard": {
       "cornerSize": "small",
@@ -40,6 +44,10 @@ var layouts = {
         "offset":     { "right": 47, "bottom": -8 }
       },
       "borders": {
+        "genres": {
+          "start":    { "left": 25,   "top": 448 },
+          "offset":   { "left": 396,  "top": 73 }
+        },
         "titleCard": {
           "start":    { "left": 25,   "top": 114 },
           "offset":   { "left": 396,  "top": 300 }

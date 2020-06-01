@@ -4,6 +4,7 @@ class Layout {
     this.replicant;
     this.replicantValues;
     this.fields = {};
+    this.locations = {};
 
     this.baseImageSrc;
 
@@ -16,16 +17,18 @@ class Layout {
 
     nodecg.readReplicant(name, namespace, replicantValues => {
       this.setFields(replicantValues);
-      this.setLayoutResolutionIfShared();
+      this.setLocations();
       this.setLayoutName();
 
       this.setBaseImage();
+      this.setGameImage();
       this.setHashtag();
       this.setRunInfo();
       this.setGenres();
       this.setBorders();
 
       this.setPlayerInfo();
+      console.log(this)
     });
   };
 
@@ -40,17 +43,17 @@ class Layout {
     });
   };
 
-  setLayoutResolutionIfShared = () => {
-    // todo: this overwrites, need to merge (sometimes there's a 600 along with a 600|800)
-    // pick up with gameBorder start/offset and test out with 600 and 608
+  setLocations = () => {
     var layoutFields = {};
-    // do above and ...spread
     const resolutions = layouts[this.fields.numberOfPlayers + "P"];
+    this.locations = resolutions[this.fields.resolution];
+
+    // if there's shared location info like (600|800) this will merge them
     Object.keys(resolutions).forEach(resolution => {
       var split = resolution.split("|");
       if (split.length > 1 && split.includes(this.fields.resolution)) {
-        layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution] = deepMerge(
-          layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution],
+        this.locations = deepMerge(
+          this.locations,
           resolutions[resolution]
         );
       };
@@ -58,24 +61,37 @@ class Layout {
   };
 
   setLayoutName = () => {
-    this.baseImageSrc = "/assets/dashboard/baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png";
-    // this.baseImageSrc = "/assets/dashboard/baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
-    // this.baseImageSrc = "/assets/dashboard/baseLayoutLayers/background.png"; // todo: debugging tool as reference, change as needed, remove when done
-
     const gameName = this.fields.gameName.replace(/I Wanna /i, "");
     const pixelNames = ["600", "608"];
     const resolution = (pixelNames.indexOf(this.fields.resolution) >= 0 ? "800x" : "") + this.fields.resolution;
     document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameName;
   };
 
-
   setBaseImage = () => {
-    const baseImage = $("<img>", {
-      id: "baseImage",
-      class: "base",
-      src: this.baseImageSrc
-    });
-    $("#container").append(baseImage);
+    // const output = "/assets/dashboard/baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "/assets/dashboard/baseLayoutLayers/background.png"; // todo: debugging tool as reference, change as needed, remove when done
+    const id = "baseImage";
+    const className = "base";
+    const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png";
+    this.createElement(id, className, output, "", "img");
+  };
+
+  setGameImage = (type = "BG") => {
+    var id = "gameImage";
+    var className = "gameImage";
+    var bgInfo;
+    const output = "gameBackgrounds/" + this.fields.gameName + ".png";
+
+    if (type === "BG") {
+      id += "BG";
+      className += " fullSize";
+      bgInfo = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
+    }
+
+    // full size
+    this.createElement(id, className, output, bgInfo, "img");
+
+    // if (layout  camera && player's camera on) //titleCard
   };
 
   setHashtag = () => {
@@ -122,6 +138,7 @@ class Layout {
   setBorders = () => {
     this.setBorder("titleCard");
     this.setBorder("timer");
+    this.setBorder("genres");
   };
 
   setBorder = (type, playerNumber = false) => {
@@ -192,7 +209,7 @@ class Layout {
   // helpers
 
   getLocationInfo = (id, type = false, playerNumber = false) => {
-    const layout = layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution];
+    const layout = this.locations;
     switch(type) {
       case "player":
         return layout["player" + playerNumber][id];
@@ -202,6 +219,7 @@ class Layout {
         break;
       case "titleCard":
       case "timer":
+      case "genres":
         return layout["borders"][type][id];
         break;
       default:
@@ -218,8 +236,8 @@ class Layout {
     }, {});
   };
 
-  createElement = (id, className, output, locationInfo, type) => {
-    var { left, top, right, bottom, width, height, backgroundColor, borderRadius } = locationInfo;
+  createElement = (id, className, output, locationInfo = {}, type) => {
+    var { left, top, right, bottom, width, height, backgroundColor, borderRadius, opacity } = locationInfo;
 
     // console.log("id:", id);
     // console.log("className:", className);
@@ -249,7 +267,10 @@ class Layout {
       id: id,
       class: className,
       [outputKey]: output,
-      css: { left: left, top: top, right: right, bottom: bottom, width: width, height: height, "background-color": backgroundColor, "border-radius": borderRadius }
+      css: {
+        left: left, top: top, right: right, bottom: bottom, width: width, height: height,
+        "background-color": backgroundColor, "border-radius": borderRadius, opacity: opacity
+      }
     });
 
     // console.log("div[0]:", div[0]);
