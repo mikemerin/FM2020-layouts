@@ -20,15 +20,15 @@ class Layout {
       this.setLocations();
       this.setLayoutName();
 
+      this.setBorders();
       this.setBaseImage();
       this.setGameImage();
       this.setHashtag();
       this.setRunInfo();
       this.setGenres();
-      this.setBorders();
 
       this.setPlayerInfo();
-      console.log(this)
+      // console.log(this)
     });
   };
 
@@ -68,11 +68,11 @@ class Layout {
   };
 
   setBaseImage = () => {
-    // const output = "/assets/dashboard/baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
-    // const output = "/assets/dashboard/baseLayoutLayers/background.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png"; // todo: debugging tool as reference, change as needed, remove when done
     const id = "baseImage";
     const className = "base";
-    const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png";
+    const output = "baseLayoutLayers/background.png"; // main, use after debugging
     this.createElement(id, className, output, "", "img");
   };
 
@@ -84,7 +84,7 @@ class Layout {
 
     if (type === "BG") {
       id += "BG";
-      className += " fullSize";
+      className += " fullSize dim";
       bgInfo = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
     }
 
@@ -95,11 +95,16 @@ class Layout {
   };
 
   setHashtag = () => {
-    const id = "hashtag";
+    const hashtagId = "hashtag";
+    const outlineId = hashtagId + "Outline";
     const className = "primary";
     const text = "#FangameMarathon";
-    const locationInfo = this.getLocationInfo(id);
-    this.createElement(id, className, text, locationInfo, "text");
+    const src  = "baseLayoutLayers/FMtextOutline.png";
+    const hashtagLocationInfo = this.getLocationInfo(hashtagId);
+    const outlineLocationInfo = this.getOffsetLocationInfo(hashtagLocationInfo, layouts.offsets[outlineId])
+
+    this.createElement(hashtagId, className, text, hashtagLocationInfo, "text");
+    this.createElement(outlineId, className, src,  outlineLocationInfo, "img");
   };
 
   setRunInfo = () => {
@@ -121,24 +126,27 @@ class Layout {
     const className = "border";
     const src = "baseLayoutLayers/" + id + ".png";
     var locationInfo = this.getLocationInfo(id);
-    this.createElement(id, className, src, locationInfo, "img");
+    this.createElement(id, className, src, locationInfo, "img"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
 
     const gameGenres = this.fields.genres.split("; ");
     fieldGroups.mainInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
+      const id = sanitize(field);
+      var className = "genre";
+      const src = "genreIcons/" + id + ".png";
+      const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[id]);
       if (gameGenres.includes(field)) {
-        const id = sanitize(field);
-        const className = "genre";
-        const src = "genreIcons/" + id + ".png";
-        const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[id]);
-        this.createElement(id, className, src, genreLocationInfo, "img");
+        className += " bright";
+      } else {
+        className += " dim";
       };
+      this.createElement(id, className, src, genreLocationInfo, "img");
     });
   };
 
   setBorders = () => {
     this.setBorder("titleCard");
     this.setBorder("timer");
-    this.setBorder("genres");
+    this.setBorder("genres");  // future: lazy creation in under the pasted border; works as is, in the future will create (BG dependent on the fills)
   };
 
   setBorder = (type, playerNumber = false) => {

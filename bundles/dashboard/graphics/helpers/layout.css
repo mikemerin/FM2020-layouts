@@ -4,13 +4,22 @@ body {
   margin: 0px;
 }
 
+img, .fill {
+  position: absolute;
+}
+
+
 #container    { z-index: -10 }
 .base         { z-index:  1; }
-.gameImage    { z-index:  4; }
-.fill         { z-index:  7; image-rendering: pixelated; }
-.genre        { z-index: 10; image-rendering: pixelated; }
+.dim          { z-index:  4; }
+.fill         { z-index:  7; }
+.bright       { z-index: 10; }
 .primary      { z-index: 13; }
-.border       { z-index: 20; image-rendering: pixelated; }
+.border       { z-index: 20; }
+
+.genre, .border {
+  image-rendering: pixelated;
+}
 
 #container, .fullSize {
   width: 1280px;
@@ -18,6 +27,23 @@ body {
   position: relative;
   /* background-color: #0f0; */
 }
+
+
+.fillGS {
+  background-color: #0f0;
+}
+
+.fillGrey {
+  background-color: #606060; /* fallback if browser doesn't support */
+  opacity: .80;
+}
+
+.fillGreyGradient {
+  background-color: #444; /* fallback if browser doesn't support */
+  background-image: linear-gradient(to right, #444, #606060);
+  opacity: .7;
+}
+
 
 .primary {
   font-family: Limerick;
@@ -29,22 +55,3 @@ body {
 #hashtag        { font-size: 44px; }
 #runInfo        { font-size: 24px; }
 [id^="player"]  { font-size: 48px; }
-
-img, .fill {
-  position: absolute;
-}
-
-.fillGS {
-  background-color: #0f0;
-}
-
-.fillGrey {
-  background-color: #444; /* fallback if browser doesn't support */
-  opacity: .1
-}
-
-.fillGreyGradient {
-  background-color: #444; /* fallback if browser doesn't support */
-  background-image: linear-gradient(to right, #444, #606060);
-  opacity: .7;
-}
