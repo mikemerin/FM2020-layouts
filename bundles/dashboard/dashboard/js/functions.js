@@ -292,28 +292,37 @@ class DashboardField {
     var values = this.value.split("; ");
     if (values === "" && this.defaultValue) values = this.defaultValue;
 
-    this.options.forEach((text, i) => {
-      var id = sanitize(text);
+    this.options.forEach(text => {
+      var select, label;
+      if (Array.isArray(text)) {
+        group.append(
+          "<br clear='all'>",
+          $("<span>", { class: "selectGroup", text: text[0] }),
+          "<br>"
+        );
+      } else {
+        var id = sanitize(text);
 
-      const select = $("<input>", {
-        width: width,
-        type: this.type,
-        id: id,
-        name: this.id,
-        value: text,
-        checked: values.includes(text),
-        click: () => {
-          var choices = [];
-          $("input[name$='" + this.id + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
-          this.value = choices.join("; ");
-          this.toggleSaveChangesOn();
-        }
-      });
-      const label = $("<label>", {
-        width: width,
-        for: id,
-        text: text,
-      });
+        select = $("<input>", {
+          width: width,
+          type: this.type,
+          id: id,
+          name: this.id,
+          value: text,
+          checked: values.includes(text),
+          click: () => {
+            var choices = [];
+            $("input[name$='" + this.id + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
+            this.value = choices.join("; ");
+            this.toggleSaveChangesOn();
+          }
+        });
+        label = $("<label>", {
+          width: width,
+          for: id,
+          text: text,
+        });
+      };
       group.append(select, label);
     });
     return group;
@@ -395,7 +404,7 @@ const setLoadLayoutInfo = () => {
     const labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
 
     $("#" + sanitize(text)).html(labelText);
-    $("#" + sanitize(newId) + "Window").on("click", (e) => {
+    $("#" + sanitize(newId) + "Window").off().on("click", (e) => {
       e.preventDefault();
       if (numberOfPlayers !== "N/A" && resolution !== "N/A") {
         var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";
