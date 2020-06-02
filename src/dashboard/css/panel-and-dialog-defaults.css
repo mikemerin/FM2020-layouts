@@ -86,6 +86,11 @@ br {
   display: block;
 }
 
+.selectGroup {
+	font-weight: bold;
+	font-size: 12px;
+}
+
 .smallLabel {
 	font-size: 10px;
 }
@@ -102,7 +107,9 @@ br {
 		vertical-align: center;
 	}
 
-	.switch input {display:none;}
+	.switch input {
+		display: none;
+	}
 
 	.slider {
 	  position: absolute;
@@ -151,13 +158,11 @@ br {
 	  transform: translateX(68px);
 	}
 
-	.on
-	{
+	.on	{
 	  display: none;
 	}
 
-	.on, .off
-	{
+	.on, .off	{
 	  color: white;
 	  position: absolute;
 	  transform: translate(-50%,-50%);
@@ -167,11 +172,13 @@ br {
 	  font-family: Verdana, sans-serif;
 	}
 
-	input:checked+ .slider .on
-	{display: block;}
+	input:checked+ .slider .on {
+		display: block;
+	}
 
-	input:checked + .slider .off
-	{display: none;}
+	input:checked + .slider .off {
+		display: none;
+	}
 
 /* end slider */
 
@@ -240,7 +247,6 @@ button {
 .disabled input:-moz-placeholder { /* Firefox 18- */
   color: #fbb;
 }
-
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #ddd;

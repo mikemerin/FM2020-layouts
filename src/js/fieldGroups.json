@@ -59,24 +59,18 @@ var fieldGroups = {
         ]
       },
       {
-        "fieldName": "Other Primary Genres",
+        "fieldName": "Other Genres",
         "type": "radio",
         "optional": true,
         "options": [
           "N/A",
+          ["Primary"],
           "???",
           "Creative",
           "Puzzle",
           "Quiz Show",
-          "Relay"
-        ]
-      },
-      {
-        "fieldName": "Other Game Genres",
-        "type": "radio",
-        "optional": true,
-        "options": [
-          "N/A",
+          "Relay",
+          ["Game"],
           "Celeste",
           "Mario",
           "Mario 64",

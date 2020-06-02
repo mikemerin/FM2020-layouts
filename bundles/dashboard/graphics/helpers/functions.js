@@ -80,13 +80,12 @@ class Layout {
     const id = "gameImage";
     const className = "gameImage";
     const output = "gameBackgrounds/" + this.fields.gameName + ".png";
-    // const gameEdge = cornerSize - 6;
 
-    if (!locationInfo) {
-      const bgInfo = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
-      this.createElement(id + "BG", className + " fullSize dim", output, bgInfo, "img");
-    } else {
+    if (locationInfo) {
       this.createElement(id, className + " primary", output, locationInfo, "img");
+    } else {
+      const backgroundCSS = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
+      this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
     };
   };
 
