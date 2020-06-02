@@ -399,12 +399,15 @@ const setLoadLayoutInfo = () => {
   const replicant = nodecg.Replicant("fieldValues");
 
   replicant.on("change", (newValue, oldValue) => {
+    const loadButton = $("#" + sanitize(newId) + "Window");
+    loadButton.off()
+
     const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
     const { resolution, gameNameTitle } = newValue["mainInfo"];
     const labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
 
     $("#" + sanitize(text)).html(labelText);
-    $("#" + sanitize(newId) + "Window").off().on("click", (e) => {
+    loadButton.on("click", (e) => {
       e.preventDefault();
       if (numberOfPlayers !== "N/A" && resolution !== "N/A") {
         var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";
