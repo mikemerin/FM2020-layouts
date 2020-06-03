@@ -376,6 +376,10 @@ class DashboardField {
 
 };
 
+const setFieldsInfo = () => {
+  
+};
+
 const setLoadLayoutInfo = () => {
   const text = "Layout window for";
   const newId = "Open New Window";
