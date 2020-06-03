@@ -16,3 +16,13 @@ document.addEventListener(
 	},
 	false,
 );
+
+document.addEventListener(
+	'keydown',
+	e => {
+	if (event.which == 83 && event.ctrlKey) {
+		event.preventDefault();
+	  return false;
+	}
+	return true;
+});
