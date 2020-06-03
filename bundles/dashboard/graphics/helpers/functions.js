@@ -76,10 +76,10 @@ class Layout {
     this.createElement(id, className, output, "", "img");
   };
 
-  setGameImage = (locationInfo) => {
+  setGameImage = (locationInfo, gameName = this.fields.gameName) => {
     const id = "gameImage";
     const className = "gameImage";
-    const output = "gameBackgrounds/" + this.fields.gameName + ".png";
+    const output = "gameBackgrounds/" + gameName + ".png";
 
     if (locationInfo) {
       this.createElement(id, className + " primary", output, locationInfo, "img");
@@ -207,7 +207,11 @@ class Layout {
 
     // console.log(locationInfo, fillLocationInfo)
     // console.log("type, this.locations.camera, this.fields.player1_camera:", type, this.locations.camera, this.fields.player1_camera);
-    if (type === "titleCard" && (!this.locations.camera || !this.fields.player1_camera) ) { // todo: fix for more than 1 player
+    const showCamera = this.locations.camera && this.fields.player1_camera; // todo: fix for more than 1 player
+    const secondCard = this.locations.borders.titleCard2;
+    if (type === "titleCard2" && !showCamera) {
+      this.setGameImage(fillLocationInfo, "FM Logo");
+    } else if (type === "titleCard" && (!showCamera || secondCard)) {
       this.setGameImage(fillLocationInfo);
     } else {
       this.createElement(type + "Fill", "fill fill" + fillClass, "fill", fillLocationInfo, "fill");

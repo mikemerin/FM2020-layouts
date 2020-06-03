@@ -86,7 +86,7 @@ var layouts = {
       "camera": true,
       "genreBorder":  { "left": 25,   "top": 448 },
       "hashtag":      {
-        "position":   { "left": 15,   "top": 34 },
+        "position":   { "left": 7,    "top": 34 },
         "text":       { "fontSize": "37px" },
         "outline":    { "width": "320px" }
       },

@@ -13,3 +13,17 @@
   //       }
   //   });
   // }
+
+
+  // class GlobalFunctions {
+  //
+  //   sanitize = (str) => {
+  //     var replace = {
+  //       "#": "number",
+  //       "-": ""
+  //     };
+  //     str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
+  //     return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
+  //   }
+  //
+  // }
