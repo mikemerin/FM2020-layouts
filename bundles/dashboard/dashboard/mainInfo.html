@@ -15,8 +15,8 @@
 		$(document).ready(e => {
 			const fieldGroup = "mainInfo";
 			console.log(fieldGroup + " ready", e);
-			$("#mainInfoSaveButton").onclick = () => {};
-			var mainInfoForm = new DashboardForm(fieldGroup);
+			var dashboardForm = new DashboardForm(fieldGroup);
+			NodeCG.dashboardPanels[fieldGroup] = dashboardForm;
 		})
 	</script>
 </html>

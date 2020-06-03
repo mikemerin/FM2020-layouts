@@ -16,10 +16,8 @@
 		$(document).ready(e => {
 			const fieldGroup = "playerInfo";
 			console.log(fieldGroup + " ready", e);
-
-			var playerInfoForm = new DashboardForm(fieldGroup);
-
-
+			var dashboardForm = new DashboardForm(fieldGroup);
+			NodeCG.dashboardPanels[fieldGroup] = dashboardForm;
 
 			// var { name, namespace } = playerInfoForm.replicant;
 			// nodecg.readReplicant(name, namespace, replicantValues => {

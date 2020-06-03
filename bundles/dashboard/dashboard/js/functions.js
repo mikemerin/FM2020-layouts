@@ -1,7 +1,7 @@
 // Main Functions
 
 // todo: for the inputs, make them their own classes
-// todo: make helper hashmap for types (text/number vs. radio/checkbox vs. dropdown)\
+// todo: make helper hashmap for types (text/number vs. radio/checkbox vs. dropdown)
 
 class DashboardForm {
 
@@ -12,6 +12,7 @@ class DashboardForm {
     this.replicantValues;
     this.dashboardFields = [];
     this.generateForm();
+    this.reloadForm();
   };
 
   generateForm = () => {
@@ -19,6 +20,7 @@ class DashboardForm {
     const { name, namespace } = this.replicant;
 
     nodecg.readReplicant(name, namespace, replicantValues => {
+      console.log("name, namespace, replicantValues:", name, namespace, replicantValues);
       this.replicantValues = replicantValues;
       this.fields.forEach(field => {
         const dashboardField = this.createDashboardField({field});
@@ -28,6 +30,10 @@ class DashboardForm {
       if (this.name === "playerInfo") this.createPlayerTable();
     });
     this.createSaveButton();
+  };
+
+  reloadForm = () => {
+
   };
 
   createDashboardField = ({
@@ -64,7 +70,7 @@ class DashboardForm {
           this.dashboardFields.push(dashboardField);
         };
       });
-      if (!!playerNumber) this.generateMoveButtons(playerNumber, maxPlayers).forEach(button => row.append(button));
+      if (!!playerNumber) this.generatePlayerMoveButtons(playerNumber, maxPlayers).forEach(button => row.append(button));
       playerTable.append(row);
     });
     $("#playerFields").append(playerTable);
@@ -75,13 +81,13 @@ class DashboardForm {
     this.updatePlayerFields(numberOfPlayers);
   };
 
-  generateMoveButtons = (playerNumber, maxPlayers) => {
+  generatePlayerMoveButtons = (playerNumber, maxPlayers) => {
     var up = $("<td>");
     var down = $("<td>");
     var clear = $("<td>", {
       text: "X",
       class: "moveButton",
-      click: () => { this.changeValues(playerNumber, "off") }
+      click: () => { this.changePlayerValues(playerNumber, "off") }
     });
 
     playerNumber = parseInt(playerNumber, 10);
@@ -91,20 +97,20 @@ class DashboardForm {
       up = $("<td>", {
         text: "↑",
         class: "moveButton",
-        click: () => { this.changeValues(playerNumber, "up") }
+        click: () => { this.changePlayerValues(playerNumber, "up") }
       });
     };
     if (playerNumber < maxPlayers) {
       down = $("<td>", {
         text: "↓",
         class: "moveButton",
-        click: () => { this.changeValues(playerNumber, "down") }
+        click: () => { this.changePlayerValues(playerNumber, "down") }
       });
     };
     return [up, down, clear];
   };
 
-  changeValues = (playerNumber, changeType) => {
+  changePlayerValues = (playerNumber, changeType) => {
     var operator = (changeType === "up" ? -1 : 1);
     if (changeType === "off") {
       const confirm = window.confirm("Are you sure you want to clear out player " + playerNumber + "'s info?");
@@ -377,7 +383,7 @@ class DashboardField {
 };
 
 const setFieldsInfo = () => {
-  
+
 };
 
 const setLoadLayoutInfo = () => {
