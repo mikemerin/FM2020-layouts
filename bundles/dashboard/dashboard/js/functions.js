@@ -400,7 +400,7 @@ const setLoadLayoutInfo = () => {
 
   replicant.on("change", (newValue, oldValue) => {
     const loadButton = $("#" + sanitize(newId) + "Window");
-    loadButton.off()
+    loadButton.off();
 
     const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
     const { resolution, gameNameTitle } = newValue["mainInfo"];
