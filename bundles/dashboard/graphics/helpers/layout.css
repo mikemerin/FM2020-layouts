@@ -17,7 +17,7 @@ img, .fill {
 .primary      { z-index: 13; }
 .border       { z-index: 20; }
 
-.genre, .border {
+.genre, .border, #hashtagOutline {
   image-rendering: pixelated;
 }
 
@@ -44,6 +44,34 @@ img, .fill {
   opacity: .7;
 }
 
+@keyframes gradientMovementRight {
+  0%    { background-position: 0px 0; }
+  100%  { background-position: 355px 0; }
+}
+
+@keyframes gradientMovementLeft {
+  0%    { background-position: 355px 0; }
+  100%  { background-position: 0px 0; }
+}
+
+.fillBWGradient {
+  animation: 5s forwards linear infinite;
+  background-color: transparent; /* fallback if browser doesn't support */
+  background-image: linear-gradient(
+    to right,
+    /* rgba(255, 255, 255, .5) 0%, */
+    #fff 0%,
+    rgba(70, 70, 70, 0) 48%,
+    rgba(70, 70, 70, 0) 52%,
+    #fff 100%
+    /* rgba(255, 255, 255, .5) 100% */
+  );
+  -webkit-backface-visibility: hidden;
+}
+
+.moveRight  { animation-name: gradientMovementRight; }
+.moveLeft   { animation-name: gradientMovementLeft; }
+
 
 .primary {
   font-family: Limerick;
@@ -52,6 +80,6 @@ img, .fill {
   position: absolute;
 }
 
-#hashtag        { font-size: 44px; }
+/* #hashtag        { font-size: 44px; } */
 #runInfo        { font-size: 24px; }
 [id^="player"]  { font-size: 48px; }

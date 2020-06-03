@@ -32,6 +32,18 @@ function deepMerge(target, source) {
   return target;
 }
 
+const changeCSSRule = (ruleKey, ruleValue, cssTextName, cssText) => {
+  var sheet = document.styleSheets[0];
+  var rules = sheet.cssRules || sheet.rules;
+  for (let i = 0; i < rules.length; i++) {
+      if (rules[i][ruleKey] === ruleValue) {
+          rules[i].deleteRule(cssTextName);
+          rules[i].appendRule(cssTextName + cssText);
+          break;
+      }
+  };
+};
+
 // class GlobalFunctions {
 //
 //   sanitize = (str) => {

@@ -68,11 +68,11 @@ class Layout {
   };
 
   setBaseImage = () => {
-    // const output = "baseLayoutsOther/10 608 example.png"; // todo: debugging tool as reference, change as needed, remove when done
     // const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutsOther/1P 16by9 example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    const output = "baseLayoutLayers/background.png"; // main, use after debugging
     const id = "baseImage";
     const className = "base";
-    const output = "baseLayoutLayers/background.png"; // main, use after debugging
     this.createElement(id, className, output, "", "img");
   };
 
@@ -90,16 +90,37 @@ class Layout {
   };
 
   setHashtag = () => {
+    // 255 to 70
     const hashtagId = "hashtag";
-    const outlineId = hashtagId + "Outline";
-    const className = "primary";
+    const outlineTopId = hashtagId + "OutlineTop";
+    const outlineBotId = hashtagId + "OutlineBot";
+    const hashtagClass = "primary";
+    const outlineTopClass = "primary fillBWGradient moveRight";
+    const outlineBotClass = "primary fillBWGradient moveLeft";
     const text = "#FangameMarathon";
-    const src  = "baseLayoutLayers/FMtextOutline.png";
-    const hashtagLocationInfo = this.getLocationInfo(hashtagId);
-    const outlineLocationInfo = this.getOffsetLocationInfo(hashtagLocationInfo, layouts.offsets[outlineId])
 
-    this.createElement(hashtagId, className, text, hashtagLocationInfo, "text");
-    this.createElement(outlineId, className, src,  outlineLocationInfo, "img");
+    const { outline, position, text: textPosition } = this.getLocationInfo(hashtagId);
+    outline.height = "1px";
+    // debugger
+    const hashtagInfo = { ...position, ...textPosition };
+    const outlineTopInfo = { ...position, ...outline };
+    const outlineBotInfo = { ...position, ...outline };
+
+    const width = parseInt(outline.width, 10);
+    const offsetLeft = Math.round(width / 93.5);
+    const offsetTop = Math.round(width / 41.5);
+    const offsetBot = Math.round(width / 5.8);
+
+    outlineTopInfo.left += offsetLeft; outlineTopInfo.top -= offsetTop;
+    outlineBotInfo.left += offsetLeft; outlineBotInfo.top += offsetBot;
+
+    // debugger
+    changeCSSRule("name", "gradientMovementRight", "100%", "{ background-position: " + outline.width + " 0 }");
+    changeCSSRule("name", "gradientMovementLeft", "0%", "{ background-position: " + outline.width + " 0 }");
+
+    this.createElement(hashtagId,     hashtagClass,     text, hashtagInfo,    "text");
+    this.createElement(outlineBotId,  outlineBotClass,  "",   outlineBotInfo, "fill");
+    this.createElement(outlineTopId,  outlineTopClass,  "",   outlineTopInfo, "fill");
   };
 
   setRunInfo = () => {
@@ -120,7 +141,7 @@ class Layout {
     const id = "genreBorder";
     const className = "border";
     const src = "baseLayoutLayers/" + id + ".png";
-    var locationInfo = this.getLocationInfo(id);
+    var locationInfo = this.getLocationInfo(id, id);
     this.createElement(id, className, src, locationInfo, "img"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
 
     const gameGenres = this.fields.genres.split("; ");
@@ -140,6 +161,7 @@ class Layout {
 
   setBorders = () => {
     this.setBorder("titleCard");
+    if (layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution]["borders"]["titleCard2"]) this.setBorder("titleCard2");
     this.setBorder("timer");
     this.setBorder("genres");  // future: lazy creation in under the pasted border; works as is, in the future will create (BG dependent on the fills)
   };
@@ -184,7 +206,7 @@ class Layout {
     });
 
     // console.log(locationInfo, fillLocationInfo)
-    console.log("type, this.locations.camera, this.fields.player1_camera:", type, this.locations.camera, this.fields.player1_camera);
+    // console.log("type, this.locations.camera, this.fields.player1_camera:", type, this.locations.camera, this.fields.player1_camera);
     if (type === "titleCard" && (!this.locations.camera || !this.fields.player1_camera) ) { // todo: fix for more than 1 player
       this.setGameImage(fillLocationInfo);
     } else {
@@ -225,7 +247,11 @@ class Layout {
       case "gameBorder":
         return layout["player" + playerNumber][type][id];
         break;
+      case "genreBorder":
+        return layout["borders"]["genres"]["start"];
+        break;
       case "titleCard":
+      case "titleCard2":
       case "timer":
       case "genres":
         return layout["borders"][type][id];
@@ -239,13 +265,22 @@ class Layout {
 
   getOffsetLocationInfo = (locationInfo, offsets) => {
     return Object.keys(offsets).reduce((hashmap, direction) => {
-      hashmap[direction] = locationInfo[direction] + offsets[direction];
+      hashmap[direction] = offsets[direction];
+      if (locationInfo[direction] !== undefined) { // for numerals, may have to check for strings like 32px in the future
+        hashmap[direction] += locationInfo[direction];
+      };
       return hashmap;
     }, {});
   };
 
   createElement = (id, className, output, locationInfo = {}, type) => {
-    var { left, top, right, bottom, width, height, backgroundColor, borderRadius, opacity } = locationInfo;
+    // if (locationInfo.fontSize) debugger
+    var { left, top, right, bottom, width, height, backgroundColor, borderRadius, fontSize, opacity } = locationInfo;
+    const css = {
+      left: left, top: top, right: right, bottom: bottom, width: width, height: height,
+      backgroundColor: backgroundColor, borderRadius: borderRadius, fontSize: fontSize,
+      opacity: opacity
+    };
 
     // console.log("id:", id);
     // console.log("className:", className);
@@ -275,10 +310,7 @@ class Layout {
       id: id,
       class: className,
       [outputKey]: output,
-      css: {
-        left: left, top: top, right: right, bottom: bottom, width: width, height: height,
-        "background-color": backgroundColor, "border-radius": borderRadius, opacity: opacity
-      }
+      css: css
     });
 
     // console.log("div[0]:", div[0]);
