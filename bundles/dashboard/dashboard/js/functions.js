@@ -7,44 +7,47 @@ class DashboardForm {
 
   constructor(fieldGroup) {
     this.name = fieldGroup;
-    this.fields = fieldGroups[fieldGroup].fields;
-    this.replicant;
-    this.replicantValues;
+    this.fieldGroup = fieldGroups[fieldGroup].fields;
+    this.saveButton;
     this.dashboardFields = [];
-    this.generateForm();
-    this.reloadForm();
+
+    this.element = $("#" + fieldGroup + "Fields");
+    this.createDashboardForm();
+    // this.loadValues(); //used on init or if loading in from sheet, not here
   };
 
-  generateForm = () => {
-    this.replicant = nodecg.Replicant("fieldValues");
-    const { name, namespace } = this.replicant;
-
-    nodecg.readReplicant(name, namespace, replicantValues => {
-      console.log("name, namespace, replicantValues:", name, namespace, replicantValues);
-      this.replicantValues = replicantValues;
-      this.fields.forEach(field => {
-        const dashboardField = this.createDashboardField({field});
+  createDashboardForm = () => {
+    this.fieldGroup.forEach(field => {
+      if (!field.disabled) {
+        const dashboardField = this.getDashboardField({field});
         const brClear = $("<br>", { clear: "all" });
-        $("#" + this.name + "Fields").append(dashboardField.dashboardField, brClear, "<br>");
-      });
-      if (this.name === "playerInfo") this.createPlayerTable();
+        this.element.append(dashboardField.element, brClear, "<br>");
+      };
     });
+
+    if (this.name === "playerInfo") this.createPlayerTable();
     this.createSaveButton();
   };
 
-  reloadForm = () => {
-
+  loadValues = (fromReplicant = false) => {
+    if (fromReplicant) {
+      this.dashboardFields.forEach(field => {
+        const fieldReplicantValue = NodeCG.dashboardPanels.replicantValues[this.name][field.id]
+        if (fieldReplicantValue !== undefined) field.updateValue(fieldReplicantValue);
+      });
+    } else {
+      // todo: from dropdown
+    };
   };
 
-  createDashboardField = ({
+  getDashboardField = ({
     field,
     playerField = false,
     playerNumber
   }) => {
     const sanitizedFieldName = (!!playerField ? "player" + playerNumber + "_" : "") + sanitize(field.fieldName);
-    const value = (this.replicantValues[this.name] ? this.replicantValues[this.name][sanitizedFieldName] : "");
     const parent = this;
-    const dashboardField = new DashboardField({parent, playerField, sanitizedFieldName, value, ...field});
+    const dashboardField = new DashboardField({parent, playerField, sanitizedFieldName, ...field});
     this.dashboardFields.push(dashboardField);
     return dashboardField;
   };
@@ -65,20 +68,18 @@ class DashboardForm {
           row.append( $("<th>", { text: fieldName }) );
         } else {
           const playerField = true;
-          var dashboardField = this.createDashboardField({field, playerField, playerNumber});
-          row.append(dashboardField.dashboardField);
-          this.dashboardFields.push(dashboardField);
+          var dashboardField = this.getDashboardField({field, playerField, playerNumber});
+          row.append(dashboardField.element);
         };
       });
       if (!!playerNumber) this.generatePlayerMoveButtons(playerNumber, maxPlayers).forEach(button => row.append(button));
       playerTable.append(row);
     });
-    $("#playerFields").append(playerTable);
+    $("#playerFields").append(playerTable); // todo: next
     $("input[name$=numberOfPlayers]").each((i,x) => {
         $(x).click(() => this.updatePlayerFields(x.id));
     });
-    const numberOfPlayers = this.replicantValues[this.name] ? this.replicantValues[this.name]["numberOfPlayers"] || 1 : 1;
-    this.updatePlayerFields(numberOfPlayers);
+    this.updatePlayerFields(1);
   };
 
   generatePlayerMoveButtons = (playerNumber, maxPlayers) => {
@@ -119,7 +120,7 @@ class DashboardForm {
 
     fieldGroups.individualPlayerInfo.fields.forEach(({fieldName, type}) => {
       var sanitizedFieldName = sanitize(fieldName);
-      var field1 = $("#player" + playerNumber + "_" + sanitizedFieldName);
+      var field1 = $("#player" + playerNumber + "_" + sanitizedFieldName); //todo: next
       if (changeType === "off") {
         if (type === "text") {
           field1.val("");
@@ -128,7 +129,7 @@ class DashboardForm {
           if (field1.is(":checked")) field1.click();
         };
       } else {
-        var field2 = $("#player" + (playerNumber + 1*operator) + "_" + sanitizedFieldName);
+        var field2 = $("#player" + (playerNumber + 1*operator) + "_" + sanitizedFieldName); //todo: next
 
         if (type === "text") {
           var tmpValue = field1.val();
@@ -163,35 +164,42 @@ class DashboardForm {
     });
   };
 
-  createSaveButton = (all = false) => {
+  createSaveButton = () => {
     // todo: make "all panels" type (if can be done, seems like nodecg panels can't share info, which seems to be confirmed by the official docs)
-    if (all) {
+    var text = "Save " + (this.name === "adminPanel" ? "All Fields" : fieldGroups[this.name].name);
+    this.saveButton = $("<button>", {
+      text: text,
+      class: "saveButton",
+      click: (e) => {
+        e.preventDefault();
+        var panels = (this.name === "adminPanel" ? Object.keys(NodeCG.dashboardPanels.panels) : [this.name]);
 
-    } else {
-      var button = $("<button>", {
-        text: "Save " + fieldGroups[this.name].name,
-        class: "saveButton",
-        click: (e) => {
-          e.preventDefault();
-          this.dashboardFields.forEach(({sanitizedFieldName, value}) => {
-            this.replicantValues[this.name][sanitizedFieldName] = value;
+        panels.forEach(panel => {
+          NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
+            NodeCG.dashboardPanels.replicantValues[panel][id] = value;
           });
-          const { name, namespace } = this.replicant;
-          // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
-          // example from before: delete(this.replicantValues.playerInfo[1])
-          nodecg.readReplicant(name, namespace, replicantValues => {
-            var newValues = {...replicantValues, ...{[this.name]: this.replicantValues[this.name]}}
-            if (this.name === "mainInfo") {
-              this.replicantValues.mainInfo.gameNameTitle = this.replicantValues.mainInfo.gameName.replace(/\bI Wanna |\bBe the /gi, "");
+        });
+
+        const { name, namespace } = NodeCG.dashboardPanels.replicant;
+
+        // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
+        // example from before: delete(this.replicantValues.playerInfo[1])
+        nodecg.readReplicant(name, namespace, replicantValues => {
+          var newValues = {...replicantValues};
+
+          panels.forEach(panel => {
+            newValues = {...newValues, ...{[panel]: NodeCG.dashboardPanels.replicantValues[panel]}};
+            if (panel === "mainInfo") {
+              NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = NodeCG.dashboardPanels.replicantValues[panel].gameName.replace(/\bI Wanna |\bBe the /gi, "");
             }
-            this.replicant.value = this.replicantValues = newValues;
+            NodeCG.dashboardPanels.panels[panel].saveButton.removeClass("saveChanges");
           });
-          $(e.target).removeClass("saveChanges");
-        }
-      });
-    };
+          NodeCG.dashboardPanels.replicant.value = newValues;
+        });
+      }
+    });
 
-    $("#" + this.name + "Save").append(button);
+    $("#" + this.name + "Save").append(this.saveButton); //todo: next
   };
 
 };
@@ -210,79 +218,74 @@ class DashboardField {
     playerField,
     replicantValues,
     sanitizedFieldName,
-    type,
-    value
+    type
   }) {
     this.parent = parent;
     this.dataOff = dataOff || "No";
     this.dataOn = dataOn || "Yes";
-    this.defaultValue = defaultValue;
+    this.defaultValue = (defaultValue !== undefined ? defaultValue : "");
+    this.id = sanitizedFieldName;
     this.fieldName = fieldName;
     this.options = options;
     this.optional = optional;
     this.placeholder = placeholder;
     this.playerField = playerField;
-    this.sanitizedFieldName = sanitizedFieldName;
     this.type = type;
-    this.value = value || "";
+    this.value = "";
 
-    this.dashboardField;
-    this.id;
+    this.element;
+    this.input;
     this.createDashboardField();
   };
 
   createDashboardField = () => {
     const fieldTag = ( this.playerField ? "Td" : "Div" );
-    this.id = this.sanitizedFieldName;
-    this.dashboardField = $("<" + fieldTag + ">", { id: this.id + fieldTag });
+    this.element = $("<" + fieldTag + ">", { id: this.id + fieldTag });
     var label = $("<label>", { text: this.fieldName });
     if (this.optional) label[0].innerHTML += "<i class='smallLabel'> (optional)</i>";
-    var input;
 
     switch(this.type) {
       case "text":
       case "number":
-        input = this.createTextBox();
+        this.input = this.createTextBox();
         break;
       case "radio":
       case "checkbox":
-        input = this.createSelectGroup();
+        this.input = this.createSelectGroup();
         break;
       case "slider":
-        input = this.createSlider();
+        this.input = this.createSlider();
         break;
       case "dropdown":
-        input = this.createDropdown();
+        this.input = this.createDropdown();
         break;
       default: ""; break;
     };
+
     if (this.playerField) {
-      this.dashboardField.append( input );
+      this.element.append( this.input );
     } else {
-      this.dashboardField.append(label, "<br>", input);
+      this.element.append(label, "<br>", this.input);
     };
   };
 
   toggleSaveChangesOn = () => {
-    $("#" + this.parent.name + "Save > button").addClass("saveChanges");
+    $("#" + this.parent.name + "Save > button").addClass("saveChanges"); //todo: next
     // debugger
     // $("#adminPanelSave > button").addClass("saveChanges");
-    $("#loadLayoutButton").addClass("disabled");
+    $("#loadLayoutButton").addClass("disabled"); //todo: fix
+    //todo: add to adminPanelSave
   }
 
   // create fields below
 
   createTextBox = () => {
-    // console.log(this.replicantValues)
     return $("<input>", {
       id: this.id,
-      value: this.value,
+      value: this.defaultValue,
       type: this.type,
       placeholder: this.placeholder || "",
-      blur: () => {
-        this.value = $("#" + this.id).val();
-        this.toggleSaveChangesOn();
-      }
+      blur: () => { this.updateValue(); }
     });
   };
 
@@ -293,10 +296,6 @@ class DashboardField {
     var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
     if (columns > 6) columns = 6;
     const width = (100 / columns) - 2 + "%";
-    // console.log(options, maxLength, columns, width)
-
-    var values = this.value.split("; ");
-    if (values === "" && this.defaultValue) values = this.defaultValue;
 
     this.options.forEach(text => {
       var select, label;
@@ -315,13 +314,8 @@ class DashboardField {
           id: id,
           name: this.id,
           value: text,
-          checked: values.includes(text),
-          click: () => {
-            var choices = [];
-            $("input[name$='" + this.id + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
-            this.value = choices.join("; ");
-            this.toggleSaveChangesOn();
-          }
+          checked: this.defaultValue.split("; ").includes(text),
+          click: () => { this.updateValue(); }
         });
         label = $("<label>", {
           width: width,
@@ -335,30 +329,20 @@ class DashboardField {
   };
 
   createSlider = () => {
-    var slider = $("<label>", { class: "switch" })
+    const slider = $("<label>", { class: "switch" })
       .append(
         $("<input>", {
           type: "checkbox",
           id: this.id,
-          checked: !!this.value,
-          change: () => {
-            this.value = $("#" + this.id).is(":checked");
-            this.toggleSaveChangesOn();
-          }
+          checked: this.defaultValue,
+          change: () => { this.updateValue(); }
         })
       );
-    var onOff = $("<div>", { class: "slider round" })
-      .append(
-        $("<span>", {
-          class: "on",
-          text: this.dataOn
-        })
-      ).append(
-        $("<span>", {
-          class: "off",
-          text: this.dataOff
-        })
-      );
+
+    const onOff = $("<div>", { class: "slider round" })
+      .append( $("<span>", { class: "on",  text: this.dataOn  }) )
+      .append( $("<span>", { class: "off", text: this.dataOff }) );
+
     slider.append(onOff);
     return slider;
   };
@@ -380,6 +364,35 @@ class DashboardField {
     return dropdown;
   };
 
+  updateValue = (value) => {
+    switch(this.type) {
+      case "text":
+      case "number":
+        if (value !== undefined) this.input.val(value);
+        this.value = this.input.val();
+        break;
+      case "radio":
+      case "checkbox":
+        if (value !== undefined) {
+          const choices = value.split("; ");
+          $("input[name$='" + this.id + "']").each((i,x) => $(x).prop("checked", choices.includes(x.value)) );
+        };
+        var choices = [];
+        $("input[name$='" + this.id + "']").filter((i,input) => $(input).is(":checked")).each((i,x) => choices.push(x.value));
+        this.value = choices.join("; ");
+        break;
+      case "slider":
+        if (value !== undefined) this.input.children("input").prop("checked", value);
+        this.value = this.input.children("input").is(":checked");
+        break;
+      case "dropdown":
+        // note: untested
+        break;
+      default: ""; break;
+    };
+    if (value === undefined) this.toggleSaveChangesOn();
+  };
+
 };
 
 const setFieldsInfo = () => {
@@ -390,7 +403,7 @@ const setLoadLayoutInfo = () => {
   const text = "Layout window for";
   const newId = "Open New Window";
 
-  $("#loadLayout").append(
+  $("#loadLayout").append( //todo: next
     $("<div>", {
       id: sanitize(text),
       class: "loadButton",
@@ -398,7 +411,7 @@ const setLoadLayoutInfo = () => {
     })
   );
 
-  $("#loadLayout").append(
+  $("#loadLayout").append( //todo: next
     $("<button>", {
       id: sanitize(newId) + "Window",
       class: "loadButton",
@@ -409,14 +422,14 @@ const setLoadLayoutInfo = () => {
   const replicant = nodecg.Replicant("fieldValues");
 
   replicant.on("change", (newValue, oldValue) => {
-    const loadButton = $("#" + sanitize(newId) + "Window");
+    const loadButton = $("#" + sanitize(newId) + "Window"); //todo: next
     loadButton.off();
 
     const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
     const { resolution, gameNameTitle } = newValue["mainInfo"];
     const labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
 
-    $("#" + sanitize(text)).html(labelText);
+    $("#" + sanitize(text)).html(labelText); //todo: next
     loadButton.on("click", (e) => {
       e.preventDefault();
       if (numberOfPlayers !== "N/A" && resolution !== "N/A") {

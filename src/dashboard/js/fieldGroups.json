@@ -80,6 +80,7 @@ var fieldGroups = {
           "Touhou",
           "Zelda"
         ],
+        "defaultValue": "N/A"
       }
     ]
   },
@@ -112,7 +113,7 @@ var fieldGroups = {
       {
         "fieldName": "Camera",
         "type": "slider",
-        "defaultValue": "No"
+        "defaultValue": false
       },
       {
         "fieldName": "PB",
@@ -129,7 +130,8 @@ var fieldGroups = {
         "fieldName": "Preview Layout (TBD)",
         "type": "button",
         "value": "",
-        "defaultValue": "1"
+        "defaultValue": "1",
+        "disabled": true
       }
     ]
   },
