@@ -1,4 +1,17 @@
 // todo: add this to api.js (and min) this to the global scope class to be able to just call them anywhere
+const initReplicants = () => {
+  NodeCG.dashboardPanels.replicant = nodecg.Replicant("fieldValues");
+
+  const { name, namespace } = NodeCG.dashboardPanels.replicant;
+
+  nodecg.readReplicant(name, namespace, replicantValues => {
+    NodeCG.dashboardPanels.replicantValues = replicantValues;
+
+    Object.keys(NodeCG.dashboardPanels.panels).forEach(panel => {
+      NodeCG.dashboardPanels.panels[panel].loadValues(true);
+    });
+  });
+};
 
 const sanitize = (str) => {
   var replace = {

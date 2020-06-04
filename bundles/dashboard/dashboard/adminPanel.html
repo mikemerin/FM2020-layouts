@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<script src="/js/jquery-3.5.1.min.js"></script>
-		<script type="text/javascript" src="/js/fieldGroups.json"></script>
-		<script type="text/javascript" src="/js/globalFunctions.js"></script>
+		<script type="text/javascript" src="/dashboard/js/fieldGroups.json"></script>
+		<script type="text/javascript" src="/dashboard/js/globalFunctions.js"></script>
 		<script type="text/javascript" src="js/functions.js"></script>
 	</head>
 	<body id="adminPanelBody">
@@ -14,9 +14,14 @@
 
 	<script type="text/javascript">
 		$(document).ready(e => {
-			console.log("adminPanel ready", e);
-			setFieldsInfo();
+			const fieldGroup = "adminPanel";
+			console.log(fieldGroup + " ready", e);
+			var dashboardForm = new DashboardForm(fieldGroup);
+			NodeCG.dashboardPanels.panels[fieldGroup] = dashboardForm;
 			setLoadLayoutInfo();
+
+			// future: there must be a better way in NodeCG to do this, but initializing the globals here as the admin panel is the last loaded. If this moves in the future, move init() (for now)
+			initReplicants();
 		});
 	</script>
 </html>
