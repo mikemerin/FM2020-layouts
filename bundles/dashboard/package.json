@@ -69,11 +69,6 @@
         "name": "gameBackgrounds",
         "title": "Game Backgrounds",
         "allowedTypes": ["jpg", "jpeg", "png"]
-      },
-      {
-        "name": "titleCards",
-        "title": "Game Title Cards",
-        "allowedTypes": ["jpg", "jpeg", "png"]
       }
     ],
     "graphics": [
