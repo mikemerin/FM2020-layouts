@@ -8,6 +8,11 @@ var fieldGroups = {
         "placeholder": "I Wanna ___"
       },
       {
+        "fieldName": "Created By",
+        "type": "text",
+        "placeholder": "Thenewgeezer"
+      },
+      {
         "fieldName": "Resolution",
         "type": "radio",
         "options": [
@@ -72,6 +77,12 @@ var fieldGroups = {
         "optional": true,
         "type": "text",
         "placeholder": "0:10:00"
+      },
+      {
+        "fieldName": "World Record Holder",
+        "optional": true,
+        "type": "text",
+        "placeholder": "Stonk"
       },
       {
         "fieldName": "Run Type",
