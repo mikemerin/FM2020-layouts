@@ -1,41 +1,11 @@
 var fieldGroups = {
-  "mainInfo": {
-    "name": "Main Info",
+  "gameInfo": {
+    "name": "Game Info",
     "fields": [
       {
         "fieldName": "Game Name",
         "type": "text",
         "placeholder": "I Wanna ___"
-      },
-      {
-        "fieldName": "Category",
-        "type": "text",
-        "placeholder": "any%"
-      },
-      {
-        "fieldName": "Estimate",
-        "type": "text",
-        "placeholder": "0:10:00"
-      },
-      {
-        "fieldName": "World Record",
-        "optional": true,
-        "type": "text",
-        "placeholder": "0:10:00"
-      },
-      {
-        "fieldName": "Run Type",
-        "type": "radio",
-        "options": [
-          "Co-op Run",
-          "Event",
-          "Showcase",
-          "Solo Run",
-          "Standard Race",
-          "TAS Showcase"
-        ],
-        "defaultValue": "Solo Run",
-        "other": true
       },
       {
         "fieldName": "Resolution",
@@ -81,6 +51,41 @@ var fieldGroups = {
           "Zelda"
         ],
         "defaultValue": "N/A"
+      }
+    ]
+  },
+  "runInfo": {
+    "name": "Run Info",
+    "fields": [
+      {
+        "fieldName": "Category",
+        "type": "text",
+        "placeholder": "any%"
+      },
+      {
+        "fieldName": "Estimate",
+        "type": "text",
+        "placeholder": "0:10:00"
+      },
+      {
+        "fieldName": "World Record",
+        "optional": true,
+        "type": "text",
+        "placeholder": "0:10:00"
+      },
+      {
+        "fieldName": "Run Type",
+        "type": "radio",
+        "options": [
+          "Co-op Run",
+          "Event",
+          "Showcase",
+          "Solo Run",
+          "Standard Race",
+          "TAS Showcase"
+        ],
+        "defaultValue": "Solo Run",
+        "other": true
       }
     ]
   },

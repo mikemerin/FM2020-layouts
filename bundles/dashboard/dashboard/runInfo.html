@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="/js/jquery-3.5.1.min.js"></script>
+		<script type="text/javascript" src="/dashboard/js/fieldGroups.json"></script>
+		<script type="text/javascript" src="/dashboard/js/globalFunctions.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+	</head>
+	<body id="runInfoBody">
+		<div id="runInfoFields"></div>
+		<div id="runInfoSave"></div>
+	</body>
+
+
+	<script type="text/javascript">
+		$(document).ready(e => {
+			const fieldGroup = "runInfo";
+			console.log(fieldGroup + " ready", e);
+			var dashboardForm = new DashboardForm(fieldGroup);
+			NodeCG.dashboardPanels.panels[fieldGroup] = dashboardForm;
+		});
+	</script>
+</html>

@@ -17,6 +17,7 @@ class Layout {
 
     nodecg.readReplicant(name, namespace, replicantValues => {
       this.setFields(replicantValues);
+
       this.setLocations();
       this.setLayoutName();
 
@@ -35,7 +36,7 @@ class Layout {
   setFields = (replicantValues) => {
     this.replicantValues = replicantValues;
     // future: will have "adminPanel"
-    ["mainInfo", "playerInfo"].forEach(fieldGroup => {
+    ["gameInfo", "runInfo", "playerInfo"].forEach(fieldGroup => {
       const fields = this.replicantValues[fieldGroup];
       Object.keys(fields).forEach(field => {
         this.fields[field] = fields[field];
@@ -70,7 +71,7 @@ class Layout {
   setBaseImage = () => {
     // const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png"; // todo: debugging tool as reference, change as needed, remove when done
     // const output = "baseLayoutsOther/1P 16by9 example.png"; // todo: debugging tool as reference, change as needed, remove when done
-    const output = "baseLayoutLayers/background.png"; // main, use after debugging
+    const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
     const className = "base";
     this.createElement(id, className, output, "", "img");
@@ -84,7 +85,7 @@ class Layout {
     if (locationInfo) {
       this.createElement(id, className + " primary", output, locationInfo, "img");
     } else {
-      const backgroundCSS = { opacity: "0.1" }; //todo: this.fields.backgroundOpacity min.1 max.4
+      const backgroundCSS = { opacity: "0.2" }; //todo: this.fields.backgroundOpacity min.1 max.4
       this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
     };
   };
@@ -145,7 +146,7 @@ class Layout {
     this.createElement(id, className, src, locationInfo, "img"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
 
     const gameGenres = this.fields.genres.split("; ");
-    fieldGroups.mainInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
+    fieldGroups.gameInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
       const id = sanitize(field);
       var className = "genre";
       const src = "genreIcons/" + id + ".png";

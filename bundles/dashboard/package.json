@@ -8,10 +8,17 @@
     "compatibleRange": ">=0.9",
     "dashboardPanels": [
       {
-        "name": "Main Info",
-        "title": "Main Info",
+        "name": "Game Info",
+        "title": "Game Info",
         "width": 2,
-        "file": "mainInfo.html",
+        "file": "gameInfo.html",
+        "headerColor": "#0D80A4"
+      },
+      {
+        "name": "Run Info",
+        "title": "Run Info",
+        "width": 2,
+        "file": "runInfo.html",
         "headerColor": "#0D80A4"
       },
       {
