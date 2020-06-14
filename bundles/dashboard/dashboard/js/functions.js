@@ -82,7 +82,7 @@ class DashboardForm {
     $("input[name$=numberOfPlayers]").each((i,x) => {
         $(x).click(() => this.updatePlayerFields(x.id));
     });
-    this.updatePlayerFields(1);
+    this.updatePlayerFields();
   };
 
   generatePlayerMoveButtons = (playerNumber, maxPlayers) => {
@@ -151,6 +151,16 @@ class DashboardForm {
   };
 
   updatePlayerFields = (numberOfPlayers) => {
+    if (!numberOfPlayers) {
+      numberOfPlayers = 1;
+      const replicant = nodecg.Replicant("fieldValues");
+
+      replicant.on("change", (newValue, oldValue) => {
+        if (newValue && newValue.playerInfo) this.updatePlayerFields(newValue.playerInfo.numberOfPlayers);
+      })
+    };
+
+    if (!numberOfPlayers) numberOfPlayers = 1;
     var playersChosen = parseInt(numberOfPlayers, 10);
 
     $(".playerRow").each((i,playerRow) => {
@@ -301,7 +311,6 @@ class DashboardField {
 
     const maxLength = Math.max.apply(null, [...this.options.map(x => x.toString().length)]);
     const panelWidth = this.parent.element.width() / 8;
-    console.log("panelWidth, this.parent.element.width():", panelWidth, this.parent.element.width());
     var columns = Math.floor(panelWidth / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
     if (columns > 6) columns = 6;
     const width = (100 / columns) - 2 + "%";

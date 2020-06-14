@@ -10,7 +10,7 @@ var fieldGroups = {
       {
         "fieldName": "Created By",
         "type": "text",
-        "placeholder": "Thenewgeezer"
+        "placeholder": "Thenewgeezer, PieceOfCheese87"
       },
       {
         "fieldName": "Resolution",
@@ -36,7 +36,6 @@ var fieldGroups = {
       {
         "fieldName": "Other Genres",
         "type": "radio",
-        "optional": true,
         "options": [
           "N/A",
           ["Primary"],
@@ -79,7 +78,7 @@ var fieldGroups = {
         "placeholder": "0:10:00"
       },
       {
-        "fieldName": "World Record Holder",
+        "fieldName": "WR Holder",
         "optional": true,
         "type": "text",
         "placeholder": "Stonk"
@@ -103,6 +102,12 @@ var fieldGroups = {
   "playerInfo": {
     "name": "Player Info",
     "fields": [
+      {
+        "fieldName": "Commentators",
+        "type": "text",
+        "placeholder": "Thenewgeezer, PieceOfCheese87",
+        "optional": true
+      },
       {
         "fieldName": "# of Players",
         "type": "radio",
