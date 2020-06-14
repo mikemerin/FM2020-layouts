@@ -1,0 +1,1060 @@
+{
+  "I Wanna Whisper In Mirror": {
+    "gameInfo": {
+      "resolution": "1:1",
+      "createdBy": "repsihw rorrim",
+      "genres": "Gimmick, Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:15:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Gimmick, Needle",
+      "WR": "0:07:00 by Joshua_boring"
+    },
+    "playerInfo": {
+      "runnerName": "Joshua",
+      "runnerHandle": "Joshua_boring",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:07:00",
+      "webcam": "No"
+    }
+  },
+  "I Wanna Be the Destination": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Carnival",
+      "genres": "Adventure, Avoidance, Needle, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:30:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Avoidance, Needle, Trap",
+      "WR": "0:52:43 by あお"
+    },
+    "playerInfo": {
+      "runnerName": "Naloa",
+      "runnerHandle": "Naloas",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:57:15",
+      "webcam": "Yes"
+    }
+  },
+  "I Wanna Be the Neon 3": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "Thenader2",
+      "genres": "Gimmick, Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:00:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Gimmick, Needle",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Chatran",
+      "runnerHandle": "ChatranP",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:55:42",
+      "webcam": ""
+    }
+  },
+  "I Wanna See the Moon": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "aqua",
+      "genres": "Adventure, Gimmick, Needle, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:50:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick, Needle, Trap",
+      "WR": "1:09:12 by Zurai"
+    },
+    "playerInfo": {
+      "runnerName": "Skulldude",
+      "runnerHandle": "Skulldude_",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:28:18",
+      "webcam": ""
+    }
+  },
+  "I Wanna Be the Emperor": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "クライン",
+      "genres": "Adventure, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "2:45:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Trap",
+      "WR": "1:43:01 by Tehninza"
+    },
+    "playerInfo": {
+      "runnerName": "Tehninza",
+      "runnerHandle": "",
+      "commentaryName": "bummerman222",
+      "commentaryHandle": "",
+      "PB": "1:43:01",
+      "webcam": "No"
+    }
+  },
+  "I Wanna Be the Justice": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Carnival",
+      "genres": "Adventure, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:35:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Trap",
+      "WR": "1:22:15 by Hyo_ka"
+    },
+    "playerInfo": {
+      "runnerName": "hyoka",
+      "runnerHandle": "Hyo_ka",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:22:15",
+      "webcam": "No"
+    }
+  },
+  "I Wanna Kill the Guy": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Thenewgeezer",
+      "genres": "Adventure, Gimmick"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:04:00",
+      "category": "DJ Sray Showcase",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick",
+      "WR": "N/A"
+    },
+    "playerInfo": {
+      "runnerName": "letcreate123",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": ""
+    }
+  },
+  "Needle": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "Multiple People",
+      "genres": "Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "2:00:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Needle",
+      "WR": "N/A"
+    },
+    "playerInfo": {
+      "runnerName": "Gemi",
+      "runnerHandle": "Gemilous",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": ""
+    }
+  },
+  "I Wanna Be the Guy - Gaiden": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Kayin",
+      "genres": "Adventure, Gimmick, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:10:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick, Trap",
+      "WR": "0:04:10 by Yagamoth"
+    },
+    "playerInfo": {
+      "runnerName": "Yaga",
+      "runnerHandle": "Yagamoth",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:04:10",
+      "webcam": ""
+    }
+  },
+  "I Wanna Leave This Hell": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "RandomChaos_",
+      "genres": "Gimmick, Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:00:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Gimmick, Needle",
+      "WR": "0:47:40 by CeleCele"
+    },
+    "playerInfo": {
+      "runnerName": "CeleCele",
+      "runnerHandle": "",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:47:40",
+      "webcam": "Not Sure"
+    }
+  },
+  "I Wanna KeyPick 100": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "ねころねこ",
+      "genres": "100F, Puzzle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:45:00",
+      "category": "100%",
+      "runType": "Solo Run",
+      "genres": "100F, Puzzle",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "amnjkb",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:17:14",
+      "webcam": ""
+    }
+  },
+  "I Wanna Be the Guy": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Kayin",
+      "genres": "Adventure, Gimmick, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:35:00",
+      "category": "any% glitchless",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick, Trap",
+      "WR": "0:27:59 by Bogandemon"
+    },
+    "playerInfo": {
+      "runnerName": "Bogandemon",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:27:59",
+      "webcam": "No"
+    }
+  },
+  "Mystery Game": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "kurath",
+      "genres": "???"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:00:00",
+      "category": "blind%",
+      "runType": "Solo Run",
+      "genres": "???",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "kurath",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": ""
+    }
+  },
+  "Gm8Emulator": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Adamcake, viri, Floogle, renex",
+      "genres": "Creative"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:45:00",
+      "category": "any%",
+      "runType": "TAS",
+      "genres": "Creative",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Adam",
+      "runnerHandle": "Adamcake",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": ""
+    }
+  },
+  "I Wanna Eclipse": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "Gwiz609",
+      "genres": "Adventure, Gimmick, Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:10:00",
+      "category": "true end%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick, Needle",
+      "WR": "0:48:23 by Wolfiexe"
+    },
+    "playerInfo": {
+      "runnerName": "Doppler",
+      "runnerHandle": "d0ppller",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:56:13",
+      "webcam": "No"
+    }
+  },
+  "Chill Needle 2": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "arzztt",
+      "genres": "Adventure, Gimmick, Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:40:00",
+      "category": "moleYo%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick, Needle",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Draco",
+      "runnerHandle": "Draconical879",
+      "commentaryName": "arzztt + draco",
+      "commentaryHandle": "",
+      "PB": "0:34:10",
+      "webcam": "No"
+    }
+  },
+  "I Wanna Be The Strongest Fairy": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Chalenged",
+      "genres": "Avoidance, Needle"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:10:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Avoidance, Needle",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "jmacpegasus",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:05:52",
+      "webcam": ""
+    }
+  },
+  "I Wanna Be The Co-op": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "Nemega",
+      "genres": "Adventure, Gimmick"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:45:00",
+      "category": "Unlock Mario, hard%",
+      "runType": "Co-op Run",
+      "genres": "Adventure, Gimmick",
+      "WR": "0:41:44 by igorbsv with Marfrus"
+    },
+    "playerInfo": {
+      "runnerName": "igorbsv",
+      "runnerHandle": "",
+      "commentaryName": "Redire",
+      "commentaryHandle": "",
+      "PB": "0:41:44",
+      "webcam": "No"
+    }
+  },
+  "Fangame Music Quiz": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "kurath",
+      "genres": "Quiz Show"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:00:00",
+      "category": "skulldude%",
+      "runType": "Solo Run",
+      "genres": "Quiz Show",
+      "WR": "N/A"
+    },
+    "playerInfo": {
+      "runnerName": "kurath",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": ""
+    }
+  },
+  "Fangame Music DJ Set": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "Racic",
+      "genres": "Creative"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:00:00",
+      "category": "100% Fangame Bangers",
+      "runType": "Solo Run",
+      "genres": "Creative",
+      "WR": "N/A"
+    },
+    "playerInfo": {
+      "runnerName": "Racic",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": ""
+    }
+  },
+  "Ghost Mechanism": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "princeoflight612",
+      "genres": "Adventure, Gimmick"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:30:00",
+      "category": "showcase%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick",
+      "WR": "N/A"
+    },
+    "playerInfo": {
+      "runnerName": "princeoflight612",
+      "runnerHandle": "",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": "Not Sure"
+    }
+  },
+  "Star Revenge 2 - Night of Doom": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "BroDute",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "4:30:00",
+      "category": "90 Star",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "3:34:56 by StanSM64"
+    },
+    "playerInfo": {
+      "runnerName": "Stan",
+      "runnerHandle": "StanSM64",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "3:34:56",
+      "webcam": ""
+    }
+  },
+  "Mario Party 64": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "MrComit",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:42:00",
+      "category": "35 Star",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "0:32:51 by Cavin856"
+    },
+    "playerInfo": {
+      "runnerName": "Quills",
+      "runnerHandle": "QuillsTTV",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:33:00",
+      "webcam": "Yes"
+    }
+  },
+  "Super Mario Odyssey 64": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Kaze Emanuar",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:15:00",
+      "category": "31 Moons",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "0:10:57 by Kongtastic"
+    },
+    "playerInfo": {
+      "runnerName": "Alibaba",
+      "runnerHandle": "CallMeAlibaba",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:12:20",
+      "webcam": ""
+    }
+  },
+  "Star Revenge 2.5 - Remnant of Doom": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "BroDute",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:25:00",
+      "category": "66 Star (v1.2)",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "1:12:45 by InfiniteVoid316"
+    },
+    "playerInfo": {
+      "runnerName": "InfiniteVoid316",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:12:45",
+      "webcam": ""
+    }
+  },
+  "SM64 - Last Impact": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Kaze Emanuar",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "2:00:00",
+      "category": "80 Star",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "1:25:41 by katze789"
+    },
+    "playerInfo": {
+      "runnerName": "Mushie64",
+      "runnerHandle": "",
+      "commentaryName": "N/A (+ Kaze?)",
+      "commentaryHandle": "",
+      "PB": "1:37:28",
+      "webcam": "No"
+    }
+  },
+  "Gensou Skydrift": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "illuCalab",
+      "genres": "Touhou"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:50:00",
+      "category": "Campaign 100%",
+      "runType": "Solo Run",
+      "genres": "Touhou",
+      "WR": "0:45:29 by sinohara2"
+    },
+    "playerInfo": {
+      "runnerName": "Ulvind",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:48:33",
+      "webcam": "Not Sure"
+    }
+  },
+  "Maid Made Maze": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "Top Arts Plan",
+      "genres": "Touhou"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:45:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Touhou",
+      "WR": "0:32:25 by UnPigeonVoyageur"
+    },
+    "playerInfo": {
+      "runnerName": "UnPigeonVoyageur",
+      "runnerHandle": "",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:32:25",
+      "webcam": "Not Sure"
+    }
+  },
+  "Touhou Luna Nights": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "Team Ladybug",
+      "genres": "Touhou"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:17:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Touhou",
+      "WR": "0:13:52 by sean_ab"
+    },
+    "playerInfo": {
+      "runnerName": "Sean_AB",
+      "runnerHandle": "",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:13:52",
+      "webcam": "No"
+    }
+  },
+  "Touhou Danmakufu": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "mkm",
+      "genres": "Touhou"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:45:00",
+      "category": "showcase%",
+      "runType": "Solo Run",
+      "genres": "Touhou",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Naro",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "",
+      "webcam": ""
+    }
+  },
+  "NitorInc.": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "NitorInc. Collab",
+      "genres": "Touhou"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:30:00",
+      "category": "showcase%",
+      "runType": "Solo Run",
+      "genres": "Touhou",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Naro",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "",
+      "webcam": ""
+    }
+  },
+  "Super Metroid Ascent": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Benox50",
+      "genres": "Metroid"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:22:00",
+      "category": "100%",
+      "runType": "Solo Run",
+      "genres": "Metroid",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "LinkaMeister",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:13:51",
+      "webcam": ""
+    }
+  },
+  "Metroid Fusion - Oil Spill": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Spedimus",
+      "genres": "Metroid"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:45:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Metroid",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "HerculesBenchpress",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:35:05",
+      "webcam": ""
+    }
+  },
+  "Super Metroid - Y-Faster 2 Fast": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Metaquarius",
+      "genres": "Metroid"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:10:00",
+      "category": "101%",
+      "runType": "Solo Run",
+      "genres": "Metroid",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Sapphron",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:08:41",
+      "webcam": ""
+    }
+  },
+  "Rockman 4 - Burst Chaser X Air Sliding": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Tsukikuro",
+      "genres": "Mega Man"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:35:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Mega Man",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "tpasalt",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "",
+      "webcam": ""
+    }
+  },
+  "Sonic Chrono Adventure": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "LakeFeperd",
+      "genres": "Sonic"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:40:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Sonic",
+      "WR": "1:20:49 by TheGreenViper8"
+    },
+    "playerInfo": {
+      "runnerName": "TheGreenViper8",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "1:20:49",
+      "webcam": ""
+    }
+  },
+  "Densha de D - Lightning Stage": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "Jinushi",
+      "genres": "Initial D"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:27:00",
+      "category": "any% glitchless",
+      "runType": "Solo Run",
+      "genres": "Initial D",
+      "WR": "0:21:50 by AEtienne"
+    },
+    "playerInfo": {
+      "runnerName": "AEtienne",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:21:50",
+      "webcam": ""
+    }
+  },
+  "Nimpize Adventure": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Ostrealava02",
+      "genres": "Zelda"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:20:00",
+      "category": "Starfox%",
+      "runType": "Solo Run",
+      "genres": "Zelda",
+      "WR": "0:13:16 by ChefBear"
+    },
+    "playerInfo": {
+      "runnerName": "StoneBadLuck",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:14:37",
+      "webcam": ""
+    }
+  },
+  "Grief Syndrome": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "princeoflight612",
+      "genres": "Anime"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:32:00",
+      "category": "all characters%",
+      "runType": "Solo Run",
+      "genres": "Anime",
+      "WR": "0:26:41 by FroobMcGuffin"
+    },
+    "playerInfo": {
+      "runnerName": "FroobMcguffin",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:26:41",
+      "webcam": ""
+    }
+  },
+  "I Wanna be the with friendsβ": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "にひみ",
+      "genres": "Adventure, Needle, Trap"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:15:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Needle, Trap",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Chatran",
+      "runnerHandle": "ChatranP",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:13:43",
+      "webcam": ""
+    }
+  },
+  "I Wanna Be the Computer 2!": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Captain GraMMa",
+      "genres": "Adventure, Gimmick"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:30:00",
+      "category": "100%",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick",
+      "WR": "0:20:50 by RandomErik"
+    },
+    "playerInfo": {
+      "runnerName": "RandomErik",
+      "runnerHandle": "TheRandomErik",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:20:50",
+      "webcam": "No"
+    }
+  },
+  "Waluigi's Taco Stand": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Kaze Emanuar",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:15:00",
+      "category": "15 tacos",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "0:08:50 by JohnIsAGuy"
+    },
+    "playerInfo": {
+      "runnerName": "tpasalt",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "",
+      "webcam": ""
+    }
+  },
+  "Draw My Guy": {
+    "gameInfo": {
+      "resolution": "608",
+      "createdBy": "PieceOfCheese87",
+      "genres": "Creative"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "1:30:00",
+      "category": "draw%",
+      "runType": "Solo Run",
+      "genres": "Creative",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Wolsk",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "N/A",
+      "webcam": "Yes"
+    }
+  },
+  "Super Mario 74 Extreme Edition": {
+    "gameInfo": {
+      "resolution": "16:9",
+      "createdBy": "Lugmillord",
+      "genres": "Mario"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:50:00",
+      "category": "50 Star",
+      "runType": "Solo Run",
+      "genres": "Mario",
+      "WR": "0:31:08 by CartoonBuffoon"
+    },
+    "playerInfo": {
+      "runnerName": "KingToad64",
+      "runnerHandle": "",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "0:44:26",
+      "webcam": ""
+    }
+  },
+  "美鈴とチルノの妖怪の山大冒険": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "Yuuyuutei",
+      "genres": "Touhou"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "0:28:00",
+      "category": "any%",
+      "runType": "Solo Run",
+      "genres": "Touhou",
+      "WR": "0:24:39 by UnPigeonVoyageur"
+    },
+    "playerInfo": {
+      "runnerName": "UnPigeonVoyageur",
+      "runnerHandle": "",
+      "commentaryName": "N/A",
+      "commentaryHandle": "",
+      "PB": "0:24:39",
+      "webcam": "Not Sure"
+    }
+  },
+  "I Wanna Make A Sandwich": {
+    "gameInfo": {
+      "resolution": "600",
+      "createdBy": "PieceOfCheese87, Thenewgeezer",
+      "genres": "Adventure, Gimmick"
+    },
+    "runInfo": {
+      "players": "1",
+      "estimate": "3:20:00",
+      "category": "99.5% + All Horses + Crown/Cookies",
+      "runType": "Solo Run",
+      "genres": "Adventure, Gimmick",
+      "WR": ""
+    },
+    "playerInfo": {
+      "runnerName": "Krakka",
+      "runnerHandle": "KrakkaCafe",
+      "commentaryName": "",
+      "commentaryHandle": "",
+      "PB": "2:55:00",
+      "webcam": ""
+    }
+  }
+}

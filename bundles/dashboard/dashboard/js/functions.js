@@ -30,10 +30,13 @@ class DashboardForm {
   };
 
   loadValues = (fromReplicant = false) => {
-    if (fromReplicant) {
+    if (fromReplicant && NodeCG.dashboardPanels.replicantValues) {
       this.dashboardFields.forEach(field => {
-        const fieldReplicantValue = NodeCG.dashboardPanels.replicantValues[this.name][field.id]
-        if (fieldReplicantValue !== undefined) field.updateValue(fieldReplicantValue);
+        const fieldReplicantSection = NodeCG.dashboardPanels.replicantValues[this.name];
+        if (fieldReplicantSection !== undefined) {
+          const fieldReplicantValue = fieldReplicantSection[field.id];
+          if (fieldReplicantValue !== undefined) field.updateValue(fieldReplicantValue);
+        }
       });
     } else {
       // todo: from dropdown
@@ -176,6 +179,7 @@ class DashboardForm {
 
         panels.forEach(panel => {
           NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
+            if (!NodeCG.dashboardPanels.replicantValues[panel]) NodeCG.dashboardPanels.replicantValues[panel] = {};
             NodeCG.dashboardPanels.replicantValues[panel][id] = value;
           });
         });
@@ -189,7 +193,7 @@ class DashboardForm {
 
           panels.forEach(panel => {
             newValues = {...newValues, ...{[panel]: NodeCG.dashboardPanels.replicantValues[panel]}};
-            if (panel === "mainInfo") {
+            if (panel === "gameInfo") {
               NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = NodeCG.dashboardPanels.replicantValues[panel].gameName.replace(/\bI Wanna |\bBe the /gi, "");
             }
             NodeCG.dashboardPanels.panels[panel].saveButton.removeClass("saveChanges");
@@ -425,17 +429,24 @@ const setLoadLayoutInfo = () => {
     const loadButton = $("#" + sanitize(newId) + "Window"); //todo: next
     loadButton.off();
 
-    const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
-    const { resolution, gameNameTitle } = newValue["mainInfo"];
-    const labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
+    var labelText = "Cannot load layout until more info is chosen";
+
+    if (newValue && newValue["playerInfo"] && newValue["gameInfo"] ) {
+      const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
+      const { resolution, gameNameTitle } = newValue["gameInfo"];
+      labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
+
+      loadButton.on("click", (e) => {
+        e.preventDefault();
+        if (!!numberOfPlayers && numberOfPlayers !== "N/A" && !!resolution && resolution !== "N/A") {
+          var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";
+          window.open(url);
+        };
+      });
+    } else {
+      loadButton.off();
+    }
 
     $("#" + sanitize(text)).html(labelText); //todo: next
-    loadButton.on("click", (e) => {
-      e.preventDefault();
-      if (numberOfPlayers !== "N/A" && resolution !== "N/A") {
-        var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";
-        window.open(url);
-      };
-    });
   });
 };

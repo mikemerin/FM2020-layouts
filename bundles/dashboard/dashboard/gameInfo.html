@@ -6,15 +6,15 @@
 		<script type="text/javascript" src="/dashboard/js/globalFunctions.js"></script>
 		<script type="text/javascript" src="js/functions.js"></script>
 	</head>
-	<body id="mainInfoBody">
-		<div id="mainInfoFields"></div>
-		<div id="mainInfoSave"></div>
+	<body id="gameInfoBody">
+		<div id="gameInfoFields"></div>
+		<div id="gameInfoSave"></div>
 	</body>
 
 
 	<script type="text/javascript">
 		$(document).ready(e => {
-			const fieldGroup = "mainInfo";
+			const fieldGroup = "gameInfo";
 			console.log(fieldGroup + " ready", e);
 			var dashboardForm = new DashboardForm(fieldGroup);
 			NodeCG.dashboardPanels.panels[fieldGroup] = dashboardForm;
