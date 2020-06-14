@@ -21,7 +21,7 @@ class DashboardForm {
       if (!field.disabled) {
         const dashboardField = this.getDashboardField({field});
         const brClear = $("<br>", { clear: "all" });
-        this.element.append(dashboardField.element, brClear, "<br>");
+        this.element.append(dashboardField.element, brClear);
       };
     });
 
@@ -203,7 +203,7 @@ class DashboardForm {
       }
     });
 
-    $("#" + this.name + "Save").append(this.saveButton); //todo: next
+    $("#" + this.name + "Save").append("<br>", this.saveButton); //todo: next
   };
 
 };
@@ -294,10 +294,15 @@ class DashboardField {
   };
 
   createSelectGroup = () => {
-    var group = $("<div class='" + this.type + "-group'>", { id: this.idFieldName + "Group" });
+    var group = $("<div>", {
+      class: this.type + "-group",
+      id: this.id + "Group"
+    });
 
     const maxLength = Math.max.apply(null, [...this.options.map(x => x.toString().length)]);
-    var columns = Math.floor(31 / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
+    const panelWidth = this.parent.element.width() / 8;
+    console.log("panelWidth, this.parent.element.width():", panelWidth, this.parent.element.width());
+    var columns = Math.floor(panelWidth / maxLength); // with Courier New, Courier, monospace, 32 max fits in 2 wide
     if (columns > 6) columns = 6;
     const width = (100 / columns) - 2 + "%";
 
