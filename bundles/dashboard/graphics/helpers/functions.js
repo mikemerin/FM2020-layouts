@@ -36,7 +36,7 @@ class Layout {
   setFields = (replicantValues) => {
     this.replicantValues = replicantValues;
     // future: will have "adminPanel"
-    ["gameInfo", "runInfo", "playerInfo"].forEach(fieldGroup => {
+    ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(fieldGroup => {
       const fields = this.replicantValues[fieldGroup];
       Object.keys(fields).forEach(field => {
         this.fields[field] = fields[field];
@@ -85,7 +85,8 @@ class Layout {
     if (locationInfo) {
       this.createElement(id, className + " primary", output, locationInfo, "img");
     } else {
-      const backgroundCSS = { opacity: "0.2" }; //todo: this.fields.backgroundOpacity min.1 max.4
+      console.log(this.fields)
+      const backgroundCSS = { opacity: this.fields.backgroundOpacity };
       this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
     };
   };
@@ -284,7 +285,7 @@ class Layout {
     const css = {
       left: left, top: top, right: right, bottom: bottom, width: width, height: height,
       backgroundColor: backgroundColor, borderRadius: borderRadius, fontSize: fontSize,
-      opacity: opacity
+      opacity: opacity || this.backgroundOpacity
     };
 
     // console.log("id:", id);
