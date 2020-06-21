@@ -85,7 +85,7 @@ class Layout {
     if (locationInfo) {
       this.createElement(id, className + " primary", output, locationInfo, "img");
     } else {
-      console.log(this.fields)
+      // console.log(this.fields)
       const backgroundCSS = { opacity: this.fields.backgroundOpacity };
       this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
     };
