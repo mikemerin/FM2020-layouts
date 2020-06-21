@@ -149,7 +149,7 @@ class Layout {
     var skipGenre = "";
 
     if (this.fields.otherGenres !== "N/A") {
-      skipGenre = "gimmick";
+      skipGenre = "gimmick"; // future: choose where to replace (input in the dashboard)
       const otherId = sanitize(this.fields.otherGenres);
       const otherClassName = "genre bright";
       const otherSrc = "genreIcons/" + otherId + ".png";
