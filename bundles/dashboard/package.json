@@ -12,28 +12,40 @@
         "title": "Game Info",
         "width": 2,
         "file": "gameInfo.html",
-        "headerColor": "#0D80A4"
+        "headerColor": "#0D80A4",
+        "workspace": "Main"
       },
       {
         "name": "Run Info",
         "title": "Run Info",
         "width": 1,
         "file": "runInfo.html",
-        "headerColor": "#0D80A4"
+        "headerColor": "#0D80A4",
+        "workspace": "Main"
       },
       {
         "name": "Player Info",
         "title": "Player Info",
         "width": 4,
         "file": "playerInfo.html",
-        "headerColor": "#0D80A4"
+        "headerColor": "#0D80A4",
+        "workspace": "Main"
       },
       {
         "name": "Admin Panel",
         "title": "Admin Panel",
         "width": 2,
         "file": "adminPanel.html",
-        "headerColor": "#0D80A4"
+        "headerColor": "#0D80A4",
+        "workspace": "Main"
+      },
+      {
+        "name": "Master Run List",
+        "title": "Master Run List",
+        "width": 8,
+        "file": "masterRunList.html",
+        "headerColor": "#0D80A4",
+        "workspace": "Database"
       }
     ],
     "assetCategories": [
