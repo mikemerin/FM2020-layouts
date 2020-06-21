@@ -146,20 +146,38 @@ class Layout {
     var locationInfo = this.getLocationInfo(id, id);
     this.createElement(id, className, src, locationInfo, "img"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
 
+    var skipGenre = "";
+
+    if (this.fields.otherGenres !== "N/A") {
+      skipGenre = "gimmick";
+      const otherId = sanitize(this.fields.otherGenres);
+      const otherClassName = "genre bright";
+      const otherSrc = "genreIcons/" + otherId + ".png";
+      const otherGenreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[skipGenre]);
+      this.createElement(otherId, otherClassName, otherSrc, otherGenreLocationInfo, "img");
+    };
+
     const gameGenres = this.fields.genres.split("; ");
     fieldGroups.gameInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
       const id = sanitize(field);
-      var className = "genre";
-      const src = "genreIcons/" + id + ".png";
-      const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[id]);
-      if (gameGenres.includes(field)) {
-        className += " bright";
-      } else {
-        className += " dim";
+      if (id !== skipGenre) {
+        var className = "genre";
+        const src = "genreIcons/" + id + ".png";
+        const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[id]);
+        if (gameGenres.includes(field)) {
+          className += " bright";
+        } else {
+          className += " dim";
+        };
+        this.createElement(id, className, src, genreLocationInfo, "img");
       };
-      this.createElement(id, className, src, genreLocationInfo, "img");
     });
+
   };
+
+  getImage = () => {
+
+  }
 
   setBorders = () => {
     this.setBorder("titleCard");
