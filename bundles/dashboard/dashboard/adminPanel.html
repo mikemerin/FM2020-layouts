@@ -23,6 +23,9 @@
 
 			var adminPanel = new AdminPanel();
 			adminPanel.setRunSearch();
+
+			adminPanel.gameChecks();
+
 			adminPanel.setLoadLayoutInfo();
 
 			// future: there must be a better way in NodeCG to do this, but initializing the globals here as the admin panel is the last loaded. If this moves in the future, move init() (for now)

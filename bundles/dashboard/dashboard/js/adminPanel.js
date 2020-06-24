@@ -4,7 +4,24 @@ class AdminPanel {
 
   };
 
+  gameChecks = () => {
+    // debugger
+  };
+
+  setAvatarCheck = () => {
+
+  };
+
   setFieldsInfo = () => {
+
+  };
+
+
+  setStagingSendButton = () => {
+
+  };
+
+  setPreviewButton = () => {
 
   };
 
