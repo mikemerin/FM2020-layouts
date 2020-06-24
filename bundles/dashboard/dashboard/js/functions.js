@@ -269,6 +269,9 @@ class DashboardField {
       case "number":
         this.input = this.createTextBox();
         break;
+      case "datalist":
+        this.input = this.createDatalist();
+        break;
       case "radio":
       case "checkbox":
         this.input = this.createSelectGroup();
@@ -310,6 +313,14 @@ class DashboardField {
       placeholder: this.placeholder || "",
       blur: () => { this.updateValue(); }
     });
+  };
+
+  createDatalist = () => {
+    this
+    debugger
+    const input = $("<input>", {
+
+    })
   };
 
   createSelectGroup = () => {

@@ -4,7 +4,7 @@ var fieldGroups = {
     "fields": [
       {
         "fieldName": "Game Name",
-        "type": "text",
+        "type": "datalist",
         "placeholder": "I Wanna ___"
       },
       {
