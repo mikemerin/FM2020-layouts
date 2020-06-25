@@ -137,7 +137,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any%",
@@ -197,7 +197,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "Skulldude_",
       "player1_displayName": "Skulldude",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "1:28:18",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -211,7 +211,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any%",
@@ -285,7 +285,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any%",
@@ -308,7 +308,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "letcreate123",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "N/A",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -322,14 +322,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "DJ Sray Showcase",
       "estimate": "0:04:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Needle": {
@@ -345,7 +345,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "Gemilous",
       "player1_displayName": "Gemi",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "N/A",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -359,14 +359,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any%",
       "estimate": "2:00:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "I Wanna Be the Guy - Gaiden": {
@@ -476,8 +476,8 @@
       "category": "100%",
       "estimate": "1:45:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "I Wanna Be the Guy": {
@@ -507,7 +507,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any% glitchless",
@@ -530,7 +530,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "kurath",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "N/A",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -544,14 +544,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "blind%",
       "estimate": "1:00:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Gm8Emulator": {
@@ -567,7 +567,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "Adamcake",
       "player1_displayName": "Adam",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "N/A",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -581,14 +581,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any%",
       "estimate": "0:45:00",
       "runType": "TAS",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "I Wanna Eclipse": {
@@ -698,8 +698,8 @@
       "category": "any%",
       "estimate": "0:10:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "0:04:57",
+      "wrHolder": "tommi_iw"
     }
   },
   "I Wanna Be The Co-op": {
@@ -752,7 +752,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "kurath",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "N/A",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -766,14 +766,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "skulldude%",
       "estimate": "1:00:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Fangame Music DJ Set": {
@@ -809,8 +809,8 @@
       "category": "100% Fangame Bangers",
       "estimate": "1:00:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Ghost Mechanism": {
@@ -846,8 +846,8 @@
       "category": "showcase%",
       "estimate": "0:30:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Star Revenge 2 - Night of Doom": {
@@ -863,7 +863,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "StanFuzz",
       "player1_displayName": "Stan",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "3:34:56",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -877,7 +877,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "90 Star",
@@ -937,7 +937,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "CallMeAlibaba",
       "player1_displayName": "Alibaba",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "0:12:20",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -951,7 +951,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "31 Moons",
@@ -1062,7 +1062,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "Campaign 100%",
@@ -1159,7 +1159,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "Naro",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1173,14 +1173,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "showcase%",
       "estimate": "0:45:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "NitorInc.": {
@@ -1196,7 +1196,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "Naro",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1210,14 +1210,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "showcase%",
       "estimate": "0:30:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Super Metroid Ascent": {
@@ -1320,7 +1320,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "101%",
@@ -1526,7 +1526,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "AEtienne",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "0:21:50",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1540,7 +1540,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any% glitchless",
@@ -1563,7 +1563,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "StoneBadLuck",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "0:14:37",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1577,7 +1577,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "Starfox%",
@@ -1753,16 +1753,16 @@
       "player2_twitchHandle": "Skulldude_",
       "player2_displayName": "Skulldude",
       "player2_camera": "No",
-      "player2_pb": "",
+      "player2_pb": "N/A",
       "player3_twitchHandle": "",
       "player3_displayName": "Arzztt",
       "player3_camera": "No",
-      "player3_pb": "",
+      "player3_pb": "N/A",
       "player4_twitchHandle": "",
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "any%",
@@ -1916,8 +1916,8 @@
       "category": "draw%",
       "estimate": "1:30:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   },
   "Super Mario 74 Extreme Edition": {
@@ -1933,7 +1933,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "",
       "player1_displayName": "KingToad64",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "0:44:26",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1947,7 +1947,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "SheepSquared"
     },
     "runInfo": {
       "category": "50 Star",
@@ -2007,7 +2007,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "KrakkaCafe",
       "player1_displayName": "Krakka",
-      "player1_camera": "",
+      "player1_camera": "No",
       "player1_pb": "2:55:00",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -2021,14 +2021,14 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "N/A"
     },
     "runInfo": {
       "category": "99.5% + All Horses + Crown/Cookies",
       "estimate": "3:20:00",
       "runType": "Solo Run",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     }
   }
 }
