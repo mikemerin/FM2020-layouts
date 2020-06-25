@@ -101,29 +101,25 @@
 
       const genreNames = ["100F", "Adventure", "Avoidance", "Gimmick", "Medley", "Needle", "Trap"];
       const genres = [one00F, Adventure, Avoidance, Gimmick, Medley, Needle, Trap].filter(x => x).map((genre,i) => genreNames[i]).join("; ");
-
-      if (numberOfPlayers === "") {
-
-      } else {
-        runs[gameName] = {
-          gameInfo: {
-            gameName: gameName,
-            gameNameTitle: gameNameTitle,
-            resolution: resolution,
-            createdBy: createdBy,
-            genres: genres,
-            otherGenres: otherGenres
-          },
-          playerInfo: playerInfo,
-          runInfo: {
-            category: category,
-            estimate: estimate,
-            runType: runType,
-            worldRecord: worldRecord,
-            wrHolder: wrHolder
-          }
-        };
-      }
+console.log(genres)
+      runs[gameName] = {
+        gameInfo: {
+          gameName: gameName,
+          gameNameTitle: gameNameTitle,
+          resolution: resolution,
+          createdBy: createdBy,
+          genres: genres,
+          otherGenres: otherGenres
+        },
+        playerInfo: playerInfo,
+        runInfo: {
+          category: category,
+          estimate: estimate,
+          runType: runType,
+          worldRecord: worldRecord,
+          wrHolder: wrHolder
+        }
+      };
     }
   });
   copy(runs)
