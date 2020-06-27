@@ -120,19 +120,19 @@
       "otherGenres": ""
     },
     "playerInfo": {
-      "numberOfPlayers": "1",
+      "numberOfPlayers": "3",
       "player1_twitchHandle": "Naloas",
       "player1_displayName": "Naloa",
       "player1_camera": "No",
       "player1_pb": "0:57:15",
       "player2_twitchHandle": "",
-      "player2_displayName": "",
-      "player2_camera": "",
-      "player2_pb": "",
-      "player3_twitchHandle": "",
-      "player3_displayName": "",
-      "player3_camera": "",
-      "player3_pb": "",
+      "player2_displayName": "あお",
+      "player2_camera": "No",
+      "player2_pb": "0:52:43",
+      "player3_twitchHandle": "Subfusc_moose",
+      "player3_displayName": "Moose",
+      "player3_camera": "No",
+      "player3_pb": "1:11:40",
       "player4_twitchHandle": "",
       "player4_displayName": "",
       "player4_camera": "",
@@ -142,7 +142,7 @@
     "runInfo": {
       "category": "any%",
       "estimate": "1:30:00",
-      "runType": "Solo Run",
+      "runType": "Race",
       "worldRecord": "0:52:43",
       "wrHolder": "あお"
     }
@@ -211,7 +211,7 @@
       "player4_displayName": "",
       "player4_camera": "",
       "player4_pb": "",
-      "commentators": "N/A"
+      "commentators": "Chatran, Thenadertwo"
     },
     "runInfo": {
       "category": "any%",
@@ -1453,7 +1453,7 @@
       "player1_twitchHandle": "",
       "player1_displayName": "theGaming100",
       "player1_camera": "No",
-      "player1_pb": "0:56:28",
+      "player1_pb": "0:55:15",
       "player2_twitchHandle": "Vertic03",
       "player2_displayName": "Vertic",
       "player2_camera": "No",
