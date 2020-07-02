@@ -16,6 +16,44 @@ class AdminPanel {
 
   };
 
+  insertGameInfoButton = () => {
+    const text = "Load default run info for:";
+
+    const button = $("<button>", {
+      id: "adminPanelInsertGameInfoButton",
+      class: "loadButton",
+      text: text,
+      click: () => {
+        console.log($("#gameNameAdmin").val())
+        // todo: pick up here
+      }
+    });
+
+    var input = this.createDropdown("gameInfo", "gameName");
+
+    $("#adminPanelInsertGameInfo").append(button, "<br>", input);
+  }
+
+  createDropdown = (fieldGroup, field) => {
+    const runsReplicant = nodecg.Replicant('runs');
+    const { name, namespace } = runsReplicant;
+
+    var dropdown = $("<select>", {
+      id: field + "Admin"
+    });
+
+    nodecg.readReplicant(name, namespace, replicantValues => {
+      var options = Object.keys(replicantValues).map(game => {
+        return replicantValues[game][fieldGroup][field];
+      }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) );
+
+      options.forEach(value => {
+          dropdown.append($("<option>", { text: value, value: value }));
+      })
+    });
+
+    return dropdown;
+  };
 
   setStagingSendButton = () => {
 
