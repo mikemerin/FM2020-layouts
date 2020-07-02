@@ -62,10 +62,10 @@ class Layout {
   };
 
   setLayoutName = () => {
-    const gameName = this.fields.gameNameTitle;
+    const gameNameTitle = getGameNameTitle(this.fields.gameName);
     const pixelNames = ["600", "608"];
     const resolution = (pixelNames.indexOf(this.fields.resolution) >= 0 ? "800x" : "") + this.fields.resolution;
-    document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameName;
+    document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
   };
 
   setBaseImage = () => {

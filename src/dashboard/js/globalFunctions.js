@@ -1,17 +1,36 @@
 // todo: add this to api.js (and min) this to the global scope class to be able to just call them anywhere
 const initReplicants = () => {
-  NodeCG.dashboardPanels.replicant = nodecg.Replicant("fieldValues");
+  initFieldValues();
+  initRuns();
+};
 
+const initFieldValues = () => {
+  NodeCG.dashboardPanels.replicant = nodecg.Replicant("fieldValues");
   const { name, namespace } = NodeCG.dashboardPanels.replicant;
 
   nodecg.readReplicant(name, namespace, replicantValues => {
     NodeCG.dashboardPanels.replicantValues = replicantValues;
+    // console.log("replicantValuesFieldValues:", replicantValues);
 
     Object.keys(NodeCG.dashboardPanels.panels).forEach(panel => {
       NodeCG.dashboardPanels.panels[panel].loadValues(true);
     });
   });
 };
+
+const initRuns = () => {
+  NodeCG.masterRunList.replicant = nodecg.Replicant("runs");
+  const { name, namespace } = NodeCG.masterRunList.replicant;
+  nodecg.readReplicant(name, namespace, replicantValues => {
+    NodeCG.masterRunList.replicantValues = replicantValues;
+    NodeCG.dashboardPanels.panels["masterRunList"].updateMasterRunFields(true);
+    // console.log("replicantValuesMasterRunList:", NodeCG.masterRunList.replicantValues);
+  })
+};
+
+const getGameNameTitle = (gameName) => {
+  return gameName.replace(/(I Wanna |Be the )/gi, "");
+}
 
 const sanitize = (str) => {
   var replace = {

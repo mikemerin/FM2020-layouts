@@ -13,7 +13,6 @@ class DashboardForm {
 
     this.element = $("#" + fieldGroup + "Fields");
     this.createDashboardForm();
-    // this.loadValues(); //used on init or if loading in from sheet, not here
   };
 
   createDashboardForm = () => {
@@ -26,6 +25,7 @@ class DashboardForm {
     });
 
     if (this.name === "playerInfo") this.createPlayerTable();
+    if (this.name === "masterRunList") this.createMasterRunTable();
     this.createSaveButton();
   };
 
@@ -83,6 +83,84 @@ class DashboardForm {
         $(x).click(() => this.updatePlayerFields(x.id));
     });
     this.updatePlayerFields();
+  };
+
+  createMasterRunTable = () => {
+    const headerGroups = $("<tr>").append($("<th>", { rowspan: 2, text: "#" }));
+    const headerFields = $("<tr>");
+
+    ["Game Info", "Run Info", "Player Info", "Individual Player Info", "Admin Panel"].forEach(fieldGroup => {
+        const sanitizedFieldGroup = sanitize(fieldGroup);
+        headerGroups.append($("<th>", {
+            text: fieldGroup,
+            colspan: fieldGroups[sanitizedFieldGroup].fields.length
+        }));
+        fieldGroups[sanitizedFieldGroup].fields.forEach(field => {
+            headerFields.append($("<th>", {
+                text: field.fieldName
+            }));
+        });
+    });
+
+    const runTable = $("<table>", {
+      id: "masterRunListAllRunsTable",
+      className: "masterRunTable"
+    }).append(headerGroups).append(headerFields);
+
+    $("#masterRunListRuns").append(runTable);
+  }
+
+  updateMasterRunFields = (fromReplicant = false) => {
+    var values = NodeCG.masterRunList.replicantValues;
+    Object.keys(values).forEach((game, i) => {
+        var rowSpan = values[game].playerInfo.numberOfPlayers;
+        var row = $("<tr>", {
+          id: `${game} - row 1`
+        }).append($("<td>", {
+          rowspan: rowSpan,
+          id: game,
+          text: i+1
+        }));
+        var extraPlayerRows = [...new Array(parseInt(rowSpan-1,10)).keys()].map(row => $("<tr>", { id: `${game} - row ${row+2}` }));
+
+        ["Game Info", "Run Info", "Player Info", "Individual Player Info", "Admin Panel"].forEach(fieldGroup => {
+          const sanitizedFieldGroup = sanitize(fieldGroup);
+
+          fieldGroups[sanitizedFieldGroup].fields.forEach(field => {
+              let text, tdRowSpan = rowSpan;
+              var fieldName = sanitize(field.fieldName);
+
+              if (fieldGroup === "Individual Player Info") {
+                for (let playerNumber = 2; playerNumber <= parseInt(rowSpan, 10); playerNumber++) {
+                  const extraPlayerText = values[game]["playerInfo"][`player${playerNumber}_${fieldName}`];
+                  const playerCell = $("<td>", {
+                    id: `${game} - player${playerNumber}_${fieldName}`,
+                    text: extraPlayerText
+                  });
+                  extraPlayerRows[playerNumber-2].append(playerCell);
+                }
+
+                tdRowSpan = 1;
+                text = values[game]["playerInfo"][`player1_${fieldName}`];
+              } else {
+                text = values[game][sanitizedFieldGroup][fieldName];
+              }
+
+              row.append($("<td>", {
+                rowspan: tdRowSpan,
+                id: game + " - " + fieldName + " - 1",
+                text: text
+              }));
+            });
+
+            $("#masterRunListAllRunsTable").append(row);
+            extraPlayerRows.forEach(extraPlayerRow => {
+              $("#masterRunListAllRunsTable").append(extraPlayerRow);
+            })
+
+        });
+
+    });
   };
 
   generatePlayerMoveButtons = (playerNumber, maxPlayers) => {
@@ -204,7 +282,7 @@ class DashboardForm {
           panels.forEach(panel => {
             newValues = {...newValues, ...{[panel]: NodeCG.dashboardPanels.replicantValues[panel]}};
             if (panel === "gameInfo") {
-              NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = NodeCG.dashboardPanels.replicantValues[panel].gameName.replace(/\bI Wanna |\bBe the /gi, "");
+              NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = getGameNameTitle(NodeCG.dashboardPanels.replicantValues[panel].gameName);
             }
             NodeCG.dashboardPanels.panels[panel].saveButton.removeClass("saveChanges");
           });
