@@ -348,7 +348,7 @@ class DashboardField {
         this.input = this.createTextBox();
         break;
       case "datalist":
-        this.input = this.createDatalist();
+        [this.input, this.options] = this.createDatalist();
         break;
       case "radio":
       case "checkbox":
@@ -363,7 +363,9 @@ class DashboardField {
       default: ""; break;
     };
 
-    if (this.playerField) {
+    if (this.type === "datalist") {
+      this.element.append(label, "<br>", this.input, this.options);
+    } else if (this.playerField) {
       this.element.append( this.input );
     } else {
       this.element.append(label, "<br>", this.input);
@@ -394,11 +396,29 @@ class DashboardField {
   };
 
   createDatalist = () => {
-    this
-    debugger
-    const input = $("<input>", {
+    const runsReplicant = nodecg.Replicant('runs');
+    const { name, namespace } = runsReplicant;
+    const listName = this.id + "s";
 
+    const input = $("<input>", {
+      id: this.id,
+      name: this.id,
+      list: listName,
+      type: 'text'
     })
+
+    let datalist = $("<datalist>", { id: listName });
+
+    nodecg.readReplicant(name, namespace, replicantValues => {
+      var options = Object.keys(replicantValues).map(game => {
+        return replicantValues[game][this.parent.name][this.id];
+      }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) );
+
+      options.forEach(value => {
+          datalist.append($("<option>", { value: value }));
+      })
+    });
+    return [input, datalist];
   };
 
   createSelectGroup = () => {
@@ -484,6 +504,7 @@ class DashboardField {
     switch(this.type) {
       case "text":
       case "number":
+      case "datalist":
         if (value !== undefined) this.input.val(value);
         this.value = this.input.val();
         break;

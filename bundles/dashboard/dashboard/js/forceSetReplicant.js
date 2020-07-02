@@ -1,7 +1,9 @@
 class ForceSetReplicant {
 
   setRep = () => {
-    const fetchedRep = nodecg.Replicant(this.rep);
+    const fetchedRep = nodecg.Replicant("fieldValues");
+    // const settingRep = nodecg.Replicant("stagingField");
+    // settingRep.value = fetchedRep.val; // enable if you need it
     // fetchedRep.value = this.val; // enable if you need it
   }
 
