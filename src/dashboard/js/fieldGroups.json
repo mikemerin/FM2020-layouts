@@ -4,7 +4,7 @@ var fieldGroups = {
     "fields": [
       {
         "fieldName": "Game Name",
-        "type": "datalist",
+        "type": "text",
         "placeholder": "I Wanna ___"
       },
       {
@@ -172,4 +172,14 @@ var fieldGroups = {
       }
     ]
   },
+  "masterRunList": {
+    "name": "Master Run List",
+    "fields": [
+      {
+        "fieldName": "All Runs",
+        "type": "table",
+        "value": ""
+      }
+    ]
+  }
 }

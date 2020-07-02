@@ -188,6 +188,19 @@ br {
 	border-spacing: 4px;
 }
 
+#masterRunListAllRunsTable,
+#masterRunListAllRunsTable th,
+#masterRunListAllRunsTable td {
+	font-size: 9px;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+#masterRunListAllRunsTable tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+
 button {
 	border: 1px solid #555;
   cursor: pointer;
