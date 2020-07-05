@@ -143,7 +143,9 @@ class DashboardForm {
           id: game + " - load",
           class: "pointer",
           text: "o",
-          click: () => { game; debugger }
+          click: () => {
+            window.open(`http://localhost:9090/bundles/dashboard/graphics/layout.html?gameName=${game}`);
+          }
         }))
         .append($("<td>", {
           rowspan: rowSpan,

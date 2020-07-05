@@ -11,12 +11,41 @@ class Layout {
     this.start();
   };
 
+  getSearchParameters = () => {
+    var prmstr = window.location.search.substr(1);
+    return prmstr != null && prmstr != "" ? this.transformToAssocArray(prmstr) : {};
+  };
+
+  transformToAssocArray = ( prmstr ) => {
+    var params = {};
+    var prmarr = prmstr.split("&");
+    for ( var i = 0; i < prmarr.length; i++) {
+        var tmparr = prmarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    return params;
+  };
+
   start = () => {
-    this.replicant = nodecg.Replicant("fieldValues");
+    const gameName = this.getSearchParameters().gameName;
+    const runNumber = this.getSearchParameters().runNumber;
+    const params = [gameName, runNumber].filter(x => x).length;
+    this.replicant = nodecg.Replicant(params ? "runs" : "fieldValues");
     const { name, namespace } = this.replicant;
 
     nodecg.readReplicant(name, namespace, replicantValues => {
-      this.setFields(replicantValues);
+      let gameInfo;
+      if (params) {
+        if (gameName) {
+          gameInfo = replicantValues[decodeURI(gameName)];
+        } else if (runNumber) {
+          // todo: store in replicant first, then ping here
+        }
+      } else {
+        gameInfo = replicantValues;
+      }
+      
+      this.setFields(gameInfo);
 
       this.setLocations();
       this.setLayoutName();
