@@ -25,14 +25,14 @@
 
 			var adminPanel = new AdminPanel();
 
-			adminPanel.insertGameInfoButton();
+			adminPanel.setRunSaveLoadButtons();
 
 			adminPanel.setRunSearch(); // may not need now
 
 			adminPanel.gameChecks();
 
 			adminPanel.setLoadLayoutInfo();
-			
+
 			// future: there must be a better way in NodeCG to do this, but initializing the globals here as the admin panel is the last loaded. If this moves in the future, move init() (for now)
 			initReplicants();
 		});

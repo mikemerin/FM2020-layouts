@@ -123,8 +123,8 @@ class DashboardForm {
         id: `${game} - row 1`,
         class: "shadedTable" + (i % 2 === 0 ? "False" : "True")
       });
-
-      const replicantGameValues = values[sanitizeFilename(game)];
+      
+      const replicantGameValues = values[sanitize(game)];
       // debugger
       if (replicantGameValues) {
         var rowSpan = replicantGameValues.playerInfo.numberOfPlayers;
@@ -535,7 +535,8 @@ class DashboardField {
 
   createDropdown = () => { // note: untested
     var dropdown = $("<select>", {
-      id: this.id
+      id: this.id,
+      class: "inputSelect"
     });
     // this.toggleSaveChangesOn();
     this.options.forEach(text => {

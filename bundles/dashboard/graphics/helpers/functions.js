@@ -37,14 +37,14 @@ class Layout {
       let gameInfo;
       if (params) {
         if (gameName) {
-          gameInfo = replicantValues[decodeURI(gameName)];
+          gameInfo = replicantValues[sanitize(decodeURI(gameName))];
         } else if (runNumber) {
           // todo: store in replicant first, then ping here
         }
       } else {
         gameInfo = replicantValues;
       }
-      
+
       this.setFields(gameInfo);
 
       this.setLocations();
