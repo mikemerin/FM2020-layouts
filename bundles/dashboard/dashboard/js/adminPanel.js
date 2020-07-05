@@ -16,30 +16,42 @@ class AdminPanel {
 
   };
 
-  insertGameInfoButton = () => {
-    const text = "Load default run info for:";
+  setRunSaveLoadButtons = () => {
+    const label = $("<label>", { text: "Default run info for" });
 
-    const button = $("<button>", {
-      id: "adminPanelInsertGameInfoButton",
-      class: "loadButton",
-      text: text,
+    const loadButton = $("<button>", {
+      id: "adminPanelLoadRunInfoButton",
+      class: "halfButton",
+      text: "Load",
       click: () => {
         const gameName = $("#gameNameAdmin").val();
         setReplicant.loadRunIntoDashboard(gameName);
       }
     });
 
+    const saveButton = $("<button>", {
+      id: "adminPanelSaveRunInfoButton",
+      class: "halfButton",
+      text: "Save",
+      click: () => {
+        const gameName = $("#gameNameAdmin").val();
+        setReplicant.saveRunFromDashboard(gameName);
+      }
+    });
+
     var input = this.createDropdown("gameInfo", "gameName");
 
-    $("#adminPanelInsertGameInfo").append(button, "<br>", input);
+    $("#adminPanelInsertGameInfo").append(label, input, loadButton, saveButton);
   }
 
   createDropdown = (fieldGroup, field) => {
     const runsReplicant = nodecg.Replicant('runs');
+    const fieldValuesReplicant = nodecg.Replicant('fieldValues');
     const { name, namespace } = runsReplicant;
 
     var dropdown = $("<select>", {
-      id: field + "Admin"
+      id: field + "Admin",
+      class: "inputSelect"
     });
 
     nodecg.readReplicant(name, namespace, replicantValues => {
@@ -68,9 +80,8 @@ class AdminPanel {
     const newId = "Open New Window";
 
     $("#loadLayout").append( //todo: next
-      $("<div>", {
+      $("<label>", {
         id: sanitize(text),
-        class: "loadButton",
         text: text
       })
     );
