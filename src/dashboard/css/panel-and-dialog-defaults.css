@@ -243,6 +243,21 @@ button {
   transition: 0s
 }
 
+.shadedTableTrue td {
+	background: rgba(100,100,100,.2);
+}
+
+.pointer {
+	cursor: pointer;
+	text-align: center;
+}
+
+.missingGame, .missingGame td {
+	border: 2px dotted red;
+	background: rgba(170,100,100,.2);
+	font-weight: bold;
+}
+
 .disabled input, .disabled button, button:disabled {
 	background-color: rgba(255,150,150,0.5);
 	cursor: not-allowed;

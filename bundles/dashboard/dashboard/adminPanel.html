@@ -4,9 +4,8 @@
 		<script src="/js/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript" src="/dashboard/js/fieldGroups.json"></script>
 		<script type="text/javascript" src="/dashboard/js/globalFunctions.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/dashboardForm.js"></script>
 		<script type="text/javascript" src="js/adminPanel.js"></script>
-		<!-- <script type="text/javascript" src="js/forceSetReplicant.js"></script> -->
 	</head>
 	<body id="adminPanelBody">
 		<div id="adminPanelFields"></div>
@@ -33,10 +32,7 @@
 			adminPanel.gameChecks();
 
 			adminPanel.setLoadLayoutInfo();
-
-			// var fsr = new ForceSetReplicant();
-			// fsr.setRep();
-
+			
 			// future: there must be a better way in NodeCG to do this, but initializing the globals here as the admin panel is the last loaded. If this moves in the future, move init() (for now)
 			initReplicants();
 		});

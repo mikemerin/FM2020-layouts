@@ -39,7 +39,8 @@ class DashboardForm {
         }
       });
     } else {
-      // todo: from dropdown
+      // debugger
+      // this.loadValues(true);
     };
   };
 
@@ -86,20 +87,24 @@ class DashboardForm {
   };
 
   createMasterRunTable = () => {
-    const headerGroups = $("<tr>").append($("<th>", { rowspan: 2, text: "#" }));
-    const headerFields = $("<tr>");
+    const headerGroups = $("<tr>")
+      .append( $("<th>", { colspan: 2, text: "Actions" }) )
+      .append( $("<th>", { rowspan: 2, text: "#" }) );
+    const headerFields = $("<tr>")
+      .append( $("<th>", { text: "Edit" }) )
+      .append( $("<th>", { text: "Load" }) );
 
     ["Game Info", "Run Info", "Player Info", "Individual Player Info", "Admin Panel"].forEach(fieldGroup => {
-        const sanitizedFieldGroup = sanitize(fieldGroup);
-        headerGroups.append($("<th>", {
-            text: fieldGroup,
-            colspan: fieldGroups[sanitizedFieldGroup].fields.length
+      const sanitizedFieldGroup = sanitize(fieldGroup);
+      headerGroups.append($("<th>", {
+        text: fieldGroup,
+        colspan: fieldGroups[sanitizedFieldGroup].fields.length
+      }));
+      fieldGroups[sanitizedFieldGroup].fields.forEach(field => {
+        headerFields.append($("<th>", {
+          text: field.fieldName
         }));
-        fieldGroups[sanitizedFieldGroup].fields.forEach(field => {
-            headerFields.append($("<th>", {
-                text: field.fieldName
-            }));
-        });
+      });
     });
 
     const runTable = $("<table>", {
@@ -112,53 +117,92 @@ class DashboardForm {
 
   updateMasterRunFields = (fromReplicant = false) => {
     var values = NodeCG.masterRunList.replicantValues;
-    Object.keys(values).forEach((game, i) => {
-        var rowSpan = values[game].playerInfo.numberOfPlayers;
-        var row = $("<tr>", {
-          id: `${game} - row 1`
-        }).append($("<td>", {
+    NodeCG.masterRunList.schedule.order.filter(x => x).forEach((game, i) => {
+      // debugger
+      var row = $("<tr>", {
+        id: `${game} - row 1`,
+        class: "shadedTable" + (i % 2 === 0 ? "False" : "True")
+      });
+
+      const replicantGameValues = values[sanitizeFilename(game)];
+      // debugger
+      if (replicantGameValues) {
+        var rowSpan = replicantGameValues.playerInfo.numberOfPlayers;
+        row.append($("<td>", {
+          rowspan: rowSpan,
+          id: game + " - edit",
+          class: "pointer",
+          text: "o",
+          click: () => {
+            setReplicant.loadRunIntoDashboard(game);
+            top.location.replace("/dashboard/#workspace/main");
+          }
+        }))
+        .append($("<td>", {
+          rowspan: rowSpan,
+          id: game + " - load",
+          class: "pointer",
+          text: "o",
+          click: () => { game; debugger }
+        }))
+        .append($("<td>", {
           rowspan: rowSpan,
           id: game,
           text: i+1
         }));
-        var extraPlayerRows = [...new Array(parseInt(rowSpan-1,10)).keys()].map(row => $("<tr>", { id: `${game} - row ${row+2}` }));
+
+
+        var extraPlayerRows = [...new Array(parseInt(rowSpan-1,10)).keys()].map(row => $("<tr>", { id: `${game} - row ${row+2}`, class: "shadedTable" + (i % 2 === 0 ? "False" : "True") }));
 
         ["Game Info", "Run Info", "Player Info", "Individual Player Info", "Admin Panel"].forEach(fieldGroup => {
           const sanitizedFieldGroup = sanitize(fieldGroup);
 
           fieldGroups[sanitizedFieldGroup].fields.forEach(field => {
-              let text, tdRowSpan = rowSpan;
-              var fieldName = sanitize(field.fieldName);
+            let text, tdRowSpan = rowSpan;
+            var fieldName = sanitize(field.fieldName);
 
-              if (fieldGroup === "Individual Player Info") {
-                for (let playerNumber = 2; playerNumber <= parseInt(rowSpan, 10); playerNumber++) {
-                  const extraPlayerText = values[game]["playerInfo"][`player${playerNumber}_${fieldName}`];
-                  const playerCell = $("<td>", {
-                    id: `${game} - player${playerNumber}_${fieldName}`,
-                    text: extraPlayerText
-                  });
-                  extraPlayerRows[playerNumber-2].append(playerCell);
-                }
-
-                tdRowSpan = 1;
-                text = values[game]["playerInfo"][`player1_${fieldName}`];
-              } else {
-                text = values[game][sanitizedFieldGroup][fieldName];
+            if (fieldGroup === "Individual Player Info") {
+              for (let playerNumber = 2; playerNumber <= parseInt(rowSpan, 10); playerNumber++) {
+                const extraPlayerText = replicantGameValues["playerInfo"][`player${playerNumber}_${fieldName}`];
+                const playerCell = $("<td>", {
+                  id: `${game} - player${playerNumber}_${fieldName}`,
+                  text: extraPlayerText
+                });
+                extraPlayerRows[playerNumber-2].append(playerCell);
               }
 
-              row.append($("<td>", {
-                rowspan: tdRowSpan,
-                id: game + " - " + fieldName + " - 1",
-                text: text
-              }));
-            });
+              tdRowSpan = 1;
+              text = replicantGameValues["playerInfo"][`player1_${fieldName}`];
+            } else {
+              text = replicantGameValues[sanitizedFieldGroup][fieldName];
+            }
 
-            $("#masterRunListAllRunsTable").append(row);
-            extraPlayerRows.forEach(extraPlayerRow => {
-              $("#masterRunListAllRunsTable").append(extraPlayerRow);
-            })
+            row.append($("<td>", {
+              rowspan: tdRowSpan,
+              id: game + " - " + fieldName + " - 1",
+              text: text
+            }));
+          });
+
+          $("#masterRunListAllRunsTable").append(row);
+          extraPlayerRows.forEach(extraPlayerRow => {
+            $("#masterRunListAllRunsTable").append(extraPlayerRow);
+          })
 
         });
+      } else {
+        row.addClass("missingGame");
+        row.append($("<td>", {
+          id: game,
+          text: i+1
+        })).append($("<td>", {
+          id: game + " - missing",
+          colspan: "100%",
+          text: game + " - missing from the run info list"
+        }));
+
+        $("#masterRunListAllRunsTable").append(row);
+      }
 
     });
   };
@@ -263,35 +307,39 @@ class DashboardForm {
       class: "saveButton",
       click: (e) => {
         e.preventDefault();
-        var panels = (this.name === "adminPanel" ? Object.keys(NodeCG.dashboardPanels.panels) : [this.name]);
-
-        panels.forEach(panel => {
-          NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
-            if (!NodeCG.dashboardPanels.replicantValues[panel]) NodeCG.dashboardPanels.replicantValues[panel] = {};
-            NodeCG.dashboardPanels.replicantValues[panel][id] = value;
-          });
-        });
-
-        const { name, namespace } = NodeCG.dashboardPanels.replicant;
-
-        // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
-        // example from before: delete(this.replicantValues.playerInfo[1])
-        nodecg.readReplicant(name, namespace, replicantValues => {
-          var newValues = {...replicantValues};
-
-          panels.forEach(panel => {
-            newValues = {...newValues, ...{[panel]: NodeCG.dashboardPanels.replicantValues[panel]}};
-            if (panel === "gameInfo") {
-              NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = getGameNameTitle(NodeCG.dashboardPanels.replicantValues[panel].gameName);
-            }
-            NodeCG.dashboardPanels.panels[panel].saveButton.removeClass("saveChanges");
-          });
-          NodeCG.dashboardPanels.replicant.value = newValues;
-        });
+        this.saveFields();
       }
     });
 
     $("#" + this.name + "Save").append("<br>", this.saveButton); //todo: next
+  };
+
+  saveFields = () => {
+    var panels = (this.name === "adminPanel" ? Object.keys(NodeCG.dashboardPanels.panels) : [this.name]);
+
+    panels.forEach(panel => {
+      NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
+        if (!NodeCG.dashboardPanels.replicantValues[panel]) NodeCG.dashboardPanels.replicantValues[panel] = {};
+        NodeCG.dashboardPanels.replicantValues[panel][id] = value;
+      });
+    });
+
+    const { name, namespace } = NodeCG.dashboardPanels.replicant;
+
+    // todo: make a replicant cleanup, aka if a field in fieldGroups.json doesn't exist, remove it from the replicant
+    // example from before: delete(this.replicantValues.playerInfo[1])
+    nodecg.readReplicant(name, namespace, replicantValues => {
+      var newValues = {...replicantValues};
+
+      panels.forEach(panel => {
+        newValues = {...newValues, ...{[panel]: NodeCG.dashboardPanels.replicantValues[panel]}};
+        if (panel === "gameInfo") {
+          NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = getGameNameTitle(NodeCG.dashboardPanels.replicantValues[panel].gameName);
+        }
+        NodeCG.dashboardPanels.panels[panel].saveButton.removeClass("saveChanges");
+      });
+      NodeCG.dashboardPanels.replicant.value = newValues;
+    });
   };
 
 };

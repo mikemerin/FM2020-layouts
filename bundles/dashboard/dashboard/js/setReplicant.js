@@ -1,10 +1,11 @@
-class ForceSetReplicant {
+class SetReplicant {
 
   setRep = () => {
     const fetchedRep = nodecg.Replicant("fieldValues");
+    // fetchedRep.value = this.val; // enable if you need it
+
     // const settingRep = nodecg.Replicant("stagingField");
     // settingRep.value = fetchedRep.val; // enable if you need it
-    // fetchedRep.value = this.val; // enable if you need it
   }
 
   rep = "runs";

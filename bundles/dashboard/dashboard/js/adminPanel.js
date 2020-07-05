@@ -24,8 +24,8 @@ class AdminPanel {
       class: "loadButton",
       text: text,
       click: () => {
-        console.log($("#gameNameAdmin").val())
-        // todo: pick up here
+        const gameName = $("#gameNameAdmin").val();
+        setReplicant.loadRunIntoDashboard(gameName);
       }
     });
 
