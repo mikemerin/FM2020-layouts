@@ -156,6 +156,7 @@ var fieldGroups = {
       {
         "fieldName": "Background Opacity",
         "type": "number",
+        "placeholder": .3,
         "defaultValue": .3,
         "step": .1,
         "min": .1,

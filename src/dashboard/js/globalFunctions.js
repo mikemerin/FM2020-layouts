@@ -19,13 +19,20 @@ const initFieldValues = () => {
 };
 
 const initRuns = () => {
-  NodeCG.masterRunList.replicant = nodecg.Replicant("runs");
-  const { name, namespace } = NodeCG.masterRunList.replicant;
-  nodecg.readReplicant(name, namespace, replicantValues => {
-    NodeCG.masterRunList.replicantValues = replicantValues;
-    NodeCG.dashboardPanels.panels["masterRunList"].updateMasterRunFields(true);
-    // console.log("replicantValuesMasterRunList:", NodeCG.masterRunList.replicantValues);
+  const url = "https://oengus.io/api/marathon/fm2020/schedule";
+  fetch(url).then(resp => resp.json()).then(res => {
+    NodeCG.masterRunList.schedule.order = res.lines.map(({gameName}) => gameName );
+
+    NodeCG.masterRunList.replicant = nodecg.Replicant("runs");
+    const { name, namespace } = NodeCG.masterRunList.replicant;
+    nodecg.readReplicant(name, namespace, replicantValues => {
+      NodeCG.masterRunList.replicantValues = replicantValues;
+      NodeCG.dashboardPanels.panels["masterRunList"].updateMasterRunFields(true);
+      // console.log("replicantValuesMasterRunList:", NodeCG.masterRunList.replicantValues);
+    })
   })
+
+
 };
 
 const getGameNameTitle = (gameName) => {
@@ -39,6 +46,14 @@ const sanitize = (str) => {
   };
   str = str.toString().toLowerCase().replace(/[#-]/g, (matched) => replace[matched]);
   return str.replace(/\s(\w)/g, ($1) => $1[1].toUpperCase());
+}
+
+const sanitizeFilename = (str) => {
+  var replace = {
+    "#": "number",
+    ":": " -"
+  };
+  return str.replace(/[#:]/g, (matched) => replace[matched]);
 }
 
 function deepMerge(target, source) {
@@ -75,3 +90,22 @@ const changeCSSRule = (ruleKey, ruleValue, cssTextName, cssText) => {
       }
   };
 };
+
+class SetReplicant {
+
+  constructor() {
+    this.runsReplicant = nodecg.Replicant("runs");
+    this.fieldValuesreplicant = nodecg.Replicant("fieldValues");
+    this.stagingFieldReplicant = nodecg.Replicant("stagingField");
+  }
+
+  loadRunIntoDashboard = (gameName) => {
+    NodeCG.dashboardPanels.replicantValues = this.fieldValuesreplicant.value = this.runsReplicant.value[gameName];
+    ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(panel => {
+      NodeCG.dashboardPanels.panels[panel].loadValues(true);
+    })
+  };
+
+};
+
+const setReplicant = new SetReplicant();
