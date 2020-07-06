@@ -2,9 +2,9 @@
   "iWannaBeTheSalt": {
     "gameInfo": {
       "gameName": "I Wanna Be the Salt",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "ヨーヨー",
-      "genres": "100F",
+      "genres": "Adventure",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -43,7 +43,7 @@
       "gameName": "I Wanna Whisper In Mirror",
       "resolution": "1:1",
       "createdBy": "repsihw rorrim",
-      "genres": "100F; Adventure",
+      "genres": "Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -80,9 +80,9 @@
   "newMiniKongkongisAdventure": {
     "gameInfo": {
       "gameName": "New Mini Kongkongi's Adventure",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Mr.J",
-      "genres": "100F",
+      "genres": "Adventure",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -119,9 +119,9 @@
   "iWannaBeTheDestination": {
     "gameInfo": {
       "gameName": "I Wanna Be the Destination",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Carnival",
-      "genres": "100F; Adventure; Avoidance; Gimmick",
+      "genres": "Adventure; Avoidance; Needle; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -160,7 +160,7 @@
       "gameName": "I wanna be the Neon 3",
       "resolution": "608",
       "createdBy": "Thenader2",
-      "genres": "100F; Adventure",
+      "genres": "Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -197,9 +197,9 @@
   "iWannaSeeTheMoon": {
     "gameInfo": {
       "gameName": "I Wanna See the Moon",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "aqua",
-      "genres": "100F; Adventure; Avoidance; Gimmick",
+      "genres": "Adventure; Gmmick; Needle; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -238,7 +238,7 @@
       "gameName": "I Wanna Be the Emperor",
       "resolution": "608",
       "createdBy": "クライン",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -275,9 +275,9 @@
   "iWannaBeTheJustice": {
     "gameInfo": {
       "gameName": "I Wanna Be the Justice",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Carnival",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -298,7 +298,7 @@
       "player4_displayName": "",
       "player4_camera": false,
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "Joshua_boring"
     },
     "runInfo": {
       "category": "any%",
@@ -314,9 +314,9 @@
   "iWannaKillTheGuy": {
     "gameInfo": {
       "gameName": "I Wanna Kill the Guy",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Thenewgeezer",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Gimmick",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -355,7 +355,7 @@
       "gameName": "Needle",
       "resolution": "608",
       "createdBy": "Multiple People",
-      "genres": "100F",
+      "genres": "Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -392,9 +392,9 @@
   "iWannaBeTheGuyGaiden": {
     "gameInfo": {
       "gameName": "I Wanna Be the Guy: Gaiden",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Kayin",
-      "genres": "100F; Adventure; Avoidance",
+      "genres": "Adventure; Gimmick; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -431,9 +431,9 @@
   "iWannaLeaveThisHell": {
     "gameInfo": {
       "gameName": "I Wanna Leave This Hell",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "RandomChaos_",
-      "genres": "100F; Adventure",
+      "genres": "Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -509,9 +509,9 @@
   "iWannaBeTheGuy": {
     "gameInfo": {
       "gameName": "I Wanna Be the Guy",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Kayin",
-      "genres": "100F; Adventure; Avoidance",
+      "genres": "Adventure; Gimmick; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -550,7 +550,7 @@
       "gameName": "Mystery Game",
       "resolution": "608",
       "createdBy": "kurath",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Blind"
     },
     "playerInfo": {
@@ -589,7 +589,7 @@
       "gameName": "Gm8Emulator",
       "resolution": "16:9",
       "createdBy": "Adamcake, viri, Floogle, renex",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Creative"
     },
     "playerInfo": {
@@ -628,8 +628,9 @@
       "gameName": "I Wanna Eclipse",
       "resolution": "608",
       "createdBy": "Gwiz609",
-      "genres": "100F; Adventure; Avoidance; Gimmick; Medley",
-      "otherGenres": "N/A"
+      "genres": "Adventure; Gimmick; Needle",
+      "otherGenres": "N/A",
+      "gameNameTitle": "Eclipse"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
@@ -667,7 +668,7 @@
       "gameName": "Chill Needle 2",
       "resolution": "608",
       "createdBy": "arzztt",
-      "genres": "100F; Adventure; Avoidance",
+      "genres": "Adventure; Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -704,9 +705,9 @@
   "iWannaBeTheStrongestFairy": {
     "gameInfo": {
       "gameName": "I Wanna Be The Strongest Fairy",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Chalenged",
-      "genres": "100F; Adventure",
+      "genres": "Avoidance; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -745,13 +746,13 @@
       "gameName": "I Wanna Be The Co-op",
       "resolution": "16:9",
       "createdBy": "Nemega",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Gimmick",
       "otherGenres": "N/A"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "igorbsv with Marfrus",
-      "player1_displayName": "igorbsv with Marfrus",
+      "player1_twitchHandle": "igorbsv & Marfrus",
+      "player1_displayName": "igorbsv & Marfrus",
       "player1_camera": false,
       "player1_pb": "0:40:24",
       "player2_twitchHandle": "",
@@ -782,9 +783,9 @@
   "fangameMusicQuiz": {
     "gameInfo": {
       "gameName": "Fangame Music Quiz",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "kurath",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Quiz Show"
     },
     "playerInfo": {
@@ -823,7 +824,7 @@
       "gameName": "Fangame Music DJ Set",
       "resolution": "16:9",
       "createdBy": "Racic",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Creative"
     },
     "playerInfo": {
@@ -862,7 +863,7 @@
       "gameName": "Ghost Mechanism",
       "resolution": "608",
       "createdBy": "princeoflight612",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Gimmick",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -899,9 +900,9 @@
   "starRevenge2NightOfDoom": {
     "gameInfo": {
       "gameName": "Star Revenge 2: Night of Doom",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "BroDute",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -938,9 +939,9 @@
   "marioParty64": {
     "gameInfo": {
       "gameName": "Mario Party 64",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "MrComit",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -977,9 +978,9 @@
   "superMarioOdyssey64": {
     "gameInfo": {
       "gameName": "Super Mario Odyssey 64",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Kaze Emanuar",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -1016,9 +1017,9 @@
   "starRevenge25RemnantOfDoom": {
     "gameInfo": {
       "gameName": "Star Revenge 2.5: Remnant of Doom",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "BroDute",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -1055,9 +1056,9 @@
   "sm64LastImpact": {
     "gameInfo": {
       "gameName": "SM64: Last Impact",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Kaze Emanuar",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -1135,7 +1136,7 @@
       "gameName": "Maid Made Maze",
       "resolution": "16:9",
       "createdBy": "Top Arts Plan",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Touhou"
     },
     "playerInfo": {
@@ -1174,7 +1175,7 @@
       "gameName": "Touhou Luna Nights",
       "resolution": "16:9",
       "createdBy": "Team Ladybug",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Touhou"
     },
     "playerInfo": {
@@ -1211,9 +1212,9 @@
   "touhouDanmakufu": {
     "gameInfo": {
       "gameName": "Touhou Danmakufu",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "mkm",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Touhou"
     },
     "playerInfo": {
@@ -1250,9 +1251,9 @@
   "nitorinc": {
     "gameInfo": {
       "gameName": "NitorInc.",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "NitorInc. Collab",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Touhou"
     },
     "playerInfo": {
@@ -1289,9 +1290,9 @@
   "superMetroidAscent": {
     "gameInfo": {
       "gameName": "Super Metroid Ascent",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Benox50",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Metroid"
     },
     "playerInfo": {
@@ -1328,9 +1329,9 @@
   "metroidFusionOilSpill": {
     "gameInfo": {
       "gameName": "Metroid Fusion: Oil Spill",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Spedimus",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Metroid"
     },
     "playerInfo": {
@@ -1366,9 +1367,9 @@
   "superMetroidYfaster2Fast": {
     "gameInfo": {
       "gameName": "Super Metroid: Y-Faster 2 Fast",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Metaquarius",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Metroid"
     },
     "playerInfo": {
@@ -1407,7 +1408,7 @@
       "gameName": "Make a Good Mega Man Level 2",
       "resolution": "8:7",
       "createdBy": "Multiple People",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mega Man"
     },
     "playerInfo": {
@@ -1419,7 +1420,7 @@
       "player2_twitchHandle": "TimeLink",
       "player2_displayName": "TimeLink",
       "player2_camera": false,
-      "player2_pb": "2:34:37",
+      "player2_pb": "2:15:03",
       "player3_twitchHandle": "",
       "player3_displayName": "",
       "player3_camera": false,
@@ -1444,9 +1445,9 @@
   "rockman4BurstChaserXAirSliding": {
     "gameInfo": {
       "gameName": "Rockman 4 Burst Chaser X Air Sliding",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Tsukikuro",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mega Man"
     },
     "playerInfo": {
@@ -1484,7 +1485,7 @@
       "gameName": "Sunlust",
       "resolution": "16:9",
       "createdBy": "Ribbiks and dannebubinga",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Doom"
     },
     "playerInfo": {
@@ -1522,7 +1523,7 @@
       "gameName": "Super Mario 63",
       "resolution": "3:2",
       "createdBy": "Runouw",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -1561,7 +1562,7 @@
       "gameName": "Sonic Chrono Adventure",
       "resolution": "600",
       "createdBy": "LakeFeperd",
-      "genres": "100F",
+      "genres": "Adventure",
       "otherGenres": "Sonic"
     },
     "playerInfo": {
@@ -1600,7 +1601,7 @@
       "gameName": "Densha de D: Lightning Stage",
       "resolution": "16:9",
       "createdBy": "Jinushi",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Initial D"
     },
     "playerInfo": {
@@ -1637,9 +1638,9 @@
   "nimpizeAdventure": {
     "gameInfo": {
       "gameName": "Nimpize Adventure",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Ostrealava02",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Zelda"
     },
     "playerInfo": {
@@ -1676,9 +1677,9 @@
   "griefSyndrome": {
     "gameInfo": {
       "gameName": "Grief Syndrome",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Tasofro",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Anime"
     },
     "playerInfo": {
@@ -1717,7 +1718,7 @@
       "gameName": "I Want",
       "resolution": "608",
       "createdBy": "PieceOfCheese87, egg",
-      "genres": "100F; Adventure; Avoidance; Gimmick",
+      "genres": "Adventure; Avoidance; Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -1754,9 +1755,9 @@
   "iWannaBeTheWithFriendsβ": {
     "gameInfo": {
       "gameName": "I wanna be the with friendsβ",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "にひみ",
-      "genres": "100F; Adventure; Avoidance",
+      "genres": "Adventure; Needle; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -1795,7 +1796,7 @@
       "gameName": "Designer L's Wacky Randventure!",
       "resolution": "608",
       "createdBy": "Designer L",
-      "genres": "100F; Adventure; Avoidance; Gimmick",
+      "genres": "Adventure; Avoidance; Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -1834,7 +1835,7 @@
       "gameName": "I Wanna Be the Platinum",
       "resolution": "608",
       "createdBy": "supaguy",
-      "genres": "100F; Adventure; Avoidance",
+      "genres": "Adventure; Needle; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -1871,9 +1872,9 @@
   "iWannaBeTheComputer2": {
     "gameInfo": {
       "gameName": "I Wanna Be the Computer 2!",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Captain GraMMa",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Gimmick",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -1910,9 +1911,9 @@
   "waluigisTacoStand": {
     "gameInfo": {
       "gameName": "Waluigi's Taco Stand",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Kaze Emanuar",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "WAAAAGH"
     },
     "playerInfo": {
@@ -1951,7 +1952,7 @@
       "gameName": "Crimson Needle 3",
       "resolution": "608",
       "createdBy": "Kalemandu, PlasmaNapkin, Zero-G",
-      "genres": "100F; Adventure; Avoidance",
+      "genres": "100F; Gimmick; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -1990,7 +1991,7 @@
       "gameName": "Draw My Guy",
       "resolution": "608",
       "createdBy": "PieceOfCheese87",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Creative"
     },
     "playerInfo": {
@@ -2029,7 +2030,7 @@
       "gameName": "Super Mario 74 Extreme Edition",
       "resolution": "16:9",
       "createdBy": "Lugmillord",
-      "genres": "N/A",
+      "genres": "",
       "otherGenres": "Mario"
     },
     "playerInfo": {
@@ -2066,7 +2067,7 @@
   "misuzuToChirunoNoYoukaiNoYamadaiBoukenAkushongemu": {
     "gameInfo": {
       "gameName": "美鈴とチルノの妖怪の山大冒険",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "Yuuyuutei",
       "genres": "",
       "otherGenres": "Touhou"
@@ -2105,9 +2106,9 @@
   "iWannaMakeASandwich": {
     "gameInfo": {
       "gameName": "I Wanna Make A Sandwich",
-      "resolution": "4:3",
+      "resolution": "600",
       "createdBy": "PieceOfCheese87, Thenewgeezer",
-      "genres": "100F; Adventure",
+      "genres": "Adventure; Gimmick",
       "otherGenres": "N/A"
     },
     "playerInfo": {
