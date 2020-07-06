@@ -123,7 +123,7 @@ class DashboardForm {
         id: `${game} - row 1`,
         class: "shadedTable" + (i % 2 === 0 ? "False" : "True")
       });
-      
+
       const replicantGameValues = values[sanitize(game)];
       // debugger
       if (replicantGameValues) {
@@ -318,6 +318,8 @@ class DashboardForm {
 
   saveFields = () => {
     var panels = (this.name === "adminPanel" ? Object.keys(NodeCG.dashboardPanels.panels) : [this.name]);
+
+    // console.log("panels:", panels);
 
     panels.forEach(panel => {
       NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
