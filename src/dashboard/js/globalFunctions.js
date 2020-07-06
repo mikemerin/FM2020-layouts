@@ -114,16 +114,19 @@ class SetReplicant {
   outputReplicant(replicantName = "runsReplicant") {
     const {name, namespace} = this[replicantName];
     nodecg.readReplicant(name, namespace, replicantValues => {
-      console.log(replicantValues);
+      console.log("replicantValues:", replicantValues);
+      Object.keys(replicantValues).forEach(run => {
+        console.log(replicantValues[run]);
+      });
     })
-  }
+  };
 
   forceSet() {
     this.runsReplicant.value = {}  // warning: use only when needed as this overwrites the replicant permanently
   };
 
   loadRunIntoDashboard(gameName) {
-    NodeCG.dashboardPanels.replicantValues = this.fieldValuesreplicant.value = this.runsReplicant.value[gameName];
+    NodeCG.dashboardPanels.replicantValues = this.fieldValuesreplicant.value = this.runsReplicant.value[sanitize(gameName)];
     ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(panel => {
       NodeCG.dashboardPanels.panels[panel].loadValues(true);
     })
