@@ -102,34 +102,34 @@ class SetReplicant {
     this.runsReplicant = nodecg.Replicant("runs");
     this.fieldValuesreplicant = nodecg.Replicant("fieldValues");
     this.stagingFieldReplicant = nodecg.Replicant("stagingField");
-    this.outputReplicant()
+    // this.outputReplicant();
   }
 
-  altNames = () => {
-    const alts = {
-      "Misuzu to Chiruno no Youkai no Yamadai Bouken Akushongemu": ""
-    }
-  }
+  // altNames = () => { maybe for the future
+  //   const alts = {
+  //     "Misuzu to Chiruno no Youkai no Yamadai Bouken Akushongemu": "美鈴とチルノの妖怪の山大冒険"
+  //   }
+  // }
 
-  outputReplicant = () => {
-    const {name, namespace} = this.runsReplicant;
+  outputReplicant(replicantName = "runsReplicant") {
+    const {name, namespace} = this[replicantName];
     nodecg.readReplicant(name, namespace, replicantValues => {
-      console.log(sanitize("Misuzu to Chiruno no Youkai no Yamadai Bouken Akushongemu"))
+      console.log(replicantValues);
     })
   }
 
-  forceSet = () => {
+  forceSet() {
     this.runsReplicant.value = {}  // warning: use only when needed as this overwrites the replicant permanently
   };
 
-  loadRunIntoDashboard = (gameName) => {
+  loadRunIntoDashboard(gameName) {
     NodeCG.dashboardPanels.replicantValues = this.fieldValuesreplicant.value = this.runsReplicant.value[gameName];
     ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(panel => {
       NodeCG.dashboardPanels.panels[panel].loadValues(true);
     })
   };
 
-  saveRunFromDashboard = (gameName) => {
+  saveRunFromDashboard(gameName) {
     this;
 
     let text = "Are you sure you want to";
