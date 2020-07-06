@@ -40,7 +40,7 @@ function buh({ instrument } = {}) {
 				'babelify',
 				{
 					global: true,
-					presets: ['@babel/preset-env', ['minify', { builtIns: false }]],
+					presets: ['@babel/preset-env', '@babel/plugin-proposal-class-properties' ['minify', { builtIns: false }]],
 					comments: false,
 					minified: true,
 					sourceMaps: true,
