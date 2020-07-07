@@ -189,15 +189,15 @@ br {
 	border-spacing: 4px;
 }
 
-#masterRunListAllRunsTable,
-#masterRunListAllRunsTable th,
-#masterRunListAllRunsTable td {
+#masterRunListTable,
+#masterRunListTable th,
+#masterRunListTable td {
 	font-size: 9px;
 	border-collapse: collapse;
 	border: 1px solid black;
 }
 
-#masterRunListAllRunsTable tr:nth-child(even) {
+#masterRunListTable tr:nth-child(even) {
 	background-color: #f2f2f2;
 }
 
