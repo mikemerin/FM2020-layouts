@@ -173,19 +173,7 @@ class SetReplicant {
 
     text += `update the following ${fieldsChanged} field(s) for\n${gameName}?\n`;
     if( fieldsChanged && confirm(text + textChanged) ) {
-      // console.log(sanitize(gameName), this.runsReplicant.value[sanitize(gameName)]);
-      // console.log("this.fieldValuesReplicant.value:", this.fieldValuesReplicant.value);
       NodeCG.dashboardPanels.panels.adminPanel.saveFields(gameName);
-
-
-      // const repToSet = Object.keys(this.runsReplicant.value).map(run => {
-      //     if (run === sanitize(gameName)) {
-      //         return this.fieldValuesReplicant.value;
-      //     } else {
-      //         return this.runsReplicant.value[run];
-      //     }
-      // });
-      // this.runsReplicant.value = repToSet;
     };
   }
 
@@ -203,23 +191,23 @@ class AdminPanel {
     this.gameName;
   }
 
-  setRunSearch = () => {
+  setRunSearch() {
 
   };
 
-  gameChecks = () => {
+  gameChecks() {
     // debugger
   };
 
-  setAvatarCheck = () => {
+  setAvatarCheck() {
 
   };
 
-  setFieldsInfo = () => {
+  setFieldsInfo() {
 
   };
 
-  setRunSaveLoadButtons = () => {
+  setRunSaveLoadButtons() {
     const label = $("<label>", { text: "Default run info for" });
 
     const loadButton = $("<button>", {
@@ -245,7 +233,7 @@ class AdminPanel {
     $("#adminPanelInsertGameInfo").append(label, this.gameNameInput, loadButton, saveButton);
   }
 
-  getInput = (fieldGroup, field) => {
+  getInput(fieldGroup, field) {
     const runsReplicant = nodecg.Replicant('runs');
     const fieldValuesReplicant = nodecg.Replicant('fieldValues');
     const { name, namespace } = runsReplicant;
@@ -278,22 +266,22 @@ class AdminPanel {
     return dropdown;
   };
 
-  setDropdownGameName = (gameName = this.gameName) => {
+  setDropdownGameName(gameName = this.gameName) {
     if (gameName !== this.gameName) this.gameName = gameName;
     Array.from(this.gameNameInput[0].options).forEach(option => {
       option.selected = (option.value === this.gameName);
     });
   }
 
-  setStagingSendButton = () => {
+  setStagingSendButton() {
 
   };
 
-  setPreviewButton = () => {
+  setPreviewButton() {
 
   };
 
-  setLoadLayoutInfo = () => {
+  setLoadLayoutInfo() {
     const text = "Layout window for";
     const temporaryId = "Open temporary url\nwith shown values";
     const permanentId = "Open permanent url\nwith run values";
