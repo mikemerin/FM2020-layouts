@@ -50,28 +50,13 @@
     ],
     "assetCategories": [
       {
-        "name": "baseLayouts1P",
-        "title": "Base Layouts - 1 Player",
+        "name": "baseLayouts",
+        "title": "Base Layouts",
         "allowedTypes": ["png"]
       },
       {
-        "name": "baseLayouts2P",
-        "title": "Base Layouts - 2 Player",
-        "allowedTypes": ["png"]
-      },
-      {
-        "name": "baseLayouts3P",
-        "title": "Base Layouts - 3 Player",
-        "allowedTypes": ["png"]
-      },
-      {
-        "name": "baseLayouts4P",
-        "title": "Base Layouts - 4 Player",
-        "allowedTypes": ["png"]
-      },
-      {
-        "name": "baseLayoutsOtherP",
-        "title": "Base Layouts - Other Players",
+        "name": "baseLayoutExamples",
+        "title": "Base Layout Examples (for debugging)",
         "allowedTypes": ["png"]
       },
       {
