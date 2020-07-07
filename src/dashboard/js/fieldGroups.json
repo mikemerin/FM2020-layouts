@@ -16,7 +16,7 @@ var fieldGroups = {
         "fieldName": "Resolution",
         "type": "radio",
         "options": [
-          "600", "608", "16:9"
+          "600", "608", "1:1", "3:2", "8:7", "16:9"
         ],
         "other": true
       },
@@ -97,7 +97,7 @@ var fieldGroups = {
           "Event",
           "Showcase",
           "Solo Run",
-          "Standard Race",
+          "Race",
           "TAS Showcase"
         ],
         "defaultValue": "Solo Run",
@@ -177,8 +177,8 @@ var fieldGroups = {
     "name": "Master Run List",
     "fields": [
       {
-        "fieldName": "All Runs",
-        "type": "table",
+        "fieldName": "Master Run List",
+        "type": "masterRunList",
         "value": ""
       }
     ]

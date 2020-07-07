@@ -80,6 +80,7 @@ const initFieldValues = () => {
 };
 
 const initRuns = () => {
+
   const url = "https://oengus.io/api/marathon/fm2020/schedule";
   fetch(url).then(resp => resp.json()).then(res => {
     NodeCG.masterRunList.schedule.order = res.lines.map(({gameName}) => gameName );
@@ -88,7 +89,7 @@ const initRuns = () => {
     const { name, namespace } = NodeCG.masterRunList.replicant;
     nodecg.readReplicant(name, namespace, replicantValues => {
       NodeCG.masterRunList.replicantValues = replicantValues;
-      NodeCG.dashboardPanels.panels["masterRunList"].updateMasterRunFields(true);
+      updateMasterRunList();
       // console.log("replicantValuesMasterRunList:", NodeCG.masterRunList.replicantValues);
     })
   })
@@ -96,11 +97,17 @@ const initRuns = () => {
 
 };
 
+const updateMasterRunList = () => {
+  NodeCG.dashboardPanels.panels["masterRunList"].dashboardFields.find(field => {
+      if (field.id === "masterRunList") field.updateValue(true);
+  });
+};
+
 class SetReplicant {
 
   constructor() {
     this.runsReplicant = nodecg.Replicant("runs");
-    this.fieldValuesreplicant = nodecg.Replicant("fieldValues");
+    this.fieldValuesReplicant = nodecg.Replicant("fieldValues");
     this.stagingFieldReplicant = nodecg.Replicant("stagingField");
     // this.outputReplicant();
   }
@@ -111,7 +118,7 @@ class SetReplicant {
   //   }
   // }
 
-  outputReplicant(replicantName = "runsReplicant") {
+  outputReplicant(replicantName = "runsReplicant", gameName = "all") {
     const {name, namespace} = this[replicantName];
     nodecg.readReplicant(name, namespace, replicantValues => {
       console.log("replicantValues:", replicantValues);
@@ -122,54 +129,237 @@ class SetReplicant {
   };
 
   forceSet() {
-    this.runsReplicant.value = {}  // warning: use only when needed as this overwrites the replicant permanently
+    // this.runsReplicant.value = {}  // warning: use only when needed as this overwrites the replicant permanently
+    // this.runsReplicant.value =
   };
 
   loadRunIntoDashboard(gameName) {
-    NodeCG.dashboardPanels.replicantValues = this.fieldValuesreplicant.value = this.runsReplicant.value[sanitize(gameName)];
+    // console.log("setReplicant:", setReplicant);
+    // console.log("NodeCG.adminPanel:", NodeCG.adminPanel);
+    NodeCG.dashboardPanels.replicantValues = this.runsReplicant.value[sanitize(gameName)];
+    this.fieldValuesReplicant.value = this.runsReplicant.value[sanitize(gameName)];
     ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(panel => {
       NodeCG.dashboardPanels.panels[panel].loadValues(true);
     })
+    NodeCG.adminPanel.setDropdownGameName(gameName);
   };
 
   saveRunFromDashboard(gameName) {
-    this;
+    let gameNameConfirmation = false;
+    let fieldsChanged = 0;
+    let text = "Are you sure you want to ";
+    let textChanged = "";
 
-    let text = "Are you sure you want to";
     if (gameName === "Create New Run") {
       text += `make a new run for ${gameName}?`;
       // todo: check if on the schedule or not
     } else {
-      const savedGameRun = this.runsReplicant.value[gameName];
-      text += `update the following values for ${gameName}?`;
-      debugger
+      const savedGameRun = this.runsReplicant.value[sanitize(gameName)];
+      ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(panel => {
+          NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
+            const savedValue = savedGameRun[panel][id];
+            if (value !== savedValue) {
+              if (id === "gameName") {
+                gameNameConfirmation = `Warning: game names in field and dropdown are different:\n\nGame Name Field:\n${value}\n\nDropdown:\n${gameName}\n\nAre you sure you want to save this?`;
+              }
+              fieldsChanged++;
+              textChanged += `\n${id}: ${savedValue} -> ${value}`;
+            };
+          })
+      })
     }
 
-    var th = $("<tr>").append($("<th>"));
-    var before = $("<tr>").append($("<th>", {text: before}));
-    var after = $("<tr>").append($("<th>", {text: after}));
+    if (gameNameConfirmation && !confirm(gameNameConfirmation)) return;
+
+    text += `update the following ${fieldsChanged} field(s) for\n${gameName}?\n`;
+    if( fieldsChanged && confirm(text + textChanged) ) {
+      // console.log(sanitize(gameName), this.runsReplicant.value[sanitize(gameName)]);
+      // console.log("this.fieldValuesReplicant.value:", this.fieldValuesReplicant.value);
+      NodeCG.dashboardPanels.panels.adminPanel.saveFields(gameName);
 
 
-    ["gameInfo", "runInfo", "playerInfo", "adminPanel"].forEach(panel => {
-        NodeCG.dashboardPanels.panels[panel].dashboardFields.forEach(({id, value}) => {
-          th.append($("<th>", {text: id}));
-          after.append($("<td>", {text: value}));
-        })
-    });
-
-    const table = $("<table>").append(th, before, after);
-    //
-    // const modal = $("<div>", {
-    //   id: "confirmModal",
-    //   class: "modal"
-    // }).append(table);
-
-    const confirmation = confirm(text)
-    debugger
-    //confirm, show before/after
-    // this.runsReplicant.value[gameName].gameInfo = this.fieldValuesreplicant.value;
+      // const repToSet = Object.keys(this.runsReplicant.value).map(run => {
+      //     if (run === sanitize(gameName)) {
+      //         return this.fieldValuesReplicant.value;
+      //     } else {
+      //         return this.runsReplicant.value[run];
+      //     }
+      // });
+      // this.runsReplicant.value = repToSet;
+    };
   }
 
 };
 
 const setReplicant = new SetReplicant();
+
+
+// future: awful having to put this here since I can't access in bundles/dashboard/dashboard/js/adminPanel.js
+
+class AdminPanel {
+
+  constructor() {
+    this.gameNameInput = this.getInput("gameInfo", "gameName");
+    this.gameName;
+  }
+
+  setRunSearch = () => {
+
+  };
+
+  gameChecks = () => {
+    // debugger
+  };
+
+  setAvatarCheck = () => {
+
+  };
+
+  setFieldsInfo = () => {
+
+  };
+
+  setRunSaveLoadButtons = () => {
+    const label = $("<label>", { text: "Default run info for" });
+
+    const loadButton = $("<button>", {
+      id: "adminPanelLoadRunInfoButton",
+      class: "halfButton",
+      text: "Load",
+      click: () => {
+        this.gameName = $("#gameNameAdmin").val();
+        setReplicant.loadRunIntoDashboard(this.gameName);
+      }
+    });
+
+    const saveButton = $("<button>", {
+      id: "adminPanelSaveRunInfoButton",
+      class: "halfButton",
+      text: "Save",
+      click: () => {
+        this.gameName = $("#gameNameAdmin").val();
+        setReplicant.saveRunFromDashboard(this.gameName);
+      }
+    });
+
+    $("#adminPanelInsertGameInfo").append(label, this.gameNameInput, loadButton, saveButton);
+  }
+
+  getInput = (fieldGroup, field) => {
+    const runsReplicant = nodecg.Replicant('runs');
+    const fieldValuesReplicant = nodecg.Replicant('fieldValues');
+    const { name, namespace } = runsReplicant;
+    const { name: fieldName, namespace: fieldNamespace } = fieldValuesReplicant;
+
+    var dropdown = $("<select>", {
+      id: field + "Admin",
+      class: "inputSelect"
+    });
+
+    nodecg.readReplicant(name, namespace, replicantValues => {
+      nodecg.readReplicant(fieldName, fieldNamespace, fieldReplicantValues => {
+        var options = Object.keys(replicantValues).map(game => {
+          return replicantValues[game][fieldGroup][field];
+        }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) );
+
+        this.gameName = fieldReplicantValues.gameInfo.gameName;
+
+        options.forEach(value => {
+          dropdown.append($("<option>", {
+            text: value,
+            value: value
+          }));
+        })
+
+        this.setDropdownGameName(this.gameName);
+      });
+    });
+
+    return dropdown;
+  };
+
+  setDropdownGameName = (gameName = this.gameName) => {
+    if (gameName !== this.gameName) this.gameName = gameName;
+    Array.from(this.gameNameInput[0].options).forEach(option => {
+      option.selected = (option.value === this.gameName);
+    });
+  }
+
+  setStagingSendButton = () => {
+
+  };
+
+  setPreviewButton = () => {
+
+  };
+
+  setLoadLayoutInfo = () => {
+    const text = "Layout window for";
+    const temporaryId = "Open temporary url\nwith shown values";
+    const permanentId = "Open permanent url\nwith run values";
+
+    $("#loadLayout").append( //todo: next
+      $("<label>", {
+        id: sanitize(text),
+        text: text
+      })
+    );
+
+    $("#loadLayout").append( //todo: next
+      $("<button>", {
+        id: sanitize(temporaryId) + "Window",
+        class: "loadButton",
+        text: temporaryId
+      })
+    );
+
+    $("#loadLayout").append( //todo: next
+      $("<button>", {
+        id: sanitize(permanentId) + "Window",
+        class: "loadButton",
+        text: permanentId
+      })
+    );
+
+    const replicant = nodecg.Replicant("fieldValues");
+
+    replicant.on("change", (newValue, oldValue) => {
+      const temporaryLoadButton = $("#" + sanitize(temporaryId) + "Window"); //todo: next
+      const permanentLoadButton = $("#" + sanitize(permanentId) + "Window"); //todo: next
+      temporaryLoadButton.off();
+      permanentLoadButton.off();
+
+      var labelText = "Cannot load layout until more info is chosen";
+
+      if (newValue && newValue["playerInfo"] && newValue["gameInfo"] ) {
+        const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
+        const { resolution, gameNameTitle } = newValue["gameInfo"];
+        labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
+
+        temporaryLoadButton.on("click", (e) => {
+          e.preventDefault();
+          if (!!numberOfPlayers && numberOfPlayers !== "N/A" && !!resolution && resolution !== "N/A") {
+            var url = "http://localhost:9090/bundles/dashboard/graphics/layout.html";
+            window.open(url);
+          };
+        });
+
+        permanentLoadButton.on("click", (e) => {
+          e.preventDefault();
+          if (!!numberOfPlayers && numberOfPlayers !== "N/A" && !!resolution && resolution !== "N/A") {
+            var url = `http://localhost:9090/bundles/dashboard/graphics/layout.html?gameName=${newValue["gameInfo"].gameName}`;
+            window.open(url);
+          };
+        });
+      } else { //todo: remove else statement
+        currentLoadButton.off();
+        defaultLoadButton.off();
+      }
+
+      $("#" + sanitize(text)).html(labelText); //todo: next
+    });
+  };
+
+};
+
+NodeCG.adminPanel = new AdminPanel;

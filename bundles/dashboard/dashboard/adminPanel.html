@@ -5,7 +5,6 @@
 		<script type="text/javascript" src="/dashboard/js/fieldGroups.json"></script>
 		<script type="text/javascript" src="/dashboard/js/globalFunctions.js"></script>
 		<script type="text/javascript" src="js/dashboardForm.js"></script>
-		<script type="text/javascript" src="js/adminPanel.js"></script>
 	</head>
 	<body id="adminPanelBody">
 		<div id="adminPanelFields"></div>
@@ -23,15 +22,15 @@
 			var dashboardForm = new DashboardForm(fieldGroup);
 			NodeCG.dashboardPanels.panels[fieldGroup] = dashboardForm;
 
-			var adminPanel = new AdminPanel();
+			// setReplicant.forceSet();
 
-			adminPanel.setRunSaveLoadButtons();
+			NodeCG.adminPanel.setRunSaveLoadButtons();
 
-			adminPanel.setRunSearch(); // may not need now
+			NodeCG.adminPanel.setRunSearch(); // may not need now
 
-			adminPanel.gameChecks();
+			NodeCG.adminPanel.gameChecks();
 
-			adminPanel.setLoadLayoutInfo();
+			NodeCG.adminPanel.setLoadLayoutInfo();
 
 			// future: there must be a better way in NodeCG to do this, but initializing the globals here as the admin panel is the last loaded. If this moves in the future, move init() (for now)
 			initReplicants();
