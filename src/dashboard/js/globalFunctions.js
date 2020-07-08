@@ -331,8 +331,8 @@ class AdminPanel {
 
       if (newValue && newValue["playerInfo"] && newValue["gameInfo"] ) {
         const numberOfPlayers = newValue["playerInfo"]["numberOfPlayers"];
-        const { resolution, gameNameTitle } = newValue["gameInfo"];
-        labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
+        const { resolution, gameName } = newValue["gameInfo"];
+        labelText = text + "<br>" + numberOfPlayers + "P " + resolution + " - " + getGameNameTitle(gameName);
 
         temporaryLoadButton.on("click", (e) => {
           e.preventDefault();
