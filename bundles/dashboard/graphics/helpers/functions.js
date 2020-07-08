@@ -100,7 +100,7 @@ class Layout {
   setBaseImage = () => {
     // const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png"; // todo: debugging tool as reference, change as needed, remove when done
     // const output = "baseLayoutExamples/1P-8x7-example.png"; // todo: debugging tool as reference, change as needed, remove when done
-    // const output = "baseLayouts/1P-base1x1.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayouts/1P-base3x2.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
     const className = "base";
