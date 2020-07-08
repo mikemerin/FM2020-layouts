@@ -50,6 +50,11 @@
     ],
     "assetCategories": [
       {
+        "name": "avatars",
+        "title": "Avatars",
+        "allowedTypes": ["png"]
+      },
+      {
         "name": "baseLayouts",
         "title": "Base Layouts",
         "allowedTypes": ["png"]

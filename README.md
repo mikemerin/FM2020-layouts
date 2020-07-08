@@ -1,3 +1,58 @@
+#Fangame Marathon 2020 Layouts
+
+This is a program to dynamically generate layouts for FM2020.
+
+To get started:
+
+1. Download the files above, either by downloading the ZIP or cloning the repo
+2. In the command line, go to the root folder
+  * Note: you must have node and npm installed on your computer
+3. Type `npm i` to install all dependencies
+4. Type `npm start` to start the dev server
+5. In your web browser (preferably Chrome) go to `http://localhost:9090/`
+
+Once there you will see a few tabs
+
+* All Runs
+  * This is where you can see all runs.
+  * The run order is fetched from the official FM2020 run list on [Oengus' API](https://oengus.io/api/marathon/fm2020/schedule)
+  * The rest of the information is stored in the program
+  * On the left side you can click to either edit the info or load the run into its own URL
+* Main
+  * This is the primary dashboard for editing or adding information
+  * You can temporarily save these fields
+    * You can then open up a new window dedicated to whatever is saved on this screen
+  * You can permanently save run info to the list shown on the first page
+    * You can then open up a dedicated URL to that run
+* Graphics
+  * You can ignore this tab; the URLs loaded here are primarily handled in the prior tabs
+* Mixer
+  * Also ignore this, there are no SFX/music in this program
+* Assets
+  * This is a list of all images used in the program
+  * **DO NOT DELETE ANYTHING HERE or things will break**
+    * Ones of use to you
+      * Base Layouts - just in case you need to save a blank template image to use, like old times
+      * Avatars - If you ever need to add a user's image
+        * As of right now the avatars aren't used, but will in a future version
+        * Make sure the file name matches **EXACTLY** with the name of the game
+        * If you go into the folder `assets/dashboard/avatars` you can manually drop them in here
+        * *Beware all the anime you'll see here*
+      * Game Backgrounds - If you ever need to add a new game in, add them here.
+        * This sets the image for both the title card AND the background
+        * Make sure the file name matches **EXACTLY** with the name of the game
+        * Note there is some filename sanitizing that occurs, so ':' (colon) or '-' (dash) don't affect it
+        * If you go into the folder `assets/dashboard/gameBackgrounds` you can manually drop them in here
+        * Also there is an `Alt BG Images` folder. If you have this, the title card will remain the same, but the background will turn into this. Useful if something doesn't look right normally      
+    * Ones to ignore
+      * Base Layout Examples - primarily just for debugging, helping me set the x/y coordinates
+      * Base Layout Layers - for dynamically generating the background and borders
+      * Genre Icons - all the little genre images and their text
+
+
+
+===============
+
 # NodeCG
 
 [![NodeCG](https://raw.githubusercontent.com/nodecg/nodecg/master/media/splash.png)](http://nodecg.com/)
