@@ -105,7 +105,6 @@ console.log(genres)
       runs[gameName] = {
         gameInfo: {
           gameName: gameName,
-          gameNameTitle: gameNameTitle,
           resolution: resolution,
           createdBy: createdBy,
           genres: genres,

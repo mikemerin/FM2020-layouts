@@ -191,7 +191,7 @@
       "wrHolder": "Chatran"
     },
     "adminPanel": {
-      "backgroundOpacity": ".3"
+      "backgroundOpacity": "0.6"
     }
   },
   "iWannaSeeTheMoon": {
@@ -340,8 +340,8 @@
       "commentators": ""
     },
     "runInfo": {
-      "category": "DJ Sray Showcase",
-      "estimate": "0:04:00",
+      "category": "any% + DJ Sray Showcase",
+      "estimate": "0:44:00",
       "runType": "Solo Run",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
@@ -629,8 +629,7 @@
       "resolution": "608",
       "createdBy": "Gwiz609",
       "genres": "Adventure; Gimmick; Needle",
-      "otherGenres": "N/A",
-      "gameNameTitle": "Eclipse"
+      "otherGenres": "N/A"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
@@ -1026,7 +1025,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "InfiniteVoid316",
       "player1_displayName": "InfiniteVoid316",
-      "player1_camera": true,
+      "player1_camera": false,
       "player1_pb": "1:12:45",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1089,7 +1088,7 @@
       "wrHolder": "katze789"
     },
     "adminPanel": {
-      "backgroundOpacity": ".3"
+      "backgroundOpacity": "0.2"
     }
   },
   "gensouSkydrift": {
@@ -1290,7 +1289,7 @@
   "superMetroidAscent": {
     "gameInfo": {
       "gameName": "Super Metroid Ascent",
-      "resolution": "600",
+      "resolution": "16:9",
       "createdBy": "Benox50",
       "genres": "",
       "otherGenres": "Metroid"
@@ -1647,7 +1646,7 @@
       "numberOfPlayers": "1",
       "player1_twitchHandle": "StoneBadLuck",
       "player1_displayName": "StoneBadLuck",
-      "player1_camera": false,
+      "player1_camera": true,
       "player1_pb": "0:14:37",
       "player2_twitchHandle": "",
       "player2_displayName": "",
@@ -1671,7 +1670,7 @@
       "wrHolder": "ChefBear"
     },
     "adminPanel": {
-      "backgroundOpacity": ".3"
+      "backgroundOpacity": "0.2"
     }
   },
   "griefSyndrome": {

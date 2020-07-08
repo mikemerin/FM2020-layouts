@@ -213,9 +213,6 @@ class DashboardForm {
 
       panels.forEach(panel => {
         newValues = {...newValues, ...{[panel]: NodeCG.dashboardPanels.replicantValues[panel]}};
-        if (panel === "gameInfo") {
-          NodeCG.dashboardPanels.replicantValues[panel].gameNameTitle = getGameNameTitle(NodeCG.dashboardPanels.replicantValues[panel].gameName);
-        }
         if (NodeCG.dashboardPanels.panels[panel].saveButton) NodeCG.dashboardPanels.panels[panel].saveButton.removeClass("saveChanges");
       });
       NodeCG.dashboardPanels.replicant.value = newValues;
