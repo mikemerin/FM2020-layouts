@@ -109,15 +109,19 @@ class Layout {
   setGameImage = (locationInfo, gameName = this.fields.gameName) => {
     const id = "gameImage";
     const className = "gameImage";
+    gameName = sanitizeFilename(gameName);
     const output = "gameBackgrounds/" + gameName + ".png";
 
-    if (locationInfo) {
-      this.createElement(id, className + " primary", output, locationInfo, "img");
-    } else {
-      // console.log(this.fields)
-      const backgroundCSS = { opacity: this.fields.backgroundOpacity };
-      this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
-    };
+    if (doesFileExist(output, true)) {
+      if (locationInfo) {
+        this.createElement(id, className + " primary", output, locationInfo, "img");
+      } else {
+        // console.log(this.fields)
+        const backgroundCSS = { opacity: this.fields.backgroundOpacity };
+        this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
+      };
+    }
+
   };
 
   setHashtag = () => {
@@ -327,6 +331,15 @@ class Layout {
   };
 
   createElement = (id, className, output, locationInfo = {}, type) => {
+    if (id === "gameImageBG") {
+      // todo: ugh, find a better way to do this entirely, maybe a toggle with hashmap, espcially for all the Marios with the same alt BG
+      var altOutput = output.split("/");
+      altOutput = ["gameBackgroundsAlt", ...altOutput.slice(1)].join("/");
+      console.log("output:", output);
+      console.log("altOutput:", altOutput);
+      if (doesFileExist(altOutput, true)) output = altOutput;
+    }
+
     // if (locationInfo.fontSize) debugger
     var { left, top, right, bottom, width, height, backgroundColor, borderRadius, fontSize, opacity } = locationInfo;
     const css = {

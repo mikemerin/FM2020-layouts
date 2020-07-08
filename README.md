@@ -43,7 +43,9 @@ Once there you will see a few tabs
         * Make sure the file name matches **EXACTLY** with the name of the game
         * Note there is some filename sanitizing that occurs, so ':' (colon) or '-' (dash) don't affect it
         * If you go into the folder `assets/dashboard/gameBackgrounds` you can manually drop them in here
-        * Also there is an `Alt BG Images` folder. If you have this, the title card will remain the same, but the background will turn into this. Useful if something doesn't look right normally      
+      * Game Backgrounds Alt - if you like the title card, but want a different background
+        * Follow the same rules as above for "Game Backgrounds"
+        * If you have this, the title card will remain the same, but the background will turn into this. Useful if something doesn't look right normally when blown up to the entire BG
     * Ones to ignore
       * Base Layout Examples - primarily just for debugging, helping me set the x/y coordinates
       * Base Layout Layers - for dynamically generating the background and borders

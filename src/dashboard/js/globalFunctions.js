@@ -20,7 +20,7 @@ const sanitize = (str) => {
 const sanitizeFilename = (str) => {
   var replace = {
     "#": "number",
-    ":": " -"
+    ":": ""
   };
   return str.replace(/[#:]/g, (matched) => replace[matched]);
 };
@@ -47,6 +47,17 @@ function deepMerge(target, source) {
 
   return target;
 }
+
+const doesFileExist = (url, asset = false) => {
+  if (asset) url = "/assets/dashboard/" + url;
+  console.log("url:", url);
+  var http = new XMLHttpRequest();
+  http.open('HEAD', url, false); // todo: use FS or something better; it needs to be async which gives the error
+  http.send();
+  const status = http.status !== 404;
+  if (!status) console.log(`URL of ${url} not found.\nIf this is looking for an altBG image, please ignore`);
+  return status;
+};
 
 const changeCSSRule = (ruleKey, ruleValue, cssTextName, cssText) => {
   var sheet = document.styleSheets[0];

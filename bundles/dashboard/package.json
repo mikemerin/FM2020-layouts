@@ -78,6 +78,11 @@
         "name": "gameBackgrounds",
         "title": "Game Backgrounds",
         "allowedTypes": ["jpg", "jpeg", "png"]
+      },
+      {
+        "name": "gameBackgroundsAlt",
+        "title": "Game Backgrounds Alt",
+        "allowedTypes": ["jpg", "jpeg", "png"]
       }
     ],
     "graphics": [
