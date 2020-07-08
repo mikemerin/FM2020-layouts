@@ -335,8 +335,6 @@ class Layout {
       // todo: ugh, find a better way to do this entirely, maybe a toggle with hashmap, espcially for all the Marios with the same alt BG
       var altOutput = output.split("/");
       altOutput = ["gameBackgroundsAlt", ...altOutput.slice(1)].join("/");
-      console.log("output:", output);
-      console.log("altOutput:", altOutput);
       if (doesFileExist(altOutput, true)) output = altOutput;
     }
 
