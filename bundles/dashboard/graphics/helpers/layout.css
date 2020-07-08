@@ -17,7 +17,7 @@ img, .fill {
 .primary      { z-index: 13; }
 .border       { z-index: 20; }
 
-.genre, .border, #hashtagOutline {
+.gameImage, .baseImage, .genre, .border, #hashtagOutline {
   image-rendering: pixelated;
 }
 
