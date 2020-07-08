@@ -50,12 +50,11 @@ function deepMerge(target, source) {
 
 const doesFileExist = (url, asset = false) => {
   if (asset) url = "/assets/dashboard/" + url;
-  console.log("url:", url);
   var http = new XMLHttpRequest();
   http.open('HEAD', url, false); // todo: use FS or something better; it needs to be async which gives the error
   http.send();
   const status = http.status !== 404;
-  if (!status) console.log(`URL of ${url} not found.\nIf this is looking for an altBG image, please ignore`);
+  if (!status) console.log(`Note for the HEAD error above:\n${url}\nIf this file is a gameBackgroundsAlt image, please ignore this error`);
   return status;
 };
 
