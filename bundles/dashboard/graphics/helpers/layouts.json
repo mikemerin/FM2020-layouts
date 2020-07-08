@@ -61,28 +61,6 @@ var layouts = {
         }
       }
     },
-    "600": {
-      "runInfo":      { "left": 456,  "top": 647 },
-      "player1": {
-        "twitchIcon": { "right": 24, "bottom": 21 },
-        "offset":     { "right": 47, "bottom": -8 },
-        "gameBorder": {
-          "start":    { "left": 453,  "top": 29  },
-          "offset":   { "left": 795,  "top": 595 }
-        }
-      }
-    },
-    "608": {
-      "runInfo":      { "left": 456,  "top": 647 },
-      "player1": {
-        "twitchIcon": { "right": 24, "bottom": 21 },
-        "offset":     { "right": 47, "bottom": -8 },
-        "gameBorder": {
-          "start":    { "left": 453,  "top": 21  },
-          "offset":   { "left": 795,  "top": 603 }
-        }
-      }
-    },
     "1:1": {
       "runInfo":      { "left": 548,  "top": 647 },
       "player1": {
@@ -95,13 +73,13 @@ var layouts = {
       }
     },
     "8:7": {
-      "runInfo":      { "left": 456,  "top": 647 },
+      "runInfo":      { "left": 505,  "top": 647 },
       "player1": {
-        "twitchIcon": { "right": 24, "bottom": 21 },
+        "twitchIcon": { "right": 68, "bottom": 21 },
         "offset":     { "right": 47, "bottom": -8 },
         "gameBorder": {
-          "start":    { "left": 453,  "top": 21  },
-          "offset":   { "left": 795,  "top": 603 }
+          "start":    { "left": 506,  "top": 21  },
+          "offset":   { "left": 695,  "top": 608 }
         }
       }
     },
@@ -138,6 +116,28 @@ var layouts = {
         "titleCard2": {
           "start":    { "left": 15,    "top": 388 },
           "offset":   { "left": 315,  "top": 239 }
+        }
+      }
+    },
+    "600": {
+      "runInfo":      { "left": 456,  "top": 647 },
+      "player1": {
+        "twitchIcon": { "right": 24, "bottom": 21 },
+        "offset":     { "right": 47, "bottom": -8 },
+        "gameBorder": {
+          "start":    { "left": 453,  "top": 29  },
+          "offset":   { "left": 795,  "top": 595 }
+        }
+      }
+    },
+    "608": {
+      "runInfo":      { "left": 456,  "top": 647 },
+      "player1": {
+        "twitchIcon": { "right": 24, "bottom": 21 },
+        "offset":     { "right": 47, "bottom": -8 },
+        "gameBorder": {
+          "start":    { "left": 453,  "top": 21  },
+          "offset":   { "left": 795,  "top": 603 }
         }
       }
     }
