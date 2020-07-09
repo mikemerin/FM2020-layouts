@@ -98,7 +98,7 @@ class Layout {
   };
 
   setBaseImage = () => {
-    // const output = "baseLayoutExamples/3P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutExamples/4P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
     // const output = "baseLayouts/2P-base608.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";

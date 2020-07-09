@@ -558,10 +558,73 @@ var layouts = {
         }
       }
     }
+  },
+
+
+
+
+  "4P": {
+    "600|608": {
+      "camera": false,
+      "runInfo":      { "left": 0,  "top": 115, "width": "100%", "textAlign": "center" },
+      "runInfoLines": 3
+    },
+    "608": {
+      "hashtag":      {
+        "position":   { "left": 484,   "top": 41 },
+        "text":       { "fontSize": "36px" },
+        "outline":    { "width": "305px" }
+      },
+      "player1": {
+        "twitchIcon": { "left": 474,  "top": 233, "height": 22, "width": 22 },
+        "offset":     { "left":  23,  "top":  -2 },
+        "gameBorder": {
+          "start":    { "left": 0,    "top":   0 },
+          "offset":   { "left": 462,  "top": 350 }
+        }
+      },
+      "player2": {
+        "twitchIcon": { "right": 476, "top": 233, "height": 22, "width": 22 },
+        "offset":     { "right": 23, "top": -2 },
+        "gameBorder": {
+          "start":    { "left": 807,  "top":   0 },
+          "offset":   { "left": 462,  "top": 350 }
+        }
+      },
+      "player3": {
+        "twitchIcon": { "left":  476, "top": 467, "height": 22, "width": 22 },
+        "offset":     { "left":  23,  "top":  -1 },
+        "gameBorder": {
+          "start":    { "left":   0,  "top": 359 },
+          "offset":   { "left": 462,  "top": 350 }
+        }
+      },
+      "player4": {
+        "twitchIcon": { "right": 475, "top": 467, "height": 22, "width": 22 },
+        "offset":     { "right":  23, "top": -1 },
+        "gameBorder": {
+          "start":    { "left": 807,  "top": 359 },
+          "offset":   { "left": 462,  "top": 350 }
+        }
+      },
+      "borders": {
+        "genres": {
+          "start":    { "left": 524,  "top": 561, "alt": true },
+          "offset":   { "left": 224,  "top": 73  }
+        },
+        "genresStacked": {
+          "start":    { "left": 553,  "top": 639 },
+          "offset":   { "left": 167,  "top":  73 }
+        },
+        "timer": {
+          "start":    { "left": 470,  "top": 490 },
+          "offset":   { "left": 332,  "top":  66 }
+        },
+        "titleCard": {
+          "start":    { "left": 470,  "top": 227 },
+          "offset":   { "left": 332,  "top": 258 }
+        }
+      }
+    }
   }
-
-
-
-
-  
 }
