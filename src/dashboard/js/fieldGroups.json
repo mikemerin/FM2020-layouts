@@ -163,6 +163,16 @@ var fieldGroups = {
         "step": .1,
         "min": .1,
         "max": .7
+      },
+      {
+        "fieldName": "Chroma Key Color",
+        "type": "radio",
+        "options": [
+          "red",
+          "green",
+          "blue"
+        ],
+        "defaultValue": "green"
       }
     ],
     "futureFields": [
