@@ -98,7 +98,7 @@ class Layout {
   };
 
   setBaseImage = () => {
-    // const output = "baseLayoutExamples/2P-16x9-example-alt.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutExamples/3P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
     // const output = "baseLayouts/2P-base608.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
@@ -163,13 +163,31 @@ class Layout {
     const id = "runInfo";
     const className = "primary";
     const locationInfo = this.getLocationInfo(id);
-    let text, text2, locationInfo2;
+    let text = gameName, text2, text3, locationInfo2, locationInfo3; // todo: turn into text = {}, locationInfo = {}
 
-    if (this.getLocationInfo(id + "SingleLine")) {
+    const runInfoLines = this.getLocationInfo("runInfoLines");
+
+    if (runInfoLines === 1) { // todo: clean up and make all have 1 2 or 3, with the tests be if > 1, if > 2, etc
       text = gameName + " " + category + " - estimate: " + estimate;
+    } else if (runInfoLines === 3) {
+      text2 = category;
+      text3 =  "estimate: " + estimate
+      locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+      locationInfo3 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo3);
+      if (locationInfo.textAlign) {
+        const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
+        locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
+        locationInfo3 = {...locationInfo3, width: width, textAlign: textAlign };
+      };
+      this.createElement(id, className, text2, locationInfo2, "text");
+      this.createElement(id, className, text3, locationInfo3, "text");
     } else {
       text2 = category + " - estimate: " + estimate;
       locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+      if (locationInfo.textAlign) {
+        const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
+        locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
+      };
       this.createElement(id, className, text2, locationInfo2, "text");
     };
     this.createElement(id, className, text, locationInfo, "text");
@@ -294,13 +312,14 @@ class Layout {
     for (let playerNumber = 1; playerNumber <= players; playerNumber++) {
       const pId = "player" + playerNumber;
       const pClassName = "primary";
-      const text = this.fields["player" + playerNumber + "_twitchHandle"];
+      let text = this.fields["player" + playerNumber + "_twitchHandle"];
 
       const tLocationInfo = this.getLocationInfo(tId, "player", playerNumber);
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
       const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
 
       pLocationInfo.fontSize = layouts.playerTextSizes[this.fields.numberOfPlayers + "P"];
+      if (pLocationInfo.textAlign === "center") pLocationInfo.width = "100%";
 
       this.setBorder("gameBorder", playerNumber);
 
@@ -359,9 +378,10 @@ class Layout {
       if (doesFileExist(altOutput, true)) output = altOutput;
     }
 
-    var { left, top, right, bottom, width, height, backgroundColor, borderRadius, fontSize, textAlign, opacity } = locationInfo;
+    var { left, top, right, bottom, width, height, display, margin, marginLeft, marginRight, backgroundColor, borderRadius, fontSize, textAlign, opacity } = locationInfo;
     const css = {
       left: left, top: top, right: right, bottom: bottom, width: width, height: height,
+      display: display, margin: margin, marginLeft: marginLeft, marginRight: marginRight,
       backgroundColor: backgroundColor, borderRadius: borderRadius,
       fontSize: fontSize, textAlign: textAlign,
       opacity: opacity || this.backgroundOpacity
