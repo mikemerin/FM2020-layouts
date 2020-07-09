@@ -2101,7 +2101,7 @@
       "wrHolder": "UnPigeonVoyageur"
     },
     "adminPanel": {
-      "backgroundOpacity": ""
+      "backgroundOpacity": ".2"
     }
   },
   "iWannaMakeASandwich": {
