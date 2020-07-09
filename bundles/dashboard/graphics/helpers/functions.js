@@ -98,8 +98,8 @@ class Layout {
   };
 
   setBaseImage = () => {
-    // const output = "baseLayoutExamples/2P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
-    // const output = "baseLayouts/2P-base600.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutExamples/2P-16x9-example-alt.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayouts/2P-base608.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
     const className = "base";
@@ -176,20 +176,27 @@ class Layout {
   };
 
   setGenres = () => {
-    const id = "genreBorder";
+    var id = "genreBorder";
+    var layoutLocation = "genre";
+    var locationInfo = this.getLocationInfo(id, id);
+    if (locationInfo.alt) {  // todo: have "alt" be a key in genres instead of a location property
+      id += "Stacked";
+      layoutLocation += "Stacked";
+    }
+
     const className = "border";
     const src = "baseLayoutLayers/" + id + ".png";
-    var locationInfo = this.getLocationInfo(id, id);
+
     this.createElement(id, className, src, locationInfo, "img"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
 
     var skipGenre = "";
 
     if (this.fields.otherGenres !== "N/A") {
-      skipGenre = "gimmick"; // future: choose where to replace (input in the dashboard)
+      skipGenre = locationInfo.alt ? "needle" : "gimmick"; // future: choose where to replace (input in the dashboard)
       const otherId = sanitize(this.fields.otherGenres);
       const otherClassName = "genre bright";
       const otherSrc = "genreIcons/" + otherId + ".png";
-      const otherGenreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[skipGenre]);
+      const otherGenreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][skipGenre]);
       this.createElement(otherId, otherClassName, otherSrc, otherGenreLocationInfo, "img");
     };
 
@@ -199,7 +206,8 @@ class Layout {
       if (id !== skipGenre) {
         var className = "genre";
         const src = "genreIcons/" + id + ".png";
-        const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets.genre[id]);
+
+        const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][id]);
         if (gameGenres.includes(field)) {
           className += " bright";
         } else {
@@ -211,7 +219,7 @@ class Layout {
 
   };
 
-  getImage = () => {
+  getImage = () => { // future: see XMLHttpRequest in global
 
   }
 
@@ -223,8 +231,11 @@ class Layout {
   };
 
   setBorder = (type, playerNumber = false) => {
-    const { left: sL, top: sT } = this.getLocationInfo("start", type, playerNumber);
+    const { left: sL, top: sT, alt } = this.getLocationInfo("start", type, playerNumber);
     const { left: oL, top: oT } = this.getLocationInfo("offset", type, playerNumber);
+    if (type === "genres" && alt) {
+      this.setBorder("genresStacked");
+    }
 
     // console.log(type, playerNumber, sL, sT, oL, oT)
 
@@ -312,10 +323,15 @@ class Layout {
       case "genreBorder":
         return layout["borders"]["genres"]["start"];
         break;
+      case "genreBorderStacked": // todo: cleanup
+        console.log("location", layout["borders"]["genresStacked"])
+        return layout["borders"]["genresStacked"]["start"];
+        break;
       case "titleCard":
       case "titleCard2":
       case "timer":
       case "genres":
+      case "genresStacked":
         return layout["borders"][type][id];
         break;
       default:
