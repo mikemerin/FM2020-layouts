@@ -823,8 +823,8 @@
       "gameName": "Fangame Music DJ Set",
       "resolution": "16:9",
       "createdBy": "Racic",
-      "genres": "Music",
-      "otherGenres": "Creative"
+      "genres": "",
+      "otherGenres": "Music"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
@@ -2141,41 +2141,51 @@
       "backgroundOpacity": ".3"
     }
   },
+
+
+
+
   "fishOutOfWater": {
     "gameInfo": {
+      "gameName": "Fish Out Of Water",
+      "resolution": "608",
+      "createdBy": "",
+      "genres": "",
+      "otherGenres": "Blind",
+
       "game1": {
         "gameName": "Nezumi Man",
         "resolution": "8:7",
         "createdBy": "",
-        "genres": "Event",
-        "otherGenres": "N/A"
+        "genres": "",
+        "otherGenres": ""
       },
       "game2": {
         "gameName": "SM64 Peach's Memory",
         "resolution": "10:7",
         "createdBy": "",
-        "genres": "Event",
-        "otherGenres": "N/A"
+        "genres": "",
+        "otherGenres": ""
       },
       "game3": {
         "gameName": "I Wanna be the Octophobia",
         "resolution": "608",
         "createdBy": "",
-        "genres": "Event",
-        "otherGenres": "N/A"
+        "genres": "",
+        "otherGenres": ""
       }
     },
     "playerInfo": {
       "numberOfPlayers": "3",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "Bummerman222",
+      "player1_twitchHandle": "bummerman222",
+      "player1_displayName": "bummerman",
       "player1_camera": false,
       "player1_pb": "",
-      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_twitchHandle": "Cheez8",
       "player2_displayName": "Cheez",
       "player2_camera": false,
       "player2_pb": "",
-      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_twitchHandle": "TheReverserOfTime",
       "player3_displayName": "The Reverser Of Time",
       "player3_camera": false,
       "player3_pb": "",
@@ -2201,17 +2211,17 @@
       "gameName": "Blind I Wanna Maker",
       "resolution": "608",
       "createdBy": "",
-      "genres": "Event",
-      "otherGenres": "N/A"
+      "genres": "",
+      "otherGenres": "Blind"
     },
     "playerInfo": {
       "numberOfPlayers": "2",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "player#_displayName",
+      "player1_twitchHandle": "",
+      "player1_displayName": "",
       "player1_camera": false,
       "player1_pb": "",
-      "player2_twitchHandle": "player#_twitchHandle",
-      "player2_displayName": "player#_displayName",
+      "player2_twitchHandle": "",
+      "player2_displayName": "",
       "player2_camera": false,
       "player2_pb": "",
       "player3_twitchHandle": "",
@@ -2240,15 +2250,15 @@
       "gameName": "Avoidance Tournament",
       "resolution": "600",
       "createdBy": "",
-      "genres": "Event; Avoidance",
+      "genres": "Avoidance",
       "otherGenres": "N/A"
     },
     "playerInfo": {
       "numberOfPlayers": "2",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "player#_displayName",
-      "player2_twitchHandle": "player#_twitchHandle",
-      "player2_displayName": "player#_displayName",
+      "player1_twitchHandle": "",
+      "player1_displayName": "",
+      "player2_twitchHandle": "",
+      "player2_displayName": "",
       "player3_twitchHandle": "",
       "player3_displayName": "",
       "player4_twitchHandle": "",
@@ -2271,13 +2281,13 @@
       "gameName": "Fangame Feud",
       "resolution": "608",
       "createdBy": "PieceOfCheese87",
-      "genres": "Event",
+      "genres": "",
       "otherGenres": "Quiz Show"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "player#_displayName",
+      "player1_twitchHandle": "",
+      "player1_displayName": "",
       "player1_camera": false,
       "player1_pb": "",
       "player2_twitchHandle": "",
@@ -2292,7 +2302,7 @@
       "player4_displayName": "",
       "player4_camera": false,
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "PieceOfCheese87"
     },
     "runInfo": {
       "category": "",
@@ -2310,25 +2320,25 @@
       "gameName": "Blind Adventure Race",
       "resolution": "608",
       "createdBy": "",
-      "genres": "Event; Medley; Needle; Gimmick",
-      "otherGenres": "N/A"
+      "genres": "Adventure",
+      "otherGenres": "Blind"
     },
     "playerInfo": {
-      "numberOfPlayers": "1",
-      "player1_twitchHandle": "player#_twitchHandle",
+      "numberOfPlayers": "4",
+      "player1_twitchHandle": "Wolsk",
       "player1_displayName": "Wolsk",
       "player1_camera": false,
       "player1_pb": "",
-      "player2_twitchHandle": "player#_twitchHandle",
-      "player2_displayName": "Wolfiexe",
+      "player2_twitchHandle": "Wolfiexe",
+      "player2_displayName": "Wolfie",
       "player2_camera": false,
       "player2_pb": "",
-      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_twitchHandle": "gaborro14",
       "player3_displayName": "Gaborro",
       "player3_camera": false,
       "player3_pb": "",
-      "player4_twitchHandle": "player#_twitchHandle",
-      "player4_displayName": "Fragnaticc",
+      "player4_twitchHandle": "Fragnaticc",
+      "player4_displayName": "Frag",
       "player4_camera": false,
       "player4_pb": "",
       "commentators": ""
@@ -2349,24 +2359,24 @@
       "gameName": "Blind Needle Race",
       "resolution": "608",
       "createdBy": "",
-      "genres": "Event; Needle; Gimmick",
-      "otherGenres": "N/A"
+      "genres": "Needle",
+      "otherGenres": "Blind"
     },
     "playerInfo": {
       "numberOfPlayers": "4",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "Yiazmat7",
+      "player1_twitchHandle": "Yiazmat7",
+      "player1_displayName": "Yiazmat",
       "player1_camera": false,
       "player1_pb": "",
-      "player2_twitchHandle": "player#_twitchHandle",
-      "player2_displayName": "TheNewGeezer",
+      "player2_twitchHandle": "TheNewGeezer",
+      "player2_displayName": "Geezer",
       "player2_camera": false,
       "player2_pb": "",
-      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_twitchHandle": "Tehninza",
       "player3_displayName": "Tehninza",
       "player3_camera": false,
       "player3_pb": "",
-      "player4_twitchHandle": "player#_twitchHandle",
+      "player4_twitchHandle": "Sunbla",
       "player4_displayName": "Sunbla",
       "player4_camera": false,
       "player4_pb": "",
@@ -2388,13 +2398,13 @@
       "gameName": "Coinflip Tournament",
       "resolution": "16:9",
       "createdBy": "Cosmoing",
-      "genres": "Event",
-      "otherGenres": "N/A"
+      "genres": "",
+      "otherGenres": "Meme"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "player#_displayName",
+      "player1_twitchHandle": "",
+      "player1_displayName": "",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player3_twitchHandle": "",
@@ -2419,25 +2429,25 @@
       "gameName": "Blind Sudoku Race",
       "resolution": "608",
       "createdBy": "",
-      "genres": "Event",
-      "otherGenres": "Meme"
+      "genres": "",
+      "otherGenres": "Sudoku"
     },
     "playerInfo": {
       "numberOfPlayers": "4",
-      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_twitchHandle": "Arzztt",
       "player1_displayName": "Arzztt",
       "player1_camera": false,
       "player1_pb": "",
-      "player2_twitchHandle": "player#_twitchHandle",
-      "player2_displayName": "Cosmoing",
+      "player2_twitchHandle": "Cosmoing",
+      "player2_displayName": "Cosmo",
       "player2_camera": false,
       "player2_pb": "",
-      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_twitchHandle": "Riktoi",
       "player3_displayName": "Riktoi",
       "player3_camera": false,
       "player3_pb": "",
-      "player4_twitchHandle": "player#_twitchHandle",
-      "player4_displayName": "Andres_tearit",
+      "player4_twitchHandle": "Andres_tearit",
+      "player4_displayName": "Andres",
       "player4_camera": false,
       "player4_pb": "",
       "commentators": ""
@@ -2455,18 +2465,24 @@
   },
   "relayRace": {
 		"gameInfo": {
+      "gameName": "Relay Race",
+      "resolution": "600",
+      "createdBy": "Multiple People",
+      "genres": "Adventure; Avoidance; Gimmick; Trap; Needle",
+      "otherGenres": "",
+
 		  "game1": {
 			"gameName": "I Wanna Get The Yellow Star",
 			"resolution": "600",
 			"createdBy": "するめいか",
-			"genres": "Adventure; Trap; Boss; Needle",
+			"genres": "Adventure; Trap; Needle",
 			"otherGenres": "N/A"
 		  },
 		  "game2": {
 			"gameName": "I Wanna Be The MicroMedley",
 			"resolution": "608",
 			"createdBy": "ThePolaroid",
-			"genres": "Gimmick; Boss; Needle",
+			"genres": "Gimmick; Avoidance; Needle",
 			"otherGenres": "N/A"
 		  },
 		  "game3": {
@@ -2485,36 +2501,36 @@
 		  }
 		},
     "playerInfo": {
-      "numberOfPlayers": "12",
+      "numberOfPlayers": "3",
       "team1": {
-        "player1_twitchHandle": "player#_twitchHandle",
+        "player1_twitchHandle": "gaborro14",
         "player1_displayName": "Gaborro",
-        "player2_twitchHandle": "player#_twitchHandle",
-        "player2_displayName": "Microforest",
-        "player3_twitchHandle": "player#_twitchHandle",
-        "player3_displayName": "Letcreate123",
-        "player4_twitchHandle": "player#_twitchHandle",
-        "player4_displayName": "Cosmoing"
+        "player2_twitchHandle": "microforest",
+        "player2_displayName": "microforest",
+        "player3_twitchHandle": "letcreate123",
+        "player3_displayName": "letcreate123",
+        "player4_twitchHandle": "Cosmoing",
+        "player4_displayName": "Cosmo"
       },
       "team2": {
-        "player1_twitchHandle": "player#_twitchHandle",
+        "player1_twitchHandle": "CeleCele",
         "player1_displayName": "CeleCele",
-        "player2_twitchHandle": "player#_twitchHandle",
-        "player2_displayName": "Pieceofcheese87",
-        "player3_twitchHandle": "player#_twitchHandle",
+        "player2_twitchHandle": "PieceOfcheese87",
+        "player2_displayName": "Cheese",
+        "player3_twitchHandle": "d0ppller",
         "player3_displayName": "Doppler",
-        "player4_twitchHandle": "player#_twitchHandle",
-        "player4_displayName": "Wolfiexe"
+        "player4_twitchHandle": "Wolfiexe",
+        "player4_displayName": "Wolfie"
       },
       "team3": {
-        "player1_twitchHandle": "player#_twitchHandle",
+        "player1_twitchHandle": "Artimax_",
         "player1_displayName": "Artimax",
-        "player2_twitchHandle": "player#_twitchHandle",
-        "player2_displayName": "Joshua_boring",
-        "player3_twitchHandle": "player#_twitchHandle",
+        "player2_twitchHandle": "Joshua_boring",
+        "player2_displayName": "Joshua",
+        "player3_twitchHandle": "Skulldude_",
         "player3_displayName": "Skulldude",
-        "player4_twitchHandle": "player#_twitchHandle",
-        "player4_displayName": "Bummerman222"
+        "player4_twitchHandle": "bummerman222",
+        "player4_displayName": "bummerman"
       },
       "commentators": ""
     },
@@ -2534,8 +2550,8 @@
       "gameName": "Mystery Finale Game",
       "resolution": "600",
       "createdBy": "",
-      "genres": "Meme",
-      "otherGenres": "N/A"
+      "genres": "",
+      "otherGenres": "Meme"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
@@ -2573,16 +2589,16 @@
       "gameName": "Fangame Feud",
       "resolution": "608",
       "createdBy": "PieceOfCheese87",
-      "genres": "Event",
+      "genres": "",
       "otherGenres": "Quiz Show"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "player#_twitchHandle",
-      "player1_displayName": "player#_displayName",
+      "player1_twitchHandle": "",
+      "player1_displayName": "",
       "player1_camera": false,
       "player1_pb": "",
-      "commentators": ""
+      "commentators": "PieceOfCheese87"
     },
     "runInfo": {
       "category": "N/A",
@@ -2592,7 +2608,7 @@
       "wrHolder": "N/A"
     },
     "adminPanel": {
-      "backgroundOpacity": ".3"
+      "backgroundOpacity": ".2"
     }
   }
 }
