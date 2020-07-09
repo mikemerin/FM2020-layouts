@@ -4,7 +4,7 @@
       "gameName": "I Wanna Be the Salt",
       "resolution": "600",
       "createdBy": "ヨーヨー",
-      "genres": "Adventure",
+      "genres": "Adventure; Avoidance; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -13,7 +13,7 @@
       "player1_displayName": "Joshua",
       "player1_camera": false,
       "player1_pb": "0:30:57",
-      "player2_twitchHandle": "Hyo_ka",
+      "player2_twitchHandle": "ヒョウカ (hyo_ka)",
       "player2_displayName": "hyoka",
       "player2_camera": false,
       "player2_pb": "0:31:21",
@@ -134,15 +134,15 @@
       "player2_displayName": "あお",
       "player2_camera": false,
       "player2_pb": "0:52:43",
-      "player3_twitchHandle": "Subfusc_moose",
-      "player3_displayName": "Moose",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
       "player3_camera": false,
       "player3_pb": "1:11:40",
       "player4_twitchHandle": "",
       "player4_displayName": "",
       "player4_camera": false,
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "Cosmoing; Wolsk"
     },
     "runInfo": {
       "category": "any%",
@@ -199,7 +199,7 @@
       "gameName": "I Wanna See the Moon",
       "resolution": "600",
       "createdBy": "aqua",
-      "genres": "Adventure; Gmmick; Needle; Trap",
+      "genres": "Adventure; Gimmick; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -277,12 +277,12 @@
       "gameName": "I Wanna Be the Justice",
       "resolution": "600",
       "createdBy": "Carnival",
-      "genres": "Adventure; Trap",
+      "genres": "Adventure; Trap; Avoidance; Needle",
       "otherGenres": "N/A"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "Hyo_ka",
+      "player1_twitchHandle": "ヒョウカ (hyo_ka)",
       "player1_displayName": "hyoka",
       "player1_camera": false,
       "player1_pb": "1:22:15",
@@ -324,7 +324,7 @@
       "player1_twitchHandle": "letcreate123",
       "player1_displayName": "letcreate123",
       "player1_camera": false,
-      "player1_pb": "N/A",
+      "player1_pb": "0:34:10",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player2_camera": false,
@@ -343,8 +343,8 @@
       "category": "any% + DJ Sray Showcase",
       "estimate": "0:44:00",
       "runType": "Solo Run",
-      "worldRecord": "N/A",
-      "wrHolder": "N/A"
+      "worldRecord": "0:34:10",
+      "wrHolder": "letcreate123"
     },
     "adminPanel": {
       "backgroundOpacity": ".3"
@@ -511,7 +511,7 @@
       "gameName": "I Wanna Be the Guy",
       "resolution": "600",
       "createdBy": "Kayin",
-      "genres": "Adventure; Gimmick; Trap",
+      "genres": "Adventure; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -519,7 +519,7 @@
       "player1_twitchHandle": "Bogandemon",
       "player1_displayName": "Bogandemon",
       "player1_camera": false,
-      "player1_pb": "0:27:59",
+      "player1_pb": "0:27:51",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player2_camera": false,
@@ -538,7 +538,7 @@
       "category": "any% glitchless",
       "estimate": "0:35:00",
       "runType": "Solo Run",
-      "worldRecord": "0:27:59",
+      "worldRecord": "0:27:51",
       "wrHolder": "Bogandemon"
     },
     "adminPanel": {
@@ -615,7 +615,7 @@
     "runInfo": {
       "category": "any%",
       "estimate": "0:45:00",
-      "runType": "TAS",
+      "runType": "TAS Showcase",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -823,7 +823,7 @@
       "gameName": "Fangame Music DJ Set",
       "resolution": "16:9",
       "createdBy": "Racic",
-      "genres": "",
+      "genres": "Music",
       "otherGenres": "Creative"
     },
     "playerInfo": {
@@ -849,7 +849,7 @@
     "runInfo": {
       "category": "100% Fangame Bangers",
       "estimate": "1:00:00",
-      "runType": "Solo Run",
+      "runType": "Showcase",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -888,7 +888,7 @@
     "runInfo": {
       "category": "showcase%",
       "estimate": "0:30:00",
-      "runType": "Solo Run",
+      "runType": "Showcase",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -899,7 +899,7 @@
   "starRevenge2NightOfDoom": {
     "gameInfo": {
       "gameName": "Star Revenge 2: Night of Doom",
-      "resolution": "600",
+      "resolution": "10:7",
       "createdBy": "BroDute",
       "genres": "",
       "otherGenres": "Mario"
@@ -938,7 +938,7 @@
   "marioParty64": {
     "gameInfo": {
       "gameName": "Mario Party 64",
-      "resolution": "600",
+      "resolution": "4:3",
       "createdBy": "MrComit",
       "genres": "",
       "otherGenres": "Mario"
@@ -967,7 +967,7 @@
       "category": "35 Star",
       "estimate": "0:42:00",
       "runType": "Solo Run",
-      "worldRecord": "0:32:51",
+      "worldRecord": "0:32:07",
       "wrHolder": "Cavin856"
     },
     "adminPanel": {
@@ -977,7 +977,7 @@
   "superMarioOdyssey64": {
     "gameInfo": {
       "gameName": "Super Mario Odyssey 64",
-      "resolution": "600",
+      "resolution": "10:7",
       "createdBy": "Kaze Emanuar",
       "genres": "",
       "otherGenres": "Mario"
@@ -1016,7 +1016,7 @@
   "starRevenge25RemnantOfDoom": {
     "gameInfo": {
       "gameName": "Star Revenge 2.5: Remnant of Doom",
-      "resolution": "600",
+      "resolution": "10:7",
       "createdBy": "BroDute",
       "genres": "",
       "otherGenres": "Mario"
@@ -1026,7 +1026,7 @@
       "player1_twitchHandle": "InfiniteVoid316",
       "player1_displayName": "InfiniteVoid316",
       "player1_camera": false,
-      "player1_pb": "1:12:45",
+      "player1_pb": "1:11:28",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player2_camera": false,
@@ -1045,7 +1045,7 @@
       "category": "66 Star (v1.2)",
       "estimate": "1:25:00",
       "runType": "Solo Run",
-      "worldRecord": "1:12:45",
+      "worldRecord": "1:11:28",
       "wrHolder": "InfiniteVoid316"
     },
     "adminPanel": {
@@ -1055,7 +1055,7 @@
   "sm64LastImpact": {
     "gameInfo": {
       "gameName": "SM64: Last Impact",
-      "resolution": "600",
+      "resolution": "10:7",
       "createdBy": "Kaze Emanuar",
       "genres": "",
       "otherGenres": "Mario"
@@ -1096,7 +1096,7 @@
       "gameName": "Gensou Skydrift",
       "resolution": "16:9",
       "createdBy": "illuCalab",
-      "genres": "Adventure",
+      "genres": "",
       "otherGenres": "Touhou"
     },
     "playerInfo": {
@@ -1239,7 +1239,7 @@
     "runInfo": {
       "category": "showcase%",
       "estimate": "0:45:00",
-      "runType": "Solo Run",
+      "runType": "Showcase",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -1278,7 +1278,7 @@
     "runInfo": {
       "category": "showcase%",
       "estimate": "0:30:00",
-      "runType": "Solo Run",
+      "runType": "Showcase",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -1376,7 +1376,7 @@
       "player1_twitchHandle": "Sapphron",
       "player1_displayName": "Sapphron",
       "player1_camera": false,
-      "player1_pb": "1:08:41",
+      "player1_pb": "0:58:44",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player2_camera": false,
@@ -1395,7 +1395,7 @@
       "category": "101%",
       "estimate": "1:10:00",
       "runType": "Solo Run",
-      "worldRecord": "1:08:41",
+      "worldRecord": "0:58:44",
       "wrHolder": "Sapphron"
     },
     "adminPanel": {
@@ -1561,7 +1561,7 @@
       "gameName": "Sonic Chrono Adventure",
       "resolution": "600",
       "createdBy": "LakeFeperd",
-      "genres": "Adventure",
+      "genres": "",
       "otherGenres": "Sonic"
     },
     "playerInfo": {
@@ -1621,7 +1621,7 @@
       "player4_displayName": "",
       "player4_camera": false,
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "Lordmau5"
     },
     "runInfo": {
       "category": "any% glitchless",
@@ -1660,7 +1660,7 @@
       "player4_displayName": "",
       "player4_camera": false,
       "player4_pb": "",
-      "commentators": ""
+      "commentators": "Benjee"
     },
     "runInfo": {
       "category": "Starfox%",
@@ -1764,7 +1764,7 @@
       "player1_twitchHandle": "ChatranP",
       "player1_displayName": "Chatran",
       "player1_camera": false,
-      "player1_pb": "0:13:43",
+      "player1_pb": "0:11:21",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player2_camera": false,
@@ -1783,7 +1783,7 @@
       "category": "any%",
       "estimate": "0:15:00",
       "runType": "Solo Run",
-      "worldRecord": "0:13:43",
+      "worldRecord": "0:11:21",
       "wrHolder": "Chatran"
     },
     "adminPanel": {
@@ -1822,8 +1822,8 @@
       "category": "any%",
       "estimate": "0:30:00",
       "runType": "Race",
-      "worldRecord": "0:19:49",
-      "wrHolder": "Mastermaxify"
+      "worldRecord": "0:19:01",
+      "wrHolder": "Tehninza"
     },
     "adminPanel": {
       "backgroundOpacity": ".3"
@@ -1910,7 +1910,7 @@
   "waluigisTacoStand": {
     "gameInfo": {
       "gameName": "Waluigi's Taco Stand",
-      "resolution": "600",
+      "resolution": "10:7",
       "createdBy": "Kaze Emanuar",
       "genres": "",
       "otherGenres": "WAAAAGH"
@@ -2027,7 +2027,7 @@
   "superMario74ExtremeEdition": {
     "gameInfo": {
       "gameName": "Super Mario 74 Extreme Edition",
-      "resolution": "16:9",
+      "resolution": "10:7",
       "createdBy": "Lugmillord",
       "genres": "",
       "otherGenres": "Mario"
@@ -2056,7 +2056,7 @@
       "category": "50 Star",
       "estimate": "0:50:00",
       "runType": "Solo Run",
-      "worldRecord": "0:31:08",
+      "worldRecord": "0:30:15",
       "wrHolder": "CartoonBuffoon"
     },
     "adminPanel": {
@@ -2107,7 +2107,7 @@
       "gameName": "I Wanna Make A Sandwich",
       "resolution": "600",
       "createdBy": "PieceOfCheese87, Thenewgeezer",
-      "genres": "Adventure; Gimmick",
+      "genres": "Adventure; Gimmick; Trap",
       "otherGenres": "N/A"
     },
     "playerInfo": {
@@ -2134,6 +2134,460 @@
       "category": "99.5% + All Horses + Crown/Cookies",
       "estimate": "3:20:00",
       "runType": "Solo Run",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "fishOutOfWater": {
+    "gameInfo": {
+      "game1": {
+        "gameName": "Nezumi Man",
+        "resolution": "8:7",
+        "createdBy": "",
+        "genres": "Event",
+        "otherGenres": "N/A"
+      },
+      "game2": {
+        "gameName": "SM64 Peach's Memory",
+        "resolution": "10:7",
+        "createdBy": "",
+        "genres": "Event",
+        "otherGenres": "N/A"
+      },
+      "game3": {
+        "gameName": "I Wanna be the Octophobia",
+        "resolution": "608",
+        "createdBy": "",
+        "genres": "Event",
+        "otherGenres": "N/A"
+      }
+    },
+    "playerInfo": {
+      "numberOfPlayers": "3",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "Bummerman222",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_displayName": "Cheez",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_displayName": "The Reverser Of Time",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "",
+      "estimate": "1:30:00",
+      "runType": "",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "blindIWannaMaker": {
+    "gameInfo": {
+      "gameName": "Blind I Wanna Maker",
+      "resolution": "608",
+      "createdBy": "",
+      "genres": "Event",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "2",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "player#_displayName",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_displayName": "player#_displayName",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "race%",
+      "estimate": "1:00:00",
+      "runType": "Race",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "avoidanceTournament": {
+    "gameInfo": {
+      "gameName": "Avoidance Tournament",
+      "resolution": "600",
+      "createdBy": "",
+      "genres": "Event; Avoidance",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "2",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "player#_displayName",
+      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_displayName": "player#_displayName",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "avoid%",
+      "estimate": "2:30:00",
+      "runType": "Tournament",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "piecesExtravaganza": {
+    "gameInfo": {
+      "gameName": "Fangame Feud",
+      "resolution": "608",
+      "createdBy": "PieceOfCheese87",
+      "genres": "Event",
+      "otherGenres": "Quiz Show"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "1",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "player#_displayName",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "",
+      "player2_displayName": "",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "",
+      "estimate": "1:00:00",
+      "runType": "",
+      "worldRecord": "",
+      "wrHolder": ""
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "blindAdventureRace": {
+    "gameInfo": {
+      "gameName": "Blind Adventure Race",
+      "resolution": "608",
+      "createdBy": "",
+      "genres": "Event; Medley; Needle; Gimmick",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "1",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "Wolsk",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_displayName": "Wolfiexe",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_displayName": "Gaborro",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "player#_twitchHandle",
+      "player4_displayName": "Fragnaticc",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "race%",
+      "estimate": "2:00:00",
+      "runType": "Race",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "blindNeedleRace": {
+    "gameInfo": {
+      "gameName": "Blind Needle Race",
+      "resolution": "608",
+      "createdBy": "",
+      "genres": "Event; Needle; Gimmick",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "4",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "Yiazmat7",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_displayName": "TheNewGeezer",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_displayName": "Tehninza",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "player#_twitchHandle",
+      "player4_displayName": "Sunbla",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "race%",
+      "estimate": "1:45:00",
+      "runType": "Race",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "coinflipTournament": {
+    "gameInfo": {
+      "gameName": "Coinflip Tournament",
+      "resolution": "16:9",
+      "createdBy": "Cosmoing",
+      "genres": "Event",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "1",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "player#_displayName",
+      "player2_twitchHandle": "",
+      "player2_displayName": "",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "N/A",
+      "estimate": "0:45:00",
+      "runType": "N/A",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "blindSudokuRace": {
+    "gameInfo": {
+      "gameName": "Blind Sudoku Race",
+      "resolution": "608",
+      "createdBy": "",
+      "genres": "Event",
+      "otherGenres": "Meme"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "4",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "Arzztt",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "player#_twitchHandle",
+      "player2_displayName": "Cosmoing",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "player#_twitchHandle",
+      "player3_displayName": "Riktoi",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "player#_twitchHandle",
+      "player4_displayName": "Andres_tearit",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "race%",
+      "estimate": "1:30:00",
+      "runType": "Race",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "relayRace": {
+		"gameInfo": {
+		  "game1": {
+			"gameName": "I Wanna Get The Yellow Star",
+			"resolution": "600",
+			"createdBy": "するめいか",
+			"genres": "Adventure; Trap; Boss; Needle",
+			"otherGenres": "N/A"
+		  },
+		  "game2": {
+			"gameName": "I Wanna Be The MicroMedley",
+			"resolution": "608",
+			"createdBy": "ThePolaroid",
+			"genres": "Gimmick; Boss; Needle",
+			"otherGenres": "N/A"
+		  },
+		  "game3": {
+			"gameName": "I Wanna Bread",
+			"resolution": "600",
+			"createdBy": "Patrickgh3",
+			"genres": "Adventure; Gimmick",
+			"otherGenres": "N/A"
+		  },
+		  "game4": {
+			"gameName": "I Wanna Make The Novelty",
+			"resolution": "600",
+			"createdBy": "珍作",
+			"genres": "Adventure; Gimmick",
+			"otherGenres": "N/A"
+		  }
+		},
+    "playerInfo": {
+      "numberOfPlayers": "12",
+      "team1": {
+        "player1_twitchHandle": "player#_twitchHandle",
+        "player1_displayName": "Gaborro",
+        "player2_twitchHandle": "player#_twitchHandle",
+        "player2_displayName": "Microforest",
+        "player3_twitchHandle": "player#_twitchHandle",
+        "player3_displayName": "Letcreate123",
+        "player4_twitchHandle": "player#_twitchHandle",
+        "player4_displayName": "Cosmoing"
+      },
+      "team2": {
+        "player1_twitchHandle": "player#_twitchHandle",
+        "player1_displayName": "CeleCele",
+        "player2_twitchHandle": "player#_twitchHandle",
+        "player2_displayName": "Pieceofcheese87",
+        "player3_twitchHandle": "player#_twitchHandle",
+        "player3_displayName": "Doppler",
+        "player4_twitchHandle": "player#_twitchHandle",
+        "player4_displayName": "Wolfiexe"
+      },
+      "team3": {
+        "player1_twitchHandle": "player#_twitchHandle",
+        "player1_displayName": "Artimax",
+        "player2_twitchHandle": "player#_twitchHandle",
+        "player2_displayName": "Joshua_boring",
+        "player3_twitchHandle": "player#_twitchHandle",
+        "player3_displayName": "Skulldude",
+        "player4_twitchHandle": "player#_twitchHandle",
+        "player4_displayName": "Bummerman222"
+      },
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "race%",
+      "estimate": "2:33:00",
+      "runType": "Relay Race",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "mysteryFinaleGame": {
+    "gameInfo": {
+      "gameName": "Mystery Finale Game",
+      "resolution": "600",
+      "createdBy": "",
+      "genres": "Meme",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "1",
+      "player1_twitchHandle": "Wolsk",
+      "player1_displayName": "Wolsk",
+      "player1_camera": false,
+      "player1_pb": "",
+      "player2_twitchHandle": "",
+      "player2_displayName": "",
+      "player2_camera": false,
+      "player2_pb": "",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "any%",
+      "estimate": "0:05:00",
+      "runType": "Solo Run",
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
+  "piecesBonusExtravaganza": {
+    "gameInfo": {
+      "gameName": "Fangame Feud",
+      "resolution": "608",
+      "createdBy": "PieceOfCheese87",
+      "genres": "Event",
+      "otherGenres": "Quiz Show"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "1",
+      "player1_twitchHandle": "player#_twitchHandle",
+      "player1_displayName": "player#_displayName",
+      "player1_camera": false,
+      "player1_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "N/A",
+      "estimate": "1:00:00",
+      "runType": "N/A",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
