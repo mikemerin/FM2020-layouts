@@ -1,22 +1,22 @@
 var layouts = {
   "offsets": {
     "genre": {
-      "100f":       { "left": 2,    "top": 4    },
-      "adventure":  { "left": 59,   "top": 4    },
-      "avoidance":  { "left": 116,  "top": 4    },
-      "gimmick":    { "left": 174,  "top": 4    },
-      "medley":     { "left": 230,  "top": 4    },
-      "needle":     { "left": 288,  "top": 4    },
-      "trap":       { "left": 346,  "top": 4    }
+      "100f":       { "left": 2,    "top": 3    },
+      "adventure":  { "left": 59,   "top": 3    },
+      "avoidance":  { "left": 116,  "top": 3    },
+      "gimmick":    { "left": 174,  "top": 3    },
+      "medley":     { "left": 230,  "top": 3    },
+      "needle":     { "left": 288,  "top": 3    },
+      "trap":       { "left": 346,  "top": 3    }
     },
     "genreStacked": {
-      "100f":       { "left": 2,    "top": 4    },
-      "adventure":  { "left": 59,   "top": 4    },
-      "avoidance":  { "left": 116,  "top": 4    },
-      "gimmick":    { "left": 174,  "top": 4    },
-      "medley":     { "left":  31,  "top": 82   },
-      "needle":     { "left":  89,  "top": 82   },
-      "trap":       { "left": 146,  "top": 82   }
+      "100f":       { "left": 2,    "top": 3    },
+      "adventure":  { "left": 59,   "top": 3    },
+      "avoidance":  { "left": 116,  "top": 3    },
+      "gimmick":    { "left": 174,  "top": 3    },
+      "medley":     { "left":  31,  "top": 81   },
+      "needle":     { "left":  89,  "top": 81   },
+      "trap":       { "left": 146,  "top": 81   }
     },
     "runInfo2":       { "left": 0,    "top": 29  }
   },

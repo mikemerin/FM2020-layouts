@@ -41,6 +41,8 @@ var fieldGroups = {
           ["Primary"],
           "Blind",
           "Creative",
+          "Meme",
+          "Miku",
           "Music",
           "Puzzle",
           "Quiz Show",
