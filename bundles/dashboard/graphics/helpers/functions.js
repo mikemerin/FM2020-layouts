@@ -58,6 +58,8 @@ class Layout {
       this.setGenres();
 
       this.setPlayerInfo();
+      this.setChromaKeyColor(); // note: needs to be last
+
       // console.log(this)
     });
   };
@@ -96,6 +98,18 @@ class Layout {
     const resolution = (pixelNames.indexOf(this.fields.resolution) >= 0 ? "800x" : "") + this.fields.resolution;
     document.title = this.fields.numberOfPlayers + "P " + resolution + " - " + gameNameTitle;
   };
+
+  setChromaKeyColor = () => {
+    const { chromaKeyColor } = this.fields || "green";
+    const conversion = {
+      "red": "#FF0000",
+      "green": "#00FF00",
+      "blue": "#0000FF",
+    };
+console.log("conversion[chromaKeyColor]:", conversion[chromaKeyColor]);
+    $(".fillGS").css({ "background-color": conversion[chromaKeyColor] });
+
+  }
 
   setBaseImage = () => {
     // const output = "baseLayoutExamples/4P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
