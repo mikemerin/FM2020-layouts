@@ -27,7 +27,7 @@ class Layout {
   };
 
   start = () => {
-    const gameName = this.getSearchParameters().gameName;
+    const gameName = this.getSearchParameters().gameName; // todo: explain this
     const runNumber = this.getSearchParameters().runNumber;
     const params = [gameName, runNumber].filter(x => x).length;
     this.replicant = nodecg.Replicant(params ? "runs" : "fieldValues");
@@ -98,9 +98,8 @@ class Layout {
   };
 
   setBaseImage = () => {
-    // const output = "baseLayouts" + this.fields.numberOfPlayers + "P/base" + this.fields.resolution + ".png"; // todo: debugging tool as reference, change as needed, remove when done
-    // const output = "baseLayoutExamples/1P-8x7-example.png"; // todo: debugging tool as reference, change as needed, remove when done
-    // const output = "baseLayouts/1P-base3x2.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutExamples/2P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayouts/2P-base600.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
     const className = "base";
@@ -163,14 +162,17 @@ class Layout {
     const { gameName, category, estimate } = this.fields;
     const id = "runInfo";
     const className = "primary";
-    const text = gameName;
-    const text2 = category + " - estimate: " + estimate;
-
     const locationInfo = this.getLocationInfo(id);
-    const locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+    let text, text2, locationInfo2;
 
+    if (this.getLocationInfo(id + "SingleLine")) {
+      text = gameName + " " + category + " - estimate: " + estimate;
+    } else {
+      text2 = category + " - estimate: " + estimate;
+      locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+      this.createElement(id, className, text2, locationInfo2, "text");
+    };
     this.createElement(id, className, text, locationInfo, "text");
-    this.createElement(id, className, text2, locationInfo2, "text");
   };
 
   setGenres = () => {
@@ -287,6 +289,8 @@ class Layout {
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
       const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
 
+      pLocationInfo.fontSize = layouts.playerTextSizes[this.fields.numberOfPlayers + "P"];
+
       this.setBorder("gameBorder", playerNumber);
 
       this.createElement(tId, tClassName, src,  tLocationInfo, "img");
@@ -339,11 +343,11 @@ class Layout {
       if (doesFileExist(altOutput, true)) output = altOutput;
     }
 
-    // if (locationInfo.fontSize) debugger
-    var { left, top, right, bottom, width, height, backgroundColor, borderRadius, fontSize, opacity } = locationInfo;
+    var { left, top, right, bottom, width, height, backgroundColor, borderRadius, fontSize, textAlign, opacity } = locationInfo;
     const css = {
       left: left, top: top, right: right, bottom: bottom, width: width, height: height,
-      backgroundColor: backgroundColor, borderRadius: borderRadius, fontSize: fontSize,
+      backgroundColor: backgroundColor, borderRadius: borderRadius,
+      fontSize: fontSize, textAlign: textAlign,
       opacity: opacity || this.backgroundOpacity
     };
 
