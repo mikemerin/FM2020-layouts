@@ -1338,7 +1338,7 @@
       "player1_twitchHandle": "HerculesBenchpress",
       "player1_displayName": "HerculesBenchpress",
       "player1_camera": true,
-      "player1_pb": "0:35:05",
+      "player1_pb": "0:18:18",
       "player2_twitchHandle": "",
       "player2_displayName": "",
       "player2_camera": false,
@@ -1357,7 +1357,8 @@
       "category": "any%",
       "estimate": "0:45:00",
       "runType": "Solo Run",
-      "worldRecord": "18:18 By Herculesbenchpress"
+      "worldRecord": "18:18",
+      "wrHolder": "Herculesbenchpress"
     },
     "adminPanel": {
       "backgroundOpacity": ".3"
@@ -1473,7 +1474,8 @@
       "category": "any%",
       "estimate": "0:35:00",
       "runType": "Solo Run",
-      "worldRecord": "25:20"
+      "worldRecord": "25:20",
+      "wrHolder": "Kuumba"
     },
     "adminPanel": {
       "backgroundOpacity": ".3"
@@ -2196,9 +2198,9 @@
       "commentators": ""
     },
     "runInfo": {
-      "category": "",
+      "category": "flop%",
       "estimate": "1:30:00",
-      "runType": "",
+      "runType": "Race",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -2305,11 +2307,11 @@
       "commentators": "PieceOfCheese87"
     },
     "runInfo": {
-      "category": "",
+      "category": "Feud%",
       "estimate": "1:00:00",
       "runType": "",
-      "worldRecord": "",
-      "wrHolder": ""
+      "worldRecord": "N/A",
+      "wrHolder": "N/A"
     },
     "adminPanel": {
       "backgroundOpacity": ".3"
@@ -2414,9 +2416,9 @@
       "commentators": ""
     },
     "runInfo": {
-      "category": "N/A",
+      "category": "coinflip%",
       "estimate": "0:45:00",
-      "runType": "N/A",
+      "runType": "Solo Run",
       "worldRecord": "N/A",
       "wrHolder": "N/A"
     },
@@ -2601,7 +2603,7 @@
       "commentators": "PieceOfCheese87"
     },
     "runInfo": {
-      "category": "N/A",
+      "category": "Feud%",
       "estimate": "1:00:00",
       "runType": "N/A",
       "worldRecord": "N/A",
