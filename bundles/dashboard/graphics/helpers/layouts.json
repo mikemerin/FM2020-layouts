@@ -23,8 +23,7 @@ var layouts = {
   },
   "marqueeBox": {
     "1P": {
-      "start":    { "left": 25,   "top": 664 },
-      "offset":   { "left": 396,  "top": 72  }
+      "start":    { "left": 25,   "top": 652, "width": 404,  "height": 50, "backgroundColor": "blue"  }
     },
     "2P": { "left": 20, "bottom": 20 },
     "3P": { "left": 20, "bottom": 20 },
@@ -578,6 +577,63 @@ var layouts = {
       "camera": false,
       "runInfo":      { "left": 0,  "top": 115, "width": "100%", "textAlign": "center" },
       "runInfoLines": 3
+    },
+    "600": {
+      "hashtag":      {
+        "position":   { "left": 484,   "top": 41 },
+        "text":       { "fontSize": "36px" },
+        "outline":    { "width": "305px" }
+      },
+      "player1": {
+        "twitchIcon": { "left": 480,  "top": 233, "height": 22, "width": 22 },
+        "offset":     { "left":  23,  "top":  -2 },
+        "gameBorder": {
+          "start":    { "left": 0,    "top":   0 },
+          "offset":   { "left": 468,  "top": 350 }
+        }
+      },
+      "player2": {
+        "twitchIcon": { "right": 482, "top": 233, "height": 22, "width": 22 },
+        "offset":     { "right": 23, "top": -2 },
+        "gameBorder": {
+          "start":    { "left": 801,  "top":   0 },
+          "offset":   { "left": 468,  "top": 350 }
+        }
+      },
+      "player3": {
+        "twitchIcon": { "left":  482, "top": 467, "height": 22, "width": 22 },
+        "offset":     { "left":  23,  "top":  -1 },
+        "gameBorder": {
+          "start":    { "left":   0,  "top": 359 },
+          "offset":   { "left": 468,  "top": 350 }
+        }
+      },
+      "player4": {
+        "twitchIcon": { "right": 481, "top": 467, "height": 22, "width": 22 },
+        "offset":     { "right":  23, "top": -1 },
+        "gameBorder": {
+          "start":    { "left": 801,  "top": 359 },
+          "offset":   { "left": 468,  "top": 350 }
+        }
+      },
+      "borders": {
+        "genres": {
+          "start":    { "left": 524,  "top": 561, "alt": true },
+          "offset":   { "left": 224,  "top": 73  }
+        },
+        "genresStacked": {
+          "start":    { "left": 553,  "top": 639 },
+          "offset":   { "left": 167,  "top":  73 }
+        },
+        "timer": {
+          "start":    { "left": 476,  "top": 490 },
+          "offset":   { "left": 320,  "top":  66 }
+        },
+        "titleCard": {
+          "start":    { "left": 476,  "top": 227 },
+          "offset":   { "left": 320,  "top": 258 }
+        }
+      }
     },
     "608": {
       "hashtag":      {
