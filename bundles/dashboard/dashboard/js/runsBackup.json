@@ -157,7 +157,7 @@
   },
   "iWannaBeTheNeon3": {
     "gameInfo": {
-      "gameName": "I wanna be the Neon 3",
+      "gameName": "I Wanna Be the Neon 3",
       "resolution": "608",
       "createdBy": "Thenader2",
       "genres": "Gimmick; Needle",
@@ -703,7 +703,7 @@
   },
   "iWannaBeTheStrongestFairy": {
     "gameInfo": {
-      "gameName": "I Wanna Be The Strongest Fairy",
+      "gameName": "I Wanna Be the Strongest Fairy",
       "resolution": "600",
       "createdBy": "Chalenged",
       "genres": "Avoidance; Needle",
@@ -742,7 +742,7 @@
   },
   "iWannaBeTheCoop": {
     "gameInfo": {
-      "gameName": "I Wanna Be The Co-op",
+      "gameName": "I Wanna Be the Co-op",
       "resolution": "16:9",
       "createdBy": "Nemega",
       "genres": "Adventure; Gimmick",
@@ -1374,7 +1374,7 @@
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "Sapphron",
+      "player1_twitchHandle": "Sapphronxd",
       "player1_displayName": "Sapphron",
       "player1_camera": false,
       "player1_pb": "0:58:44",
@@ -1397,7 +1397,7 @@
       "estimate": "1:10:00",
       "runType": "Solo Run",
       "worldRecord": "0:58:44",
-      "wrHolder": "Sapphron"
+      "wrHolder": "Sapphronxd"
     },
     "adminPanel": {
       "backgroundOpacity": ".3"
@@ -1755,7 +1755,7 @@
   },
   "iWannaBeTheWithFriendsβ": {
     "gameInfo": {
-      "gameName": "I wanna be the with friendsβ",
+      "gameName": "I Wanna Be the With friendsβ",
       "resolution": "600",
       "createdBy": "にひみ",
       "genres": "Adventure; Needle; Trap",
@@ -2282,14 +2282,14 @@
     "gameInfo": {
       "gameName": "Fangame Feud",
       "resolution": "608",
-      "createdBy": "PieceOfCheese87",
+      "createdBy": "Pieceofcheese87",
       "genres": "",
       "otherGenres": "Quiz Show"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "",
-      "player1_displayName": "",
+      "player1_twitchHandle": "Pieceofcheese87",
+      "player1_displayName": "Cheese",
       "player1_camera": false,
       "player1_pb": "",
       "player2_twitchHandle": "",
@@ -2314,7 +2314,7 @@
       "wrHolder": "N/A"
     },
     "adminPanel": {
-      "backgroundOpacity": ".3"
+      "backgroundOpacity": ".2"
     }
   },
   "blindAdventureRace": {
@@ -2590,14 +2590,14 @@
     "gameInfo": {
       "gameName": "Fangame Feud",
       "resolution": "608",
-      "createdBy": "PieceOfCheese87",
+      "createdBy": "Pieceofcheese87",
       "genres": "",
       "otherGenres": "Quiz Show"
     },
     "playerInfo": {
       "numberOfPlayers": "1",
-      "player1_twitchHandle": "",
-      "player1_displayName": "",
+      "player1_twitchHandle": "Pieceofcheese87",
+      "player1_displayName": "Cheese",
       "player1_camera": false,
       "player1_pb": "",
       "commentators": "PieceOfCheese87"
