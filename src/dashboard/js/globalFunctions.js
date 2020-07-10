@@ -258,10 +258,12 @@ class AdminPanel {
 
     nodecg.readReplicant(name, namespace, replicantValues => {
       nodecg.readReplicant(fieldName, fieldNamespace, fieldReplicantValues => {
-        var options = Object.keys(replicantValues).map(game => {
-          return replicantValues[game][fieldGroup][field];
-        });
-        // }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) );
+        // var options = Object.keys(replicantValues).map(game => {
+        //   return replicantValues[game][fieldGroup][field];
+        // });
+        // }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) ); // todo: remove?
+
+        options = NodeCG.masterRunList.schedule.order.filter(x => x);
 
         this.gameName = fieldReplicantValues.gameInfo.gameName;
 
