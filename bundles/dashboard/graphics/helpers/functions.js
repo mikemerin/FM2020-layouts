@@ -47,6 +47,7 @@ class Layout {
 
       this.setFields(gameInfo);
 
+      // this.setMarqueeText(); //todo: pick up here
       this.setLocations();
       this.setLayoutName();
 
@@ -74,6 +75,16 @@ class Layout {
       });
     });
   };
+
+  setMarqueeText = () => {
+    // var text = "Fangame Marathon 2020 is brought to you by The Wannabes!";
+    // const textInfo = layouts.marqueeBox[this.fields.numberOfPlayers + "P"].start;
+    // console.log("layouts:", layouts);
+    // console.log("textInfo:", textInfo);
+    // this.createElement("marqueeText", "marqueeText primary", text, textInfo, "text");
+
+    // todo: next (link up all text, then the prior/next runs)
+  }
 
   setLocations = () => {
     var layoutFields = {};
@@ -105,8 +116,10 @@ class Layout {
       "red": "#FF0000",
       "green": "#00FF00",
       "blue": "#0000FF",
+      "pink": "#FF69B4",
+      "orange": "#FF4500"
     };
-console.log("conversion[chromaKeyColor]:", conversion[chromaKeyColor]);
+    // console.log("conversion[chromaKeyColor]:", conversion[chromaKeyColor]);
     $(".fillGS").css({ "background-color": conversion[chromaKeyColor] });
 
   }
@@ -415,6 +428,10 @@ console.log("conversion[chromaKeyColor]:", conversion[chromaKeyColor]);
         output = "/assets/dashboard/" + output;
         break;
       case "fill":
+        element = "<div>";
+        outputKey = "fill";
+        break;
+      case "container":
         element = "<div>";
         outputKey = "fill";
         break;

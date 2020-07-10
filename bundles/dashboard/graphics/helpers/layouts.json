@@ -21,6 +21,15 @@ var layouts = {
     "runInfo2":       { "left": 0,    "top": 29  },
     "runInfo3":       { "left": 0,    "top": 58  }
   },
+  "marqueeBox": {
+    "1P": {
+      "start":    { "left": 25,   "top": 664 },
+      "offset":   { "left": 396,  "top": 72  }
+    },
+    "2P": { "left": 20, "bottom": 20 },
+    "3P": { "left": 20, "bottom": 20 },
+    "4P": { "left": 20, "bottom": 20 },
+  },
   "border": {
     "gameBorder": {
       "cornerSize": "large",
@@ -54,7 +63,8 @@ var layouts = {
   "playerTextSizes": {
     "1P": 48,
     "2P": 24,
-    "3P": 22
+    "3P": 22,
+    "4P": 22
   },
   "1P": {
     "1:1|8:7|10:7|600|608": {

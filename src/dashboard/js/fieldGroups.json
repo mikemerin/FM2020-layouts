@@ -170,7 +170,10 @@ var fieldGroups = {
         "options": [
           "red",
           "green",
-          "blue"
+          "blue",
+          "pink",
+          "orange"
+
         ],
         "defaultValue": "green"
       }
