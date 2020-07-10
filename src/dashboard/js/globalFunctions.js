@@ -260,13 +260,14 @@ class AdminPanel {
       nodecg.readReplicant(fieldName, fieldNamespace, fieldReplicantValues => {
         var options = Object.keys(replicantValues).map(game => {
           return replicantValues[game][fieldGroup][field];
-        }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) );
+        });
+        // }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) );
 
         this.gameName = fieldReplicantValues.gameInfo.gameName;
 
-        options.forEach(value => {
+        options.forEach((value, i) => {
           dropdown.append($("<option>", {
-            text: value,
+            text: `${i+1}) ${value}`,
             value: value
           }));
         })
