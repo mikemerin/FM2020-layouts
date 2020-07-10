@@ -263,7 +263,7 @@ class AdminPanel {
         // });
         // }).sort((a,b) => a.toLowerCase().localeCompare(b.toLowerCase()) ); // todo: remove?
 
-        options = NodeCG.masterRunList.schedule.order.filter(x => x);
+        var options = NodeCG.masterRunList.schedule.order.filter(x => x);
 
         this.gameName = fieldReplicantValues.gameInfo.gameName;
 
