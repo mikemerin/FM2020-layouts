@@ -4,7 +4,7 @@ body {
   margin: 0px;
 }
 
-img, .fill {
+img, .fill, .marqueeText {
   position: absolute;
 }
 
@@ -82,3 +82,40 @@ img, .fill {
 
 /* #hashtag        { font-size: 44px; } */
 #runInfo        { font-size: 24px; }
+
+
+/* marquee WIP */
+
+.marqueeText {
+  -moz-animation: marquee 20s linear infinite;
+  -webkit-animation: marquee 20s linear infinite;
+  animation: marquee 20s linear infinite;
+}
+@-moz-keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes marquee {
+  0% {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%)
+  }
+  100% {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
