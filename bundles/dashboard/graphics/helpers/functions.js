@@ -77,75 +77,61 @@ class Layout {
   };
 
   setMarqueeText = () => { // todo: link up to this.createElement
-    var text = [
+    var current = 0;
+    var lines = [
       "Fangame Marathon 2020 is brought to you by The Wannabes!",
-      // "Be sure to show your support for our runners by following them!",
-      // "Visit http://fangam.es for more IWBTG games!"
+      "Be sure to show your support for our runners by following them!",
+      "Visit www.fangam.es for more IWBTG games!"
     ];
 
-    // const textInfo = { ...layouts.marquee.basic, ...layouts.marquee[this.fields.numberOfPlayers + "P"] };
     const textInfo = layouts.announcement[this.fields.numberOfPlayers + "P"];
 
     $("#container").append( $("<div>", {
-      id: "announcement1",
+      id: "announcement",
       class: "announcement primary",
       css: textInfo
     }));
 
-
-
-    var textWrapper = document.querySelector('#announcement1');
-    textWrapper.innerText = text;
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    console.log("textWrapper:", textWrapper);
-
-    animate.timeline({loop: true})
-      .add({
-        targets: '#announcement1, .letter',
-        translateX: [100,0],
-        opacity: [0,1],
-        easing: "easeOutExpo",
-        duration: 2000,
-        delay: (el, i) => 300 + 60 * i,
-        // offset: 2000
-      })
-      .add({
-        targets: '.letter',
-        translateZ: [0,-100],
-        opacity: [1,0],
-        easing: "easeInExpo",
-        duration: 4000,
-        delay: (el, i) => 400 + 60 * i
-      });
-
-
-    // var marquee = ( $("<svg>", {
-    //   id: "marquee",
-    //   class: "marqueeText primary",
-    //   behavior: "scroll", // todo: part of marquee.basic, add to createElement
-    //   scrollamount: "15",
-    //   direction: "left",
-    //   css: textInfo,
-    //   text: text
-    // }));
-    // $("#container").append('<svg id="marquee" class="primary" viewBox="100,0,500,300"><text class="primary" x="300" y="80">Moving text<animate attributeName="x" from="400" to="-100" dur="3s" repeatCount="indefinite"></text></svg>');
-    //
-    // var marquee = ( $("<marquee>", {
-    //   id: "marquee",
-    //   class: "marqueeText primary",
-    //   behavior: "scroll", // todo: part of marquee.basic, add to createElement
-    //   scrollamount: "15",
-    //   direction: "left",
-    //   css: textInfo,
-    //   text: text
-    // }));
-
-    // $("#container").append(marquee);
-
-    // this.createElement("marqueeBox", "marqueeBox primary", "", boxInfo, "div");
-    // this.createElement("marqueeText", "marqueeText primary", text, {}, "marquee");
-    // createElement = (id, className, output, locationInfo = {}, type) => {
+    this.createTimeline(lines, 0);
     // todo: next (link up all text, then the prior/next runs)
+  }
+
+  createTimeline = (lines, line) => {
+    var primaryOffset = 0;
+    var textWrapper = document.querySelector("#announcement");
+    textWrapper.innerText = lines[line];
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    animate.timeline({ })
+    .add({
+      targets: "#announcement, .letter",
+      translateX: [-200,0],
+      opacity: [0,1],
+      easing: "easeInOutBack",
+      duration: 5000,
+      delay: (el, i) => 300 + 60 * i,
+      // offset: primaryOffset
+    })
+    .add({
+      targets: ".letter",
+      translateY: [0,-2,0],
+      easing: "easeInSine",
+      duration: 300,
+      delay: (el, i) => 100 + 40 * i,
+      // offset: primaryOffset + 8000
+
+    })
+    .add({
+      targets: ".letter",
+      translateZ: [0,-250],
+      translateY: [0,5],
+      opacity: [1,0],
+      easing: "easeInOutBack",
+      duration: 3000,
+      delay: (el, i) => 100 + 70 * i,
+      // offset: primaryOffset + 12000,
+      complete: () => { this.createTimeline(lines, (line + 1) % lines.length) }
+    });
   }
 
   setLocations = () => {
