@@ -21,10 +21,10 @@ var layouts = {
     "runInfo2":       { "left": 0,    "top": 29  },
     "runInfo3":       { "left": 0,    "top": 58  }
   },
-  "marqueeBox": {
-    "1P": {
-      "start":    { "left": 25,   "top": 652, "width": 404,  "height": 50, "backgroundColor": "blue"  }
-    },
+  "announcement": {
+    "basic-old": { "behavior": "scroll", "scrollamount": "4", "direction": "left" },
+    "1P-old": { "viewBox": "25,647,304,0" },
+    "1P": { "left": 40, "bottom": 20, "width": 376, "height": 50, "textAlign": "center" },
     "2P": { "left": 20, "bottom": 20 },
     "3P": { "left": 20, "bottom": 20 },
     "4P": { "left": 20, "bottom": 20 },

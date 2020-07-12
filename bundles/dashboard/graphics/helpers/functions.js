@@ -47,7 +47,7 @@ class Layout {
 
       this.setFields(gameInfo);
 
-      // this.setMarqueeText(); //todo: pick up here
+      this.setMarqueeText();
       this.setLocations();
       this.setLayoutName();
 
@@ -76,13 +76,75 @@ class Layout {
     });
   };
 
-  setMarqueeText = () => {
-    // var text = "Fangame Marathon 2020 is brought to you by The Wannabes!";
-    // const textInfo = layouts.marqueeBox[this.fields.numberOfPlayers + "P"].start;
-    // console.log("layouts:", layouts);
-    // console.log("textInfo:", textInfo);
-    // this.createElement("marqueeText", "marqueeText primary", text, textInfo, "text");
+  setMarqueeText = () => { // todo: link up to this.createElement
+    var text = [
+      "Fangame Marathon 2020 is brought to you by The Wannabes!",
+      // "Be sure to show your support for our runners by following them!",
+      // "Visit http://fangam.es for more IWBTG games!"
+    ];
 
+    // const textInfo = { ...layouts.marquee.basic, ...layouts.marquee[this.fields.numberOfPlayers + "P"] };
+    const textInfo = layouts.announcement[this.fields.numberOfPlayers + "P"];
+
+    $("#container").append( $("<div>", {
+      id: "announcement1",
+      class: "announcement primary",
+      css: textInfo
+    }));
+
+
+
+    var textWrapper = document.querySelector('#announcement1');
+    textWrapper.innerText = text;
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    console.log("textWrapper:", textWrapper);
+
+    animate.timeline({loop: true})
+      .add({
+        targets: '#announcement1, .letter',
+        translateX: [100,0],
+        opacity: [0,1],
+        easing: "easeOutExpo",
+        duration: 2000,
+        delay: (el, i) => 300 + 60 * i,
+        // offset: 2000
+      })
+      .add({
+        targets: '.letter',
+        translateZ: [0,-100],
+        opacity: [1,0],
+        easing: "easeInExpo",
+        duration: 4000,
+        delay: (el, i) => 400 + 60 * i
+      });
+
+
+    // var marquee = ( $("<svg>", {
+    //   id: "marquee",
+    //   class: "marqueeText primary",
+    //   behavior: "scroll", // todo: part of marquee.basic, add to createElement
+    //   scrollamount: "15",
+    //   direction: "left",
+    //   css: textInfo,
+    //   text: text
+    // }));
+    // $("#container").append('<svg id="marquee" class="primary" viewBox="100,0,500,300"><text class="primary" x="300" y="80">Moving text<animate attributeName="x" from="400" to="-100" dur="3s" repeatCount="indefinite"></text></svg>');
+    //
+    // var marquee = ( $("<marquee>", {
+    //   id: "marquee",
+    //   class: "marqueeText primary",
+    //   behavior: "scroll", // todo: part of marquee.basic, add to createElement
+    //   scrollamount: "15",
+    //   direction: "left",
+    //   css: textInfo,
+    //   text: text
+    // }));
+
+    // $("#container").append(marquee);
+
+    // this.createElement("marqueeBox", "marqueeBox primary", "", boxInfo, "div");
+    // this.createElement("marqueeText", "marqueeText primary", text, {}, "marquee");
+    // createElement = (id, className, output, locationInfo = {}, type) => {
     // todo: next (link up all text, then the prior/next runs)
   }
 
@@ -125,7 +187,7 @@ class Layout {
   }
 
   setBaseImage = () => {
-    // const output = "baseLayoutExamples/4P-608-example.png"; // todo: debugging tool as reference, change as needed, remove when done
+    // const output = "baseLayoutExamples/4P-600-example.png"; // todo: debugging tool as reference, change as needed, remove when done
     // const output = "baseLayouts/2P-base608.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
@@ -397,7 +459,7 @@ class Layout {
     }, {});
   };
 
-  createElement = (id, className, output, locationInfo = {}, type) => {
+  createElement = (id, className, output, locationInfo = {}, type, appendLocation) => {
     if (id === "gameImageBG") {
       // todo: ugh, find a better way to do this entirely, maybe a toggle with hashmap, espcially for all the Marios with the same alt BG
       var altOutput = output.split("/");
@@ -433,7 +495,7 @@ class Layout {
         break;
       case "container":
         element = "<div>";
-        outputKey = "fill";
+        outputKey = "";
         break;
       case "text":
       default:
@@ -441,7 +503,6 @@ class Layout {
         outputKey = "text";
         break;
     };
-
     var div = $(element, {
       id: id,
       class: className,
@@ -451,7 +512,11 @@ class Layout {
 
     // console.log("div[0]:", div[0]);
     // console.log("-------------------------------------------------------------")
-    $("#container").append( div );
+    if (appendLocation) {
+      $(`#${appendLocation}`).append( div );
+    } else {
+      $("#container").append( div );
+    }
   };
 
 };

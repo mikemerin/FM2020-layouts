@@ -1,10 +1,15 @@
+.announcement, .letter {
+  display: inline-block;
+}
+
+
 @font-face { font-family: Limerick; src: url('/fonts/Limerick-Serial-Regular DB.ttf'); }
 
 body {
   margin: 0px;
 }
 
-img, .fill, .marqueeText {
+img, .fill, .marquee {
   position: absolute;
 }
 
@@ -81,41 +86,9 @@ img, .fill, .marqueeText {
 }
 
 /* #hashtag        { font-size: 44px; } */
-#runInfo        { font-size: 24px; }
+#runInfo, .marquee        { font-size: 24px; }
 
-
-/* marquee WIP */
-
-.marqueeText {
-  -moz-animation: marquee 20s linear infinite;
-  -webkit-animation: marquee 20s linear infinite;
-  animation: marquee 20s linear infinite;
-}
-@-moz-keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-@-webkit-keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-@keyframes marquee {
-  0% {
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%)
-  }
-  100% {
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
+.announcement {
+  font-size: 20px;
+  text-align: center;
 }
