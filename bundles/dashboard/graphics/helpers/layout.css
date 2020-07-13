@@ -86,11 +86,11 @@ img, .fill, .marquee {
 }
 
 /* #hashtag        { font-size: 44px; } */
-#runInfo, .marquee        { font-size: 24px; }
+.runInfo, .marquee        { font-size: 24px; }
 
 .announcement {
-  font-size: 20px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .nowrap {
