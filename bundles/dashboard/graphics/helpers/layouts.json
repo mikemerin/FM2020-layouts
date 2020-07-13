@@ -24,7 +24,7 @@ var layouts = {
   "announcement": {
     "basic-old": { "behavior": "scroll", "scrollamount": "4", "direction": "left" },
     "1P-old": { "viewBox": "25,647,304,0" },
-    "1P": { "left": 40, "bottom": 20, "width": 376, "height": 50, "textAlign": "center" },
+    "1P": { "left": 36, "bottom": 20, "width": 380, "height": 50, "textAlign": "center" },
     "2P": { "left": 20, "bottom": 20 },
     "3P": { "left": 20, "bottom": 20 },
     "4P": { "left": 20, "bottom": 20 },
