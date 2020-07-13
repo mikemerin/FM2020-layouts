@@ -92,3 +92,7 @@ img, .fill, .marquee {
   font-size: 20px;
   text-align: center;
 }
+
+.nowrap {
+  white-space: nowrap ;
+}
