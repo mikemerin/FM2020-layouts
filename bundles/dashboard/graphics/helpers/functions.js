@@ -118,39 +118,43 @@ class Layout {
   };
 
   createTimeline = (lines, line) => {
-    var primaryOffset = 10000;
+    var primaryOffset = 0;
     var textWrapper = document.querySelector("#announcement");
     textWrapper.innerText = lines[line];
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    // todo: only allow new line on new words
+    textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, "<span class='letter'>$&</span>") + "</span>" ).join(" ")
 
     animate.timeline({ })
     .add({
       targets: "#announcement, .letter",
-      translateX: [-200,0],
-      opacity: [0,1],
+      translateX: [-170,0],
+      translateY: [20,0],
+      rotate: [-5,0],
+      scale: [.8,1],
+      opacity: [-.5,1],
       easing: "easeInOutBack",
       duration: 5000,
-      delay: (el, i) => 300 + 50 * i,
+      delay: (el, i) => 40 * i,
       offset: primaryOffset
     })
     .add({
       targets: ".letter",
       translateY: [0,-2,0],
+      scale: [1,.8,1],
       easing: "easeInSine",
-      duration: 300,
-      delay: (el, i) => 100 + 40 * i,
+      duration: 1000,
+      delay: (el, i) => 100 + 25 * i,
       offset: primaryOffset + 8000
 
     })
     .add({
       targets: ".letter",
-      translateZ: [0,-250],
-      translateY: [0,5],
+      translateZ: [0,-300],
+      translateY: [0,10],
       opacity: [1,0],
+      scale: [1,.5],
       easing: "easeInOutBack",
-      duration: 3000,
-      delay: (el, i) => 100 + 50 * i,
+      duration: 2000,
+      delay: (el, i) => 100 + 20 * i,
       offset: primaryOffset + 12000,
       complete: () => { this.createTimeline(lines, (line + 1) % lines.length) }
     });
