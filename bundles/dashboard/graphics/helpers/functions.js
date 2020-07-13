@@ -3,6 +3,7 @@ class Layout {
   constructor() {
     this.replicant;
     this.replicantValues;
+    this.runOrder = [];
     this.fields = {};
     this.locations = {};
 
@@ -32,36 +33,42 @@ class Layout {
     const params = [gameName, runNumber].filter(x => x).length;
     this.replicant = nodecg.Replicant(params ? "runs" : "fieldValues");
     const { name, namespace } = this.replicant;
+    const runOrder = nodecg.Replicant("oengusRunOrder");
+    const { name: runOrderName, namespace: runOrderNamespace } = runOrder;
+
 
     nodecg.readReplicant(name, namespace, replicantValues => {
-      let gameInfo;
-      if (params) {
-        if (gameName) {
-          gameInfo = replicantValues[sanitize(decodeURI(gameName))];
-        } else if (runNumber) {
-          // todo: store in replicant first, then ping here
+      nodecg.readReplicant(runOrderName, runOrderNamespace, runOrderReplicantValues => {
+        this.runOrder = runOrderReplicantValues.filter(x => x.gameName);
+        let gameInfo;
+        if (params) {
+          if (gameName) {
+            gameInfo = replicantValues[sanitize(decodeURI(gameName))];
+          } else if (runNumber) {
+            // todo: store in replicant first, then ping here
+          }
+        } else {
+          gameInfo = replicantValues;
         }
-      } else {
-        gameInfo = replicantValues;
-      }
 
-      this.setFields(gameInfo);
+        this.setFields(gameInfo);
 
-      this.setMarqueeText();
-      this.setLocations();
-      this.setLayoutName();
+        this.setMarqueeText();
+        this.setLocations();
+        this.setLayoutName();
 
-      this.setBorders();
-      this.setBaseImage();
-      this.setGameImage();
-      this.setHashtag();
-      this.setRunInfo();
-      this.setGenres();
+        this.setBorders();
+        this.setBaseImage();
+        this.setGameImage();
+        this.setHashtag();
+        this.setRunInfo();
+        this.setGenres();
 
-      this.setPlayerInfo();
-      this.setChromaKeyColor(); // note: needs to be last
+        this.setPlayerInfo();
+        this.setChromaKeyColor(); // note: needs to be last
 
-      // console.log(this)
+        // console.log(this)
+      });
     });
   };
 
@@ -77,12 +84,22 @@ class Layout {
   };
 
   setMarqueeText = () => { // todo: link up to this.createElement
-    var current = 0;
+
     var lines = [
       "Fangame Marathon 2020 is brought to you by The Wannabes!",
       "Be sure to show your support for our runners by following them!",
       "Visit www.fangam.es for more IWBTG games!"
     ];
+
+    const sanitizedGameName = sanitize(this.fields.gameName);
+
+    this.runOrder.forEach(({gameName, runners}, i) => {
+        if (sanitize(gameName) === sanitizedGameName) {
+            // current = { gameName: gameName, runners: runners }
+            if (this.runOrder[i-1]) lines.push( this.formatRunInfo(this.runOrder[i-1], "Previous") );
+            if (this.runOrder[i+1]) lines.push( this.formatRunInfo(this.runOrder[i+1], "Next") );
+        };
+    });
 
     const textInfo = layouts.announcement[this.fields.numberOfPlayers + "P"];
 
@@ -93,8 +110,12 @@ class Layout {
     }));
 
     this.createTimeline(lines, 0);
-    // todo: next (link up all text, then the prior/next runs)
   }
+
+  formatRunInfo = ({gameName, runners}, type) => {
+    const runnerText = runners.length ? ` by ${runners.map(x => x.username).join(", ")}` : "";
+    return `${type} game: ${gameName}${runnerText}`;
+  };
 
   createTimeline = (lines, line) => {
     var primaryOffset = 0;
@@ -110,7 +131,7 @@ class Layout {
       easing: "easeInOutBack",
       duration: 5000,
       delay: (el, i) => 300 + 60 * i,
-      // offset: primaryOffset
+      offset: primaryOffset
     })
     .add({
       targets: ".letter",
@@ -118,7 +139,7 @@ class Layout {
       easing: "easeInSine",
       duration: 300,
       delay: (el, i) => 100 + 40 * i,
-      // offset: primaryOffset + 8000
+      offset: primaryOffset + 8000
 
     })
     .add({
@@ -128,11 +149,13 @@ class Layout {
       opacity: [1,0],
       easing: "easeInOutBack",
       duration: 3000,
-      delay: (el, i) => 100 + 70 * i,
-      // offset: primaryOffset + 12000,
+      delay: (el, i) => 100 + 50 * i,
+      offset: primaryOffset + 12000,
       complete: () => { this.createTimeline(lines, (line + 1) % lines.length) }
     });
-  }
+  };
+
+
 
   setLocations = () => {
     var layoutFields = {};
