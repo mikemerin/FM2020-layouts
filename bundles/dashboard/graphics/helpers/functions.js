@@ -28,12 +28,13 @@ class Layout {
   };
 
   start = () => {
-    const gameName = this.getSearchParameters().gameName; // todo: explain this
+    const gameName = this.getSearchParameters().gameName;
     const runNumber = this.getSearchParameters().runNumber;
     const params = [gameName, runNumber].filter(x => x).length;
     this.replicant = nodecg.Replicant(params ? "runs" : "fieldValues");
-    const { name, namespace } = this.replicant;
     const runOrder = nodecg.Replicant("oengusRunOrder");
+
+    const { name, namespace } = this.replicant;
     const { name: runOrderName, namespace: runOrderNamespace } = runOrder;
 
 
@@ -52,17 +53,16 @@ class Layout {
         }
 
         this.setFields(gameInfo);
-
-        this.setMarqueeText();
         this.setLocations();
-        this.setLayoutName();
 
-        this.setBorders();
         this.setBaseImage();
+        this.setBorders();
         this.setGameImage();
-        this.setHashtag();
-        this.setRunInfo();
         this.setGenres();
+        this.setHashtag();
+        this.setLayoutName();
+        this.setMarqueeText();
+        this.setRunInfo();
 
         this.setPlayerInfo();
         this.setChromaKeyColor(); // note: needs to be last
@@ -83,9 +83,34 @@ class Layout {
     });
   };
 
-  setMarqueeText = () => { // todo: link up to this.createElement
+  setLocations = () => {
+    var layoutFields = {};
+    const resolutions = layouts[this.fields.numberOfPlayers + "P"];
+    this.locations = resolutions[this.fields.resolution];
+
+    // if there's shared location info like (600|800) this will merge them
+    Object.keys(resolutions).forEach(resolution => {
+      var split = resolution.split("|");
+      if (split.length > 1 && split.includes(this.fields.resolution)) {
+        this.locations = deepMerge(
+          this.locations,
+          resolutions[resolution]
+        );
+      };
+    });
+  };
+
+  // ------
+
+  setMarqueeText = () => {
+
+    const formatRunInfo = ({gameName, runners}, type) => {
+      const runnerText = runners.length ? ` by ${runners.map(x => x.username).join(", ")}` : "";
+      return `${type} game: ${gameName}${runnerText}`;
+    };
 
     var lines = [
+      // "Fangame Marathon 2020 is brought to you by The Wannabes! This is a very long line of text to test stuff out.",
       "Fangame Marathon 2020 is brought to you by The Wannabes!",
       "Be sure to show your support for our runners by following them!",
       "Visit www.fangam.es for more IWBTG games!"
@@ -95,30 +120,21 @@ class Layout {
 
     this.runOrder.forEach(({gameName, runners}, i) => {
         if (sanitize(gameName) === sanitizedGameName) {
-            // current = { gameName: gameName, runners: runners }
-            if (this.runOrder[i-1]) lines.push( this.formatRunInfo(this.runOrder[i-1], "Previous") );
-            if (this.runOrder[i+1]) lines.push( this.formatRunInfo(this.runOrder[i+1], "Next") );
+            if (this.runOrder[i-1]) lines.push( formatRunInfo(this.runOrder[i-1], "Previous") );
+            if (this.runOrder[i+1]) lines.push( formatRunInfo(this.runOrder[i+1], "Next") );
         };
     });
 
-    const textInfo = layouts.announcement[this.fields.numberOfPlayers + "P"];
+    const textInfo = this.locations.announcement;
 
-    $("#container").append( $("<div>", {
-      id: "announcement",
-      class: "announcement primary",
-      css: textInfo
-    }));
-
+    const id = "announcement";
+    this.createElement(id, `${id} primary`, "", textInfo, "container", id);
     this.createTimeline(lines, 0);
   }
 
-  formatRunInfo = ({gameName, runners}, type) => {
-    const runnerText = runners.length ? ` by ${runners.map(x => x.username).join(", ")}` : "";
-    return `${type} game: ${gameName}${runnerText}`;
-  };
-
   createTimeline = (lines, line) => {
     var primaryOffset = 0;
+    // var primaryOffset = 10000;
     var textWrapper = document.querySelector("#announcement");
     textWrapper.innerText = lines[line];
     textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, "<span class='letter'>$&</span>") + "</span>" ).join(" ")
@@ -144,38 +160,18 @@ class Layout {
       duration: 1000,
       delay: (el, i) => 100 + 25 * i,
       offset: primaryOffset + 8000
-
     })
     .add({
       targets: ".letter",
       translateZ: [0,-300],
       translateY: [0,10],
       opacity: [1,0],
-      scale: [1,.5],
+      scale: [1,.8],
       easing: "easeInOutBack",
       duration: 2000,
       delay: (el, i) => 100 + 20 * i,
       offset: primaryOffset + 12000,
       complete: () => { this.createTimeline(lines, (line + 1) % lines.length) }
-    });
-  };
-
-
-
-  setLocations = () => {
-    var layoutFields = {};
-    const resolutions = layouts[this.fields.numberOfPlayers + "P"];
-    this.locations = resolutions[this.fields.resolution];
-
-    // if there's shared location info like (600|800) this will merge them
-    Object.keys(resolutions).forEach(resolution => {
-      var split = resolution.split("|");
-      if (split.length > 1 && split.includes(this.fields.resolution)) {
-        this.locations = deepMerge(
-          this.locations,
-          resolutions[resolution]
-        );
-      };
     });
   };
 
@@ -205,8 +201,8 @@ class Layout {
     // const output = "baseLayouts/2P-base608.png"; // todo: debugging tool as reference, change as needed, remove when done
     const output = "baseLayoutLayers/background.png"; // primary, use after debugging
     const id = "baseImage";
-    const className = "base";
-    this.createElement(id, className, output, "", "img");
+    const className = "BG";
+    this.createElement(id, className, output, "", "img", className);
   };
 
   setGameImage = (locationInfo, gameName = this.fields.gameName) => {
@@ -217,11 +213,11 @@ class Layout {
 
     if (doesFileExist(output, true)) {
       if (locationInfo) {
-        this.createElement(id, className + " primary", output, locationInfo, "img");
+        this.createElement(id, className + " primary", output, locationInfo, "img", "titleCard");
       } else {
         // console.log(this.fields)
         const backgroundCSS = { opacity: this.fields.backgroundOpacity };
-        this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img");
+        this.createElement(id + "BG", className + " fullSize dim", output, backgroundCSS, "img", "BG");
       };
     }
 
@@ -256,16 +252,16 @@ class Layout {
     changeCSSRule("name", "gradientMovementRight", "100%", "{ background-position: " + outline.width + " 0 }");
     changeCSSRule("name", "gradientMovementLeft", "0%", "{ background-position: " + outline.width + " 0 }");
 
-    this.createElement(hashtagId,     hashtagClass,     text, hashtagInfo,    "text");
-    this.createElement(outlineBotId,  outlineBotClass,  "",   outlineBotInfo, "fill");
-    this.createElement(outlineTopId,  outlineTopClass,  "",   outlineTopInfo, "fill");
+    this.createElement(hashtagId,     hashtagClass,     text, hashtagInfo,    "text", "hashtag");
+    this.createElement(outlineBotId,  outlineBotClass,  "",   outlineBotInfo, "fill", "hashtag");
+    this.createElement(outlineTopId,  outlineTopClass,  "",   outlineTopInfo, "fill", "hashtag");
   };
 
   setRunInfo = () => {
     const { gameName, category, estimate } = this.fields;
-    const id = "runInfo";
-    const className = "primary";
-    const locationInfo = this.getLocationInfo(id);
+    const baseId = "runInfo"
+    const className = `${baseId} primary`;
+    const locationInfo = this.getLocationInfo(baseId);
     let text = gameName, text2, text3, locationInfo2, locationInfo3; // todo: turn into text = {}, locationInfo = {}
 
     const runInfoLines = this.getLocationInfo("runInfoLines");
@@ -282,8 +278,8 @@ class Layout {
         locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
         locationInfo3 = {...locationInfo3, width: width, textAlign: textAlign };
       };
-      this.createElement(id, className, text2, locationInfo2, "text");
-      this.createElement(id, className, text3, locationInfo3, "text");
+      this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
+      this.createElement(baseId + 3, className, text3, locationInfo3, "text", baseId);
     } else {
       text2 = category + " - estimate: " + estimate;
       locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
@@ -291,9 +287,9 @@ class Layout {
         const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
         locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
       };
-      this.createElement(id, className, text2, locationInfo2, "text");
+      this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
     };
-    this.createElement(id, className, text, locationInfo, "text");
+    this.createElement(baseId + 1, className, text, locationInfo, "text", baseId);
   };
 
   setGenres = () => {
@@ -308,7 +304,7 @@ class Layout {
     const className = "border";
     const src = "baseLayoutLayers/" + id + ".png";
 
-    this.createElement(id, className, src, locationInfo, "img"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
+    this.createElement(id, className, src, locationInfo, "img", "genres"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
 
     var skipGenre = "";
 
@@ -318,7 +314,7 @@ class Layout {
       const otherClassName = "genre bright";
       const otherSrc = "genreIcons/" + otherId + ".png";
       const otherGenreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][skipGenre]);
-      this.createElement(otherId, otherClassName, otherSrc, otherGenreLocationInfo, "img");
+      this.createElement(otherId, otherClassName, otherSrc, otherGenreLocationInfo, "img", "genres");
     };
 
     const gameGenres = this.fields.genres.split("; ");
@@ -334,7 +330,7 @@ class Layout {
         } else {
           className += " dim";
         };
-        this.createElement(id, className, src, genreLocationInfo, "img");
+        this.createElement(id, className, src, genreLocationInfo, "img", "genres");
       };
     });
 
@@ -390,7 +386,7 @@ class Layout {
       const className = "border";
       var sizeName = (id.length > 1 ? size : "");
       const src = "baseLayoutLayers/border" + sizeName + id + ".png";
-      this.createElement(borderId, className, src, locationInfo[id], "img");
+      this.createElement(borderId, className, src, locationInfo[id], "img", type);
     });
 
     // console.log(locationInfo, fillLocationInfo)
@@ -402,7 +398,7 @@ class Layout {
     } else if (type === "titleCard" && (!showCamera || secondCard)) {
       this.setGameImage(fillLocationInfo);
     } else {
-      this.createElement(type + "Fill", "fill fill" + fillClass, "fill", fillLocationInfo, "fill");
+      this.createElement(type + "Fill", "fill fill" + fillClass, "fill", fillLocationInfo, "fill", type);
     }
   }
 
@@ -426,8 +422,8 @@ class Layout {
 
       this.setBorder("gameBorder", playerNumber);
 
-      this.createElement(tId, tClassName, src,  tLocationInfo, "img");
-      this.createElement(pId, pClassName, text, pLocationInfo, "text");
+      this.createElement(tId, tClassName, src,  tLocationInfo, "img", "player");
+      this.createElement(pId, pClassName, text, pLocationInfo, "text", "player");
     };
   };
 
@@ -490,12 +486,6 @@ class Layout {
       opacity: opacity || this.backgroundOpacity
     };
 
-    // console.log("id:", id);
-    // console.log("className:", className);
-    // console.log("output:", output);
-    // console.log("locationInfo:", locationInfo);
-    // console.log("type:", type);
-
     var element, outputKey;
     switch(type) {
       case "img":
@@ -509,7 +499,7 @@ class Layout {
         break;
       case "container":
         element = "<div>";
-        outputKey = "";
+        outputKey = "container";
         break;
       case "text":
       default:
@@ -517,6 +507,7 @@ class Layout {
         outputKey = "text";
         break;
     };
+
     var div = $(element, {
       id: id,
       class: className,
@@ -524,10 +515,11 @@ class Layout {
       css: css
     });
 
-    // console.log("div[0]:", div[0]);
-    // console.log("-------------------------------------------------------------")
     if (appendLocation) {
-      $(`#${appendLocation}`).append( div );
+      const containerName = `container_${appendLocation}`;
+      const loc = $(`#${containerName}`);
+      if (!loc.length) this.createElement(containerName, "", "", locationInfo = {}, "container");
+      $(`#${containerName}`).append( div );
     } else {
       $("#container").append( div );
     }
