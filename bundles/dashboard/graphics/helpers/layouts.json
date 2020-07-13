@@ -25,9 +25,9 @@ var layouts = {
     "basic-old": { "behavior": "scroll", "scrollamount": "4", "direction": "left" },
     "1P-old": { "viewBox": "25,647,304,0" },
     "1P": { "left": 36, "bottom": 20, "width": 380, "height": 50, "textAlign": "center" },
-    "2P": { "left": 20, "bottom": 20 },
-    "3P": { "left": 20, "bottom": 20 },
-    "4P": { "left": 20, "bottom": 20 },
+    "2P": { "left": 36, "bottom": 20, "width": 380, "height": 50, "textAlign": "center" },
+    "3P": { "left": 20, "bottom": 16, "width": 356, "height": 80, "textAlign": "center" },
+    "4P": { "left": 472, "top": 3, "width": 340, "height": 50, "textAlign": "center", "fontSize": "12px" },
   },
   "border": {
     "gameBorder": {

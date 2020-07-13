@@ -118,10 +118,11 @@ class Layout {
   };
 
   createTimeline = (lines, line) => {
-    var primaryOffset = 0;
+    var primaryOffset = 10000;
     var textWrapper = document.querySelector("#announcement");
     textWrapper.innerText = lines[line];
     textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    // todo: only allow new line on new words
 
     animate.timeline({ })
     .add({
@@ -130,7 +131,7 @@ class Layout {
       opacity: [0,1],
       easing: "easeInOutBack",
       duration: 5000,
-      delay: (el, i) => 300 + 60 * i,
+      delay: (el, i) => 300 + 50 * i,
       offset: primaryOffset
     })
     .add({
