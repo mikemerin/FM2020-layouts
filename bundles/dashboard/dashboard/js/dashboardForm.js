@@ -593,20 +593,19 @@ class DashboardField {
 
   saveImage = (game, runList, runNumber) => {
     if (runList) {
+      // document.title = `${runNumber + 1}/${Object.keys(runList).length} generated`
       game = $($(".masterRunListpng")[runNumber]).attr("gamename");
     };
 
     const imageWindow = window.open(`http://localhost:9090/bundles/dashboard/graphics/layout.html?saveImage=true&gameName=${game}`);
-    // imageWindow.close();
     imageWindow.addEventListener('click', e => {
       if (e.target.id === "saveImageLink") {
         imageWindow.close();
+
         if (runList) {
           runNumber++;
           if (runList[runNumber]) {
             this.saveImage("", runList, runNumber);
-          } else {
-            alert("All done!");
           }
         }
       };
