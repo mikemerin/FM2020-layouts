@@ -28,24 +28,28 @@ class Layout {
   };
 
   start = () => {
-    const gameName = this.getSearchParameters().gameName;
-    const runNumber = this.getSearchParameters().runNumber;
-    const params = [gameName, runNumber].filter(x => x).length;
-    this.replicant = nodecg.Replicant(params ? "runs" : "fieldValues");
+    const searchParameters = this.getSearchParameters();
+    const params = ["gameName", "runNumber", "saveImage"].reduce((acc, param) => {
+      if (searchParameters[param]) acc[param] = searchParameters[param];
+      return acc;
+    }, {});
+
+    const hasParams = Object.keys(params).length;
+
+    this.replicant = nodecg.Replicant(hasParams ? "runs" : "fieldValues");
     const runOrder = nodecg.Replicant("oengusRunOrder");
 
     const { name, namespace } = this.replicant;
     const { name: runOrderName, namespace: runOrderNamespace } = runOrder;
 
-
     nodecg.readReplicant(name, namespace, replicantValues => {
       nodecg.readReplicant(runOrderName, runOrderNamespace, runOrderReplicantValues => {
         this.runOrder = runOrderReplicantValues.filter(x => x.gameName);
         let gameInfo;
-        if (params) {
-          if (gameName) {
-            gameInfo = replicantValues[sanitize(decodeURI(gameName))];
-          } else if (runNumber) {
+        if (hasParams) {
+          if (params.gameName) {
+            gameInfo = replicantValues[sanitize(decodeURI(params.gameName))];
+          } else if (params.runNumber) {
             // todo: store in replicant first, then ping here
           }
         } else {
@@ -67,6 +71,7 @@ class Layout {
         this.setPlayerInfo();
         this.setChromaKeyColor(); // note: needs to be last
 
+        if (params.saveImage === "true") this.saveGameImage();
         // console.log(this)
       });
     });
@@ -138,6 +143,8 @@ class Layout {
     var textWrapper = document.querySelector("#announcement");
     textWrapper.innerText = lines[line];
     textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, "<span class='letter'>$&</span>") + "</span>" ).join(" ")
+
+    // const [translateX, translateY] = announcementFlyIn /todo: announcementFlyIn
 
     animate.timeline({ })
     .add({
@@ -425,6 +432,20 @@ class Layout {
       this.createElement(tId, tClassName, src,  tLocationInfo, "img", "player");
       this.createElement(pId, pClassName, text, pLocationInfo, "text", "player");
     };
+  };
+
+  saveGameImage = () => {
+    html2canvas(document.querySelector("#container")).then(canvas => {
+        canvas.id = "canvasImage";
+        const link = $("#saveImageLink")[0];
+        $("#saveImage").append(canvas);
+
+        link.setAttribute("download", `${sanitizeFilename(this.fields.gameName)}.png`);
+        link.setAttribute("href", canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+        link.click();
+
+        $("#canvasImage").remove();
+    });
   };
 
   // helpers

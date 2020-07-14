@@ -585,7 +585,8 @@ var layouts = {
       },
       "runInfo":      { "left": 0,  "top": 134, "width": "100%", "textAlign": "center" },
       "runInfoLines": 3,
-      "announcement": { "left": 473, "top": 3, "width": 334, "height": 53, "fontSize": "16px" }
+      "announcement": { "left": 478, "top": 3, "width": 324, "height": 53, "fontSize": "16px" },
+      "announcementFlyIn": "top"
     },
     "600": {
       "player1": {
