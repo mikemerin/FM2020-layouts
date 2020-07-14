@@ -434,11 +434,12 @@ class DashboardField {
 
   createMasterRunList = () => {
     const headerGroups = $("<tr>")
-      .append( $("<th>", { colspan: 2, text: "Actions" }) )
+      .append( $("<th>", { colspan: 3, text: "Actions" }) )
       .append( $("<th>", { rowspan: 2, text: "#" }) );
     const headerFields = $("<tr>")
       .append( $("<th>", { text: "Edit" }) )
-      .append( $("<th>", { text: "Load" }) );
+      .append( $("<th>", { text: "Load" }) )
+      .append( $("<th>", { text: ".png" }) );
 
 
     ["Game Info", "Run Info", "Player Info", "Individual Player Info", "Admin Panel"].forEach(fieldGroup => {
@@ -487,7 +488,7 @@ class DashboardField {
         row.append($("<td>", {
           rowspan: rowSpan,
           id: game + " - edit",
-          class: "pointer",
+          class: "pointer masterRunListEdit",
           text: "E",
           click: () => {
             top.location.replace("/dashboard/#workspace/main");
@@ -498,11 +499,19 @@ class DashboardField {
         .append($("<td>", {
           rowspan: rowSpan,
           id: game + " - load",
-          class: "pointer",
+          class: "pointer masterRunListLoad",
           text: "L",
           click: () => {
             window.open(`http://localhost:9090/bundles/dashboard/graphics/layout.html?gameName=${game}`);
           }
+        }))
+        .append($("<td>", {
+          rowspan: rowSpan,
+          id: game + " - png",
+          gameName: game,
+          class: "pointer masterRunListpng",
+          text: "png",
+          click: () => { this.saveImage(game) }
         }))
         .append($("<td>", {
           rowspan: rowSpan,
@@ -568,6 +577,40 @@ class DashboardField {
 
       $("#masterRunListTable").append(body);
     });
+
+    $("#masterRunListSaveAllImages").html( $("<button>", {
+      id: "masterRunListSaveAllImagesButton",
+      text: "Save all pngs",
+      class: "saveButton",
+      click: (e) => {
+        e.preventDefault();
+        if (confirm("This may take some time, are you sure?")) {
+          this.saveImage("", $(".masterRunListpng"), 0)
+        };
+      }
+    }));
+  };
+
+  saveImage = (game, runList, runNumber) => {
+    if (runList) {
+      game = $($(".masterRunListpng")[runNumber]).attr("gamename");
+    };
+
+    const imageWindow = window.open(`http://localhost:9090/bundles/dashboard/graphics/layout.html?saveImage=true&gameName=${game}`);
+    // imageWindow.close();
+    imageWindow.addEventListener('click', e => {
+      if (e.target.id === "saveImageLink") {
+        imageWindow.close();
+        if (runList) {
+          runNumber++;
+          if (runList[runNumber]) {
+            this.saveImage("", runList, runNumber);
+          } else {
+            alert("All done!");
+          }
+        }
+      };
+    })
   };
 
   updateValue = (value) => {

@@ -42,7 +42,7 @@
       {
         "name": "Master Run List",
         "title": "Master Run List",
-        "width": 8,
+        "width": 9,
         "file": "masterRunList.html",
         "headerColor": "#0D80A4",
         "workspace": "All Runs"
