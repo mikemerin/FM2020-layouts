@@ -276,7 +276,7 @@ class Layout {
     const runInfoLines = this.getLocationInfo("runInfoLines");
 
     if (runInfoLines === 1) { // todo: clean up and make all have 1 2 or 3, with the tests be if > 1, if > 2, etc
-      text = gameName + " " + category + " - estimate: " + estimate;
+      text = gameName + " (" + category + ") - estimate: " + estimate;
     } else if (runInfoLines === 3) {
       text2 = category;
       text3 =  "estimate: " + estimate
