@@ -26,6 +26,12 @@ img, .fill, .marquee {
   image-rendering: pixelated;
 }
 
+#containerCanvas {
+  width: 1280px;
+  height: 720px;
+  position: absolute;
+}
+
 #container, .fullSize {
   width: 1280px;
   height: 720px;

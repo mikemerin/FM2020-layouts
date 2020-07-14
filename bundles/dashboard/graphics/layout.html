@@ -5,6 +5,7 @@
 
     <script src="/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="/dashboard/js/fieldGroups.json"></script>
+    <script type="text/javascript" src="/dashboard/js/html2canvas.js"></script>
     <script type="text/javascript" src="/dashboard/js/textAnimation.js"></script>
     <script type="text/javascript" src="/dashboard/js/globalFunctions.js"></script>
     <script type="text/javascript" src="helpers/layouts.json"></script>
@@ -12,8 +13,12 @@
   </head>
   <body>
     <div id="container"></div>
+    <div id="saveImage">
+      <a id="saveImageLink"></a>
+    </div>
   </body>
 </html>
+
 
 <script type="text/javascript">
   $(document).ready(e => {
