@@ -71,7 +71,9 @@ class Layout {
         this.setPlayerInfo();
         this.setChromaKeyColor(); // note: needs to be last
 
-        if (params.saveImage === "true") this.saveGameImage();
+        this.createSaveImageButton();
+
+        if (params.saveImage) this.saveGameImage();
         // console.log(this)
       });
     });
@@ -434,6 +436,18 @@ class Layout {
     };
   };
 
+  createSaveImageButton = () => {
+    $("#saveImage").append( $("<button>", {
+      id: "saveImageButton",
+      text: "Save layout as image (note: all changing text will save as it looks when you click this)",
+      class: "saveButton",
+      click: (e) => {
+        e.preventDefault();
+        this.saveGameImage();
+      }
+    }));
+  }
+
   saveGameImage = () => {
     html2canvas(document.querySelector("#container")).then(canvas => {
         canvas.id = "canvasImage";
@@ -445,6 +459,7 @@ class Layout {
         link.click();
 
         $("#canvasImage").remove();
+        document.addEventListener('finished', null)
     });
   };
 
