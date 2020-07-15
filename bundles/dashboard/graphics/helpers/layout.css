@@ -1,9 +1,20 @@
-.announcement, .letter {
-  display: inline-block;
+@font-face {
+  font-family: Limerick;
+  src: url('/fonts/Limerick-Serial-Regular DB.ttf');
 }
 
+/* layers */
 
-@font-face { font-family: Limerick; src: url('/fonts/Limerick-Serial-Regular DB.ttf'); }
+#graphics     { z-index: -10 }
+.base         { z-index:  1; }
+#announcement { z-index:  2; }
+.dim          { z-index:  4; }
+.fill         { z-index:  7; }
+.bright       { z-index: 10; }
+.primary      { z-index: 13; }
+.border       { z-index: 20; }
+
+/* main css */
 
 body {
   margin: 0px;
@@ -13,36 +24,42 @@ img, .fill, .marquee {
   position: absolute;
 }
 
-
-#container    { z-index: -10 }
-.base         { z-index:  1; }
-.dim          { z-index:  4; }
-.fill         { z-index:  7; }
-.bright       { z-index: 10; }
-.primary      { z-index: 13; }
-.border       { z-index: 20; }
-
-.gameImage, .baseImage, .genre, .border, #hashtagOutline {
+.gameImage, .baseImage, .genre, .border {
   image-rendering: pixelated;
 }
 
-#containerCanvas {
-  width: 1280px;
-  height: 720px;
-  position: absolute;
-}
-
-#container, .fullSize {
+#graphics, .fullSize {
   width: 1280px;
   height: 720px;
   position: relative;
-  /* background-color: #0f0; */
 }
 
+/* text */
 
-.fillGS {
-  background-color: #0f0;
+.primary {
+  font-family: Limerick;
+  color: #fff;
+  position: absolute;
 }
+
+.runInfo {
+  font-size: 24px;
+}
+
+.announcement {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.announcement, .letter {
+  display: inline-block;
+}
+
+.nowrap {
+  white-space: nowrap ;
+}
+
+/* fills */
 
 .fillGrey {
   background-color: #606060; /* fallback if browser doesn't support */
@@ -53,16 +70,6 @@ img, .fill, .marquee {
   background-color: #444; /* fallback if browser doesn't support */
   background-image: linear-gradient(to right, #444, #606060);
   opacity: .7;
-}
-
-@keyframes gradientMovementRight {
-  0%    { background-position: 0px 0; }
-  100%  { background-position: 355px 0; }
-}
-
-@keyframes gradientMovementLeft {
-  0%    { background-position: 355px 0; }
-  100%  { background-position: 0px 0; }
 }
 
 .fillBWGradient {
@@ -80,25 +87,16 @@ img, .fill, .marquee {
   -webkit-backface-visibility: hidden;
 }
 
+/* animations */
+
 .moveRight  { animation-name: gradientMovementRight; }
+@keyframes gradientMovementRight {
+  0%    { background-position: 0px 0; }
+  100%  { background-position: 355px 0; }
+}
+
 .moveLeft   { animation-name: gradientMovementLeft; }
-
-
-.primary {
-  font-family: Limerick;
-  /* color: #fff; */
-  color: #fff;
-  position: absolute;
-}
-
-/* #hashtag        { font-size: 44px; } */
-.runInfo, .marquee        { font-size: 24px; }
-
-.announcement {
-  text-align: center;
-  vertical-align: middle;
-}
-
-.nowrap {
-  white-space: nowrap ;
+@keyframes gradientMovementLeft {
+  0%    { background-position: 355px 0; }
+  100%  { background-position: 0px 0; }
 }
