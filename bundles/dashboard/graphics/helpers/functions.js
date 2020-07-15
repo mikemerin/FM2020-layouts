@@ -140,19 +140,17 @@ class Layout {
   }
 
   createTimeline = (lines, line) => {
-    var primaryOffset = 0;
-    // var primaryOffset = 10000;
+    var primaryOffset = 10000;
     var textWrapper = document.querySelector("#announcement");
     textWrapper.innerText = lines[line];
     textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, "<span class='letter'>$&</span>") + "</span>" ).join(" ")
-
-    // const [translateX, translateY] = announcementFlyIn /todo: announcementFlyIn
+    const [flyInTranslateX, flyInTranslateY] = this.locations.announcementFlyIn === "top" ? [[-90,0] , [-30,0]] : [[-170,0] , [20,0]];
 
     animate.timeline({ })
     .add({
       targets: "#announcement, .letter",
-      translateX: [-170,0],
-      translateY: [20,0],
+      translateX: flyInTranslateX,
+      translateY: flyInTranslateY,
       rotate: [-5,0],
       scale: [.8,1],
       opacity: [-.5,1],
@@ -192,7 +190,8 @@ class Layout {
   };
 
   setChromaKeyColor = () => {
-    const { chromaKeyColor } = this.fields || "green";
+    console.log(this.fields)
+    const chromaKeyColor = this.fields.chromaKeyColor || "green";
     const conversion = {
       "red": "#FF0000",
       "green": "#00FF00",
@@ -200,9 +199,7 @@ class Layout {
       "pink": "#FF69B4",
       "orange": "#FF4500"
     };
-    // console.log("conversion[chromaKeyColor]:", conversion[chromaKeyColor]);
-    $(".fillGS").css({ "background-color": conversion[chromaKeyColor] });
-
+    $(".fillChromaKey").css({ "background-color": conversion[chromaKeyColor] });
   }
 
   setBaseImage = () => {
@@ -449,7 +446,7 @@ class Layout {
   }
 
   saveGameImage = () => {
-    html2canvas(document.querySelector("#container")).then(canvas => {
+    html2canvas(document.querySelector("#graphics")).then(canvas => {
         canvas.id = "canvasImage";
         const link = $("#saveImageLink")[0];
         $("#saveImage").append(canvas);
@@ -557,7 +554,7 @@ class Layout {
       if (!loc.length) this.createElement(containerName, "", "", locationInfo = {}, "container");
       $(`#${containerName}`).append( div );
     } else {
-      $("#container").append( div );
+      $("#graphics").append( div );
     }
   };
 

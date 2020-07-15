@@ -456,9 +456,11 @@ class DashboardField {
     });
 
     const header = $("<thead>").append(headerGroups).append(headerFields);
-    const body = $("<tbody>").append($("<h1>", {
-      text: "Loading run list from Oengus"
-    }));
+    const body = $("<tbody>").append($("<td>", {
+      colspan: "100%"
+    }).append($("<h1>", {
+      text: "Loading run list from Oengus, please wait"
+    })));
 
     const runTable = $("<table>", {
       id: "masterRunListTable",
