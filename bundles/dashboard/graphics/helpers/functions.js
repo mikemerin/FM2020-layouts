@@ -133,21 +133,30 @@ class Layout {
     });
 
     const textInfo = this.locations.announcement;
+    const animationInfo = {
+      animationType: "flyIn",
+      elementType: "text",
+      direction: this.locations.announcementFlyIn || "left",
+    };
 
     const id = "announcement";
     this.createElement(id, `${id} primary`, "", textInfo, "container", id);
-    this.createTimeline(lines, 0, id, "flyIn");
+    this.createTimeline(lines, 0, id, animationInfo);
   }
 
-  createTimeline = (lines, line, id, type) => {
+  createTimeline = (lines, line, id, animationInfo) => {
+    const { animationType, elementType, direction } = animationInfo;
     var primaryOffset = 0;
-    var textWrapper = document.querySelector(`#${id}`);
-    const letterClass = `${id}Letter`;
-    textWrapper.innerText = lines[line];
+    var wrapper = document.querySelector(`#${id}`);
+    if (elementType === "text") wrapper.innerText = lines[line]; // todo: wrap the elementType in a function, link with complete
+    if (elementType === "image") wrapper.src = "/assets/dashboard/" + lines[line];
 
-    if (type === "flyIn") {
-      const [flyInTranslateX, flyInTranslateY] = this.locations.announcementFlyIn === "top" ? [[-90,0] , [-30,0]] : [[-170,0] , [20,0]];
-      textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, `<span class='letter ${letterClass}'>$&</span>`) + "</span>" ).join(" ");
+    if (animationType === "flyIn") {
+      const [flyInTranslateX, flyInTranslateY] = direction === "top" ? [[-90,0] , [-30,0]] : [[-170,0] , [20,0]];
+      const letterClass = `${id}Letter`;
+      if (elementType === "text") { // todo: wrap this in a function, link with complete
+        wrapper.innerHTML = wrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, `<span class='letter ${letterClass}'>$&</span>`) + "</span>" ).join(" ");
+      };
 
       animate.timeline({ })
       .add({
@@ -181,35 +190,77 @@ class Layout {
         duration: 2000,
         delay: (el, i) => 100 + 20 * i,
         offset: primaryOffset + 12000,
-        complete: () => { this.createTimeline(lines, (line + 1) % lines.length, id, type) }
+        complete: () => { this.createTimeline(lines, (line + 1) % lines.length, id, animationInfo) }
       });
-    } else if (type.slice(0,4) === "swap") {
-      const [xA,xB] = (type.slice(4) === "left" ? [-20,0] : [20,0]);
+    } else if (animationType === "swap") {
+      let translateXY, translateA, translateB, scaleA = 1, scaleB;
+      if (["top", "bottom"].includes(direction)) {
+        translateXY = "translateY";
+        [translateA,translateB] = (direction === "top" ? [-28,0] : [28,0]);
+        scaleB = .5;
+      } else {
+        translateXY = "translateX";
+        [translateA,translateB] = (direction === "left" ? [-28,0] : [28,0]);
+        scaleB = 1;
+      }
+
       animate.timeline({ })
       .add({
         targets: `#${id}`,
         translateZ: [0,-400],
-        translateX: [xB,xA],
+        [translateXY]: [translateB, translateA],
+        scale: [scaleA, scaleB],
         opacity: [1,0],
         easing: "easeInOutBack",
         duration: 2500,
         offset: primaryOffset + 3000,
         complete: () => {
           line = (line + 1) % lines.length;
-          textWrapper.innerText = lines[line];
+          if (elementType === "text") wrapper.innerText = lines[line];
+          if (elementType === "image") wrapper.src = "/assets/dashboard/" + lines[line];
         }
       })
       .add({
         targets: `#${id}`,
         translateZ: [-500,0],
-        translateX: [xA,xB],
+        [translateXY]: [translateA, translateB],
+        scale: [scaleB, scaleA],
         opacity: [0,1],
         easing: "easeInOutBack",
         duration: 2500,
         offset: primaryOffset + 5000,
-        complete: () => { this.createTimeline(lines, line, id, type) }
+        complete: () => { this.createTimeline(lines, line, id, animationInfo) }
       })
-    };
+    } else if (animationType === "collapse") {
+      let scaleXY = "scale" + (direction === "horizontal" ? "X" : "Y")
+      // todo: work for text
+
+      animate.timeline({ })
+      .add({
+        targets: `#${id}`,
+        translateZ: [0,-500],
+        [scaleXY]: [1,0],
+        opacity: [1,.2],
+        easing: "easeInOutBack",
+        duration: 2500,
+        offset: primaryOffset + 3000,
+        complete: () => {
+          line = (line + 1) % lines.length;
+          if (elementType === "text") wrapper.innerText = lines[line];
+          if (elementType === "image") wrapper.src = "/assets/dashboard/" + lines[line];
+        }
+      })
+      .add({
+        targets: `#${id}`,
+        translateZ: [-500,0],
+        [scaleXY]: [0,1],
+        opacity: [.2,1],
+        easing: "easeInOutBack",
+        duration: 2500,
+        offset: primaryOffset + 5000,
+        complete: () => { this.createTimeline(lines, line, id, animationInfo) }
+      })
+    }
   };
 
   setLayoutName = () => {
@@ -220,7 +271,6 @@ class Layout {
   };
 
   setChromaKeyColor = () => {
-    console.log(this.fields)
     const chromaKeyColor = this.fields.chromaKeyColor || "green";
     const conversion = {
       "red": "#FF0000",
@@ -441,29 +491,43 @@ class Layout {
   setPlayerInfo = () => {
     var players = parseInt(this.fields.numberOfPlayers, 10);
     const tId = "twitchIcon";
-    const tClassName = "primary";
-    // const src = "baseLayoutLayers/" + tId + ".png";
+    const tClassName = "primary twitchIcon";
+    const twitchSrc = "baseLayoutLayers/" + tId + ".png";
 
     for (let playerNumber = 1; playerNumber <= players; playerNumber++) {
-      const pId = "player" + playerNumber;
+      const pIdIcon = tId + playerNumber;
+      const pIdText = "player" + playerNumber;
       const pClassName = "primary";
       let twitchHandle = this.fields["player" + playerNumber + "_twitchHandle"];
       let displayName = this.fields["player" + playerNumber + "_displayName"] || twitchHandle;
-      const src = "avatars/" + twitchHandle + ".png";
+      const avatarSrc = "avatars/" + twitchHandle + ".png";
 
       const tLocationInfo = this.getLocationInfo(tId, "player", playerNumber);
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
       const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
-      const fadeLocation = "swap" + (pLocationInfo.left ? "left" : "right");
+      let direction;
+
+      const animationInfo = {
+        animationType: "swap",
+        elementType: "text",
+        direction: tLocationInfo.flyIn || (pLocationInfo.left ? "left" : "right"),
+      };
+
+      const iconAnimationInfo = {
+        animationType: "collapse",
+        elementType: "image",
+        direction: tLocationInfo.flyIn || "horizontal"
+      };
 
       pLocationInfo.fontSize = layouts.playerTextSizes[this.fields.numberOfPlayers + "P"];
       if (pLocationInfo.textAlign === "center") pLocationInfo.width = "100%";
 
       this.setBorder("gameBorder", playerNumber);
 
-      this.createElement(tId, tClassName, src,  tLocationInfo, "img", "player");
-      this.createElement(pId, pClassName, twitchHandle, pLocationInfo, "text", "player");
-      this.createTimeline([twitchHandle, displayName], 0, pId, fadeLocation);
+      this.createElement(pIdIcon, tClassName, twitchSrc,  tLocationInfo, "img", "player");
+      this.createElement(pIdText, pClassName, twitchHandle, pLocationInfo, "text", "player");
+      this.createTimeline([twitchHandle, displayName], 0, pIdText, animationInfo);
+      this.createTimeline([twitchSrc, avatarSrc], 0, pIdIcon, iconAnimationInfo);
     };
   };
 
