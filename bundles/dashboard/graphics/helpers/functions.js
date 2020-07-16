@@ -136,50 +136,80 @@ class Layout {
 
     const id = "announcement";
     this.createElement(id, `${id} primary`, "", textInfo, "container", id);
-    this.createTimeline(lines, 0);
+    this.createTimeline(lines, 0, id, "flyIn");
   }
 
-  createTimeline = (lines, line) => {
-    var primaryOffset = 10000;
-    var textWrapper = document.querySelector("#announcement");
+  createTimeline = (lines, line, id, type) => {
+    var primaryOffset = 0;
+    var textWrapper = document.querySelector(`#${id}`);
+    const letterClass = `${id}Letter`;
     textWrapper.innerText = lines[line];
-    textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, "<span class='letter'>$&</span>") + "</span>" ).join(" ")
-    const [flyInTranslateX, flyInTranslateY] = this.locations.announcementFlyIn === "top" ? [[-90,0] , [-30,0]] : [[-170,0] , [20,0]];
 
-    animate.timeline({ })
-    .add({
-      targets: "#announcement, .letter",
-      translateX: flyInTranslateX,
-      translateY: flyInTranslateY,
-      rotate: [-5,0],
-      scale: [.8,1],
-      opacity: [-.5,1],
-      easing: "easeInOutBack",
-      duration: 5000,
-      delay: (el, i) => 40 * i,
-      offset: primaryOffset
-    })
-    .add({
-      targets: ".letter",
-      translateY: [0,-2,0],
-      scale: [1,.8,1],
-      easing: "easeInSine",
-      duration: 1000,
-      delay: (el, i) => 100 + 25 * i,
-      offset: primaryOffset + 8000
-    })
-    .add({
-      targets: ".letter",
-      translateZ: [0,-300],
-      translateY: [0,10],
-      opacity: [1,0],
-      scale: [1,.8],
-      easing: "easeInOutBack",
-      duration: 2000,
-      delay: (el, i) => 100 + 20 * i,
-      offset: primaryOffset + 12000,
-      complete: () => { this.createTimeline(lines, (line + 1) % lines.length) }
-    });
+    if (type === "flyIn") {
+      const [flyInTranslateX, flyInTranslateY] = this.locations.announcementFlyIn === "top" ? [[-90,0] , [-30,0]] : [[-170,0] , [20,0]];
+      textWrapper.innerHTML = textWrapper.textContent.split(" ").map(word => "<span class='word nowrap'>" + word.replace(/\S/g, `<span class='letter ${letterClass}'>$&</span>`) + "</span>" ).join(" ");
+
+      animate.timeline({ })
+      .add({
+        targets: `#${id}, .${letterClass}`,
+        translateX: flyInTranslateX,
+        translateY: flyInTranslateY,
+        rotate: [-5,0],
+        scale: [.8,1],
+        opacity: [-.5,1],
+        easing: "easeInOutBack",
+        duration: 5000,
+        delay: (el, i) => 40 * i,
+        offset: primaryOffset
+      })
+      .add({
+        targets: `.${letterClass}`,
+        translateY: [0,-2,0],
+        scale: [1,.8,1],
+        easing: "easeInSine",
+        duration: 1000,
+        delay: (el, i) => 100 + 25 * i,
+        offset: primaryOffset + 8000
+      })
+      .add({
+        targets: `.${letterClass}`,
+        translateZ: [0,-300],
+        translateY: [0,10],
+        opacity: [1,0],
+        scale: [1,.8],
+        easing: "easeInOutBack",
+        duration: 2000,
+        delay: (el, i) => 100 + 20 * i,
+        offset: primaryOffset + 12000,
+        complete: () => { this.createTimeline(lines, (line + 1) % lines.length, id, type) }
+      });
+    } else if (type.slice(0,4) === "swap") {
+      const [xA,xB] = (type.slice(4) === "left" ? [-20,0] : [20,0]);
+      animate.timeline({ })
+      .add({
+        targets: `#${id}`,
+        translateZ: [0,-400],
+        translateX: [xB,xA],
+        opacity: [1,0],
+        easing: "easeInOutBack",
+        duration: 2500,
+        offset: primaryOffset + 3000,
+        complete: () => {
+          line = (line + 1) % lines.length;
+          textWrapper.innerText = lines[line];
+        }
+      })
+      .add({
+        targets: `#${id}`,
+        translateZ: [-500,0],
+        translateX: [xA,xB],
+        opacity: [0,1],
+        easing: "easeInOutBack",
+        duration: 2500,
+        offset: primaryOffset + 5000,
+        complete: () => { this.createTimeline(lines, line, id, type) }
+      })
+    };
   };
 
   setLayoutName = () => {
@@ -412,16 +442,19 @@ class Layout {
     var players = parseInt(this.fields.numberOfPlayers, 10);
     const tId = "twitchIcon";
     const tClassName = "primary";
-    const src = "baseLayoutLayers/" + tId + ".png";
+    // const src = "baseLayoutLayers/" + tId + ".png";
 
     for (let playerNumber = 1; playerNumber <= players; playerNumber++) {
       const pId = "player" + playerNumber;
       const pClassName = "primary";
-      let text = this.fields["player" + playerNumber + "_twitchHandle"];
+      let twitchHandle = this.fields["player" + playerNumber + "_twitchHandle"];
+      let displayName = this.fields["player" + playerNumber + "_displayName"] || twitchHandle;
+      const src = "avatars/" + twitchHandle + ".png";
 
       const tLocationInfo = this.getLocationInfo(tId, "player", playerNumber);
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
       const pLocationInfo = this.getOffsetLocationInfo(tLocationInfo, offsetInfo);
+      const fadeLocation = "swap" + (pLocationInfo.left ? "left" : "right");
 
       pLocationInfo.fontSize = layouts.playerTextSizes[this.fields.numberOfPlayers + "P"];
       if (pLocationInfo.textAlign === "center") pLocationInfo.width = "100%";
@@ -429,14 +462,15 @@ class Layout {
       this.setBorder("gameBorder", playerNumber);
 
       this.createElement(tId, tClassName, src,  tLocationInfo, "img", "player");
-      this.createElement(pId, pClassName, text, pLocationInfo, "text", "player");
+      this.createElement(pId, pClassName, twitchHandle, pLocationInfo, "text", "player");
+      this.createTimeline([twitchHandle, displayName], 0, pId, fadeLocation);
     };
   };
 
   createSaveImageButton = () => {
     $("#saveImage").append( $("<button>", {
       id: "saveImageButton",
-      text: "Save layout as image (note: all changing text will save as it looks when you click this)",
+      text: "Save Image",
       class: "saveButton",
       click: (e) => {
         e.preventDefault();

@@ -7,7 +7,6 @@
 
 #graphics     { z-index: -10 }
 .base         { z-index:  1; }
-#announcement { z-index:  2; }
 .dim          { z-index:  4; }
 .fill         { z-index:  7; }
 .bright       { z-index: 10; }
@@ -18,6 +17,14 @@
 
 body {
   margin: 0px;
+}
+
+.saveButton {
+  position: relative;
+	font-size: 18px;
+	padding: 4px;
+  width: 100%;
+  overflow: hidden;
 }
 
 img, .fill, .marquee {
@@ -99,4 +106,17 @@ img, .fill, .marquee {
 @keyframes gradientMovementLeft {
   0%    { background-position: 355px 0; }
   100%  { background-position: 0px 0; }
+}
+
+/* admin panel */
+
+.panel {
+  float: left;
+  display: table;
+  margin-right: 9px;
+}
+
+.small {
+  width: 230px;
+  max-width: 12%;
 }

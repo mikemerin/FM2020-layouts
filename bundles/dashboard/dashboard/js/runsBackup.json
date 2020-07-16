@@ -38,6 +38,45 @@
       "backgroundOpacity": ".3"
     }
   },
+  "aglab2sRomHackSupreme": {
+    "gameInfo": {
+      "gameName": "aglab2's ROM Hack Supreme",
+      "resolution": "10:7",
+      "createdBy": "aglab2",
+      "genres": "",
+      "otherGenres": "Mario"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "2",
+      "player1_twitchHandle": "Joshua_boring",
+      "player1_displayName": "Joshua",
+      "player1_camera": false,
+      "player1_pb": "0:30:57",
+      "player2_twitchHandle": "ヒョウカ (hyo_ka)",
+      "player2_displayName": "hyoka",
+      "player2_camera": false,
+      "player2_pb": "0:31:21",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "100%",
+      "estimate": "0:45:00",
+      "runType": "Race",
+      "worldRecord": "0:30:57",
+      "wrHolder": "Joshua_boring"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
   "iWannaWhisperInMirror": {
     "gameInfo": {
       "gameName": "I Wanna Whisper In Mirror",
