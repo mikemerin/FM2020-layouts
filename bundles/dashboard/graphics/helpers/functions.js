@@ -117,7 +117,7 @@ class Layout {
     };
 
     var lines = [
-      // "Fangame Marathon 2020 is brought to you by The Wannabes! This is a very long line of text to test stuff out.",
+      "Fangame Marathon 2020 is brought to you by The Wannabes! This is a very long line of text to test stuff out.",
       "Fangame Marathon 2020 is brought to you by The Wannabes!",
       "Be sure to show your support for our runners by following them!",
       "Visit www.fangam.es for more IWBTG games!"
@@ -146,7 +146,7 @@ class Layout {
 
   createTimeline = (lines, line, id, animationInfo) => {
     const { animationType, elementType, direction } = animationInfo;
-    var primaryOffset = 0;
+    var primaryOffset = 10000;
     var wrapper = document.querySelector(`#${id}`);
     if (elementType === "text") wrapper.innerText = lines[line]; // todo: wrap the elementType in a function, link with complete
     if (elementType === "image") wrapper.src = "/assets/dashboard/" + lines[line];
@@ -178,7 +178,16 @@ class Layout {
         easing: "easeInSine",
         duration: 1000,
         delay: (el, i) => 100 + 25 * i,
-        offset: primaryOffset + 8000
+        offset: primaryOffset + 9000
+      })
+      .add({
+        targets: `.${letterClass}`,
+        translateY: [0,-2,0],
+        scale: [1,.8,1],
+        easing: "easeInSine",
+        duration: 1000,
+        delay: (el, i) => 100 + 25 * i,
+        offset: primaryOffset + 14000
       })
       .add({
         targets: `.${letterClass}`,
@@ -189,10 +198,11 @@ class Layout {
         easing: "easeInOutBack",
         duration: 2000,
         delay: (el, i) => 100 + 20 * i,
-        offset: primaryOffset + 12000,
+        offset: primaryOffset + 17000,
         complete: () => { this.createTimeline(lines, (line + 1) % lines.length, id, animationInfo) }
       });
     } else if (animationType === "swap") {
+      primaryOffset *= 2;
       let translateXY, translateA, translateB, scaleA = 1, scaleB;
       if (["top", "bottom"].includes(direction)) {
         translateXY = "translateY";
@@ -212,8 +222,8 @@ class Layout {
         scale: [scaleA, scaleB],
         opacity: [1,0],
         easing: "easeInOutBack",
-        duration: 2500,
-        offset: primaryOffset + 3000,
+        duration: 3000,
+        offset: primaryOffset + 4000,
         complete: () => {
           line = (line + 1) % lines.length;
           if (elementType === "text") wrapper.innerText = lines[line];
@@ -227,11 +237,12 @@ class Layout {
         scale: [scaleB, scaleA],
         opacity: [0,1],
         easing: "easeInOutBack",
-        duration: 2500,
-        offset: primaryOffset + 5000,
+        duration: 3000,
+        offset: primaryOffset + 7000,
         complete: () => { this.createTimeline(lines, line, id, animationInfo) }
       })
     } else if (animationType === "collapse") {
+      primaryOffset *= 2;
       let scaleXY = "scale" + (direction === "horizontal" ? "X" : "Y")
       // todo: work for text
 
@@ -242,8 +253,8 @@ class Layout {
         [scaleXY]: [1,0],
         opacity: [1,.2],
         easing: "easeInOutBack",
-        duration: 2500,
-        offset: primaryOffset + 3000,
+        duration: 3000,
+        offset: primaryOffset + 4000,
         complete: () => {
           line = (line + 1) % lines.length;
           if (elementType === "text") wrapper.innerText = lines[line];
@@ -256,8 +267,8 @@ class Layout {
         [scaleXY]: [0,1],
         opacity: [.2,1],
         easing: "easeInOutBack",
-        duration: 2500,
-        offset: primaryOffset + 5000,
+        duration: 3000,
+        offset: primaryOffset + 7000,
         complete: () => { this.createTimeline(lines, line, id, animationInfo) }
       })
     }
