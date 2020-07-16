@@ -344,19 +344,31 @@ class Layout {
   };
 
   setRunInfo = () => {
-    const { gameName, category, estimate } = this.fields;
+    const { category, createdBy, estimate, gameName, worldRecord, wrHolder } = this.fields; // todo: add checks here if no WR aka N/A
     const baseId = "runInfo"
     const className = `${baseId} primary`;
     const locationInfo = this.getLocationInfo(baseId);
-    let text = gameName, text2, text3, locationInfo2, locationInfo3; // todo: turn into text = {}, locationInfo = {}
+    let text = gameName,
+        textSwap = "Created By " + createdBy,
+        text2, text2Swap, locationInfo2,
+        text3, text3Swap, locationInfo3; // todo: turn into text = {}, locationInfo = {}
+
+    const animationInfo = {
+      animationType: "collapse",
+      elementType: "text",
+      direction: "vertical",
+    };
 
     const runInfoLines = this.getLocationInfo("runInfoLines");
 
     if (runInfoLines === 1) { // todo: clean up and make all have 1 2 or 3, with the tests be if > 1, if > 2, etc
       text = gameName + " (" + category + ") - estimate: " + estimate;
+      textSwap = "Created By " + createdBy + " - " + category + " WR " + worldRecord + " by " + wrHolder;
     } else if (runInfoLines === 3) {
       text2 = category;
+      text2Swap = category;
       text3 =  "estimate: " + estimate
+      text3Swap = "WR " + worldRecord + " by " + wrHolder;
       locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
       locationInfo3 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo3);
       if (locationInfo.textAlign) {
@@ -365,17 +377,22 @@ class Layout {
         locationInfo3 = {...locationInfo3, width: width, textAlign: textAlign };
       };
       this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
+      this.createTimeline([text2, text2Swap], 0, baseId + 2, animationInfo)
       this.createElement(baseId + 3, className, text3, locationInfo3, "text", baseId);
+      this.createTimeline([text3, text3Swap], 0, baseId + 3, animationInfo)
     } else {
       text2 = category + " - estimate: " + estimate;
+      text2Swap = category + " WR " + worldRecord + " by " + wrHolder;
       locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
       if (locationInfo.textAlign) {
         const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
         locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
       };
       this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
+      this.createTimeline([text2, text2Swap], 0, baseId + 2, animationInfo)
     };
     this.createElement(baseId + 1, className, text, locationInfo, "text", baseId);
+    this.createTimeline([text, textSwap], 0, baseId + 1, animationInfo)
   };
 
   setGenres = () => {
