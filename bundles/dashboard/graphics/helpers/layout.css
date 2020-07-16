@@ -11,6 +11,7 @@
 .fill         { z-index:  7; }
 .bright       { z-index: 10; }
 .primary      { z-index: 13; }
+.twitchIcon   { z-index: 16; }
 .border       { z-index: 20; }
 
 /* main css */

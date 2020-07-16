@@ -482,7 +482,7 @@ var layouts = {
         "twitchIcon": { "height": 22, "width": 22 }
       },
       "player2": {
-        "twitchIcon": { "height": 22, "width": 22 }
+        "twitchIcon": { "height": 22, "width": 22, "flyIn": "top" }
       },
       "player3": {
         "twitchIcon": { "height": 22, "width": 22 }
