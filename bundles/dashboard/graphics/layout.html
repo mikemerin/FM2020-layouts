@@ -13,9 +13,34 @@
   </head>
   <body>
     <div id="graphics"></div>
-    <br />
-    <div id="saveImage">
-      <a id="saveImageLink"></a>
+    <div id="adminPanel">
+      <p><b><u>Admin Panel</u></b></p>
+      <!-- todo: generate each of thse with functions -->
+      <div id="saveImage" class="panel small">
+        <p><b>Save layout as image</b></p>
+        Note: takes screenshot <u>as you see it</u> including any animation changes
+        <a id="saveImageLink"></a>
+      </div>
+
+      <div id="reloadFields" class="panel small">
+        <p><b>Reload Fields</b></p>
+        <p>TBD</p>
+        <p>Update latest dashboard field information</p>
+      </div>
+
+      <div id="timers" class="panel small">
+        <p><b>Timers</b></p>
+        <p>TBD</p>
+        <p>Start/stop/reset. If 2-4P will have multiple timers. If relay, will have splits</p>
+      </div>
+
+      <div id="updateRunners" class="panel">
+        <p><b>Update Runners</b></p>
+        <p>TBD</p>
+        <p>If runners change during the event (tournament, etc.) load them here</p>
+        <p>If 2-4P will let you place the audio icon next to them</p>
+      </div>
+
     </div>
   </body>
 </html>
@@ -26,4 +51,6 @@
     console.log("Layout ready for generation", e);
     var layout = new Layout();
   });
+
+
 </script>
