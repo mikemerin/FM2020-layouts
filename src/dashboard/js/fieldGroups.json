@@ -140,6 +140,11 @@ var fieldGroups = {
         "placeholder": "Shadow"
       },
       {
+        "fieldName": "Pronouns",
+        "type": "text",
+        "placeholder": "he/him"
+      },
+      {
         "fieldName": "Camera",
         "type": "slider",
         "defaultValue": false

@@ -186,7 +186,7 @@ var layouts = {
       }
     },
     "600": {
-      "runInfo":      { "left": 456,  "top": 647 },
+      "runInfo":      { "left": 456,  "top": 640 },
       "player1": {
         "twitchIcon": { "right": 24, "bottom": 21 },
         "offset":     { "right": 47, "bottom": -8 },
@@ -197,7 +197,8 @@ var layouts = {
       }
     },
     "608": {
-      "runInfo":      { "left": 456,  "top": 647 },
+      "commentInfo":  { "left": 456,  "top": 640 },
+      "runInfo":      { "left": 36,   "top": 442, "width": 374, "height": 60 },
       "player1": {
         "twitchIcon": { "right": 24, "bottom": 21 },
         "offset":     { "right": 47, "bottom": -8 },

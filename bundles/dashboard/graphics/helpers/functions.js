@@ -12,6 +12,12 @@ class Layout {
     this.start();
   };
 
+  runAndCommentaryAnimationInfo = {
+    animationType: "collapse",
+    elementType: "text",
+    direction: "vertical",
+  };
+
   getSearchParameters = () => {
     var prmstr = window.location.search.substr(1);
     return prmstr != null && prmstr != "" ? this.transformToAssocArray(prmstr) : {};
@@ -62,11 +68,12 @@ class Layout {
         this.setBaseImage();
         this.setBorders();
         this.setGameImage();
-        this.setGenres();
+        // this.setGenres(); // Note: removed in FM2021
         this.setHashtag();
         this.setLayoutName();
         this.setMarqueeText();
         this.setRunInfo();
+        this.setCommentaryInfo();
 
         this.setPlayerInfo();
         this.setChromaKeyColor(); // note: needs to be last
@@ -117,8 +124,8 @@ class Layout {
     };
 
     var lines = [
-      "Fangame Marathon 2020 is brought to you by The Wannabes! This is a very long line of text to test stuff out.",
-      "Fangame Marathon 2020 is brought to you by The Wannabes!",
+      "Fangame Marathon 2021 is brought to you by The Wannabes! This is a very long line of text to test stuff out.",
+      "Fangame Marathon 2021 is brought to you by The Wannabes!",
       "Be sure to show your support for our runners by following them!",
       "Visit www.fangam.es for more IWBTG games!"
     ];
@@ -146,7 +153,8 @@ class Layout {
 
   createTimeline = (lines, line, id, animationInfo) => {
     const { animationType, elementType, direction } = animationInfo;
-    var primaryOffset = 10000;
+    // var primaryOffset = 1000;
+    var primaryOffset = 10000; // TODO: change back
     var wrapper = document.querySelector(`#${id}`);
     if (elementType === "text") wrapper.innerText = lines[line]; // todo: wrap the elementType in a function, link with complete
     if (elementType === "image") wrapper.src = "/assets/dashboard/" + lines[line];
@@ -359,96 +367,112 @@ class Layout {
     const baseId = "runInfo"
     const className = `${baseId} primary`;
     const locationInfo = this.getLocationInfo(baseId);
-    let text = gameName,
-        textSwap = "Created By " + createdBy,
-        text2, text2Swap, locationInfo2,
-        text3, text3Swap, locationInfo3; // todo: turn into text = {}, locationInfo = {}
 
-    const animationInfo = {
-      animationType: "collapse",
-      elementType: "text",
-      direction: "vertical",
-    };
+    const createdByText = "created by:"
+    const estimateText = "estimate: " + estimate;
+    const wrText = "WR " + worldRecord + " by " + wrHolder;
+
+    let text = gameName;
+    let textSwap = category;
 
     const runInfoLines = this.getLocationInfo("runInfoLines");
 
-    if (runInfoLines === 1) { // todo: clean up and make all have 1 2 or 3, with the tests be if > 1, if > 2, etc
-      text = gameName + " (" + category + ") - estimate: " + estimate;
-      textSwap = "Created By " + createdBy + " - " + category + " WR " + worldRecord + " by " + wrHolder;
-    } else if (runInfoLines === 3) {
-      text2 = category;
-      text2Swap = category;
-      text3 =  "estimate: " + estimate
-      text3Swap = "WR " + worldRecord + " by " + wrHolder;
-      locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
-      locationInfo3 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo3);
-      if (locationInfo.textAlign) {
-        const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
-        locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
-        locationInfo3 = {...locationInfo3, width: width, textAlign: textAlign };
-      };
-      this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
-      this.createTimeline([text2, text2Swap], 0, baseId + 2, animationInfo)
-      this.createElement(baseId + 3, className, text3, locationInfo3, "text", baseId);
-      this.createTimeline([text3, text3Swap], 0, baseId + 3, animationInfo)
-    } else {
-      text2 = category + " - estimate: " + estimate;
-      text2Swap = category + " WR " + worldRecord + " by " + wrHolder;
-      locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
-      if (locationInfo.textAlign) {
-        const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
-        locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
-      };
-      this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
-      this.createTimeline([text2, text2Swap], 0, baseId + 2, animationInfo)
+    const text2 = createdByText;
+    const text2Swap = estimateText;
+    const text3 =  createdBy;
+    const text3Swap = "WR " + worldRecord + " by " + wrHolder;
+    let locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+    let locationInfo3 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo3);
+    if (locationInfo.width || locationInfo.textAlign) {
+      const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
+      locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
+      locationInfo3 = {...locationInfo3, width: width, textAlign: textAlign };
     };
+    this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
+    this.createTimeline([text2, text2Swap], 0, baseId + 2, this.runAndCommentaryAnimationInfo)
+    this.createElement(baseId + 3, className, text3, locationInfo3, "text", baseId);
+    this.createTimeline([text3, text3Swap], 0, baseId + 3, this.runAndCommentaryAnimationInfo)
+
     this.createElement(baseId + 1, className, text, locationInfo, "text", baseId);
-    this.createTimeline([text, textSwap], 0, baseId + 1, animationInfo)
+    this.createTimeline([text, textSwap], 0, baseId + 1, this.runAndCommentaryAnimationInfo)
   };
 
-  setGenres = () => {
-    var id = "genreBorder";
-    var layoutLocation = "genre";
-    var locationInfo = this.getLocationInfo(id, id);
-    if (locationInfo.alt) {  // todo: have "alt" be a key in genres instead of a location property
-      id += "Stacked";
-      layoutLocation += "Stacked";
-    }
+  setCommentaryInfo = () => {
+    const { commentators } = this.fields; // todo: add checks here if no WR aka N/A
+    if (commentators) {
+      const baseId = "commentInfo";
+      const className = `${baseId} primary`;
+      const locationInfo = this.getLocationInfo(baseId);
 
-    const className = "border";
-    const src = "baseLayoutLayers/" + id + ".png";
+      const commentaryByText = "Commentary By:";
 
-    this.createElement(id, className, src, locationInfo, "img", "genres"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
+      let text = commentaryByText;
+      const textSwap = '', text2Swap = '';
 
-    var skipGenre = "";
+      const runInfoLines = this.getLocationInfo("runInfoLines");
 
-    if (this.fields.otherGenres !== "N/A") {
-      skipGenre = locationInfo.alt ? "needle" : "gimmick"; // future: choose where to replace (input in the dashboard)
-      const otherId = sanitize(this.fields.otherGenres);
-      const otherClassName = "genre bright";
-      const otherSrc = "genreIcons/" + otherId + ".png";
-      const otherGenreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][skipGenre]);
-      this.createElement(otherId, otherClassName, otherSrc, otherGenreLocationInfo, "img", "genres");
-    };
-
-    const gameGenres = this.fields.genres.split("; ");
-    fieldGroups.gameInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
-      const id = sanitize(field);
-      if (id !== skipGenre) {
-        var className = "genre";
-        const src = "genreIcons/" + id + ".png";
-
-        const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][id]);
-        if (gameGenres.includes(field)) {
-          className += " bright";
-        } else {
-          className += " dim";
+      if (runInfoLines === 1) { // todo: clean up and make all have 1 2 or 3, with the tests be if > 1, if > 2, etc
+        text = gameName + " (" + category + ") - estimate: " + estimate;
+        // textSwap = "Created By " + createdBy + " - " + category + " WR " + worldRecord + " by " + wrHolder;
+        textSwap = "Estimate: " + estimate + " - " + category + " WR " + worldRecord + " by " + wrHolder;
+      } else {
+        const text2 = commentators;
+        let locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
+        if (locationInfo.width || locationInfo.textAlign) {
+          const { width, textAlign } = locationInfo; // todo: double check if just textAlign: right and no width if this still works
+          locationInfo2 = {...locationInfo2, width: width, textAlign: textAlign };
         };
-        this.createElement(id, className, src, genreLocationInfo, "img", "genres");
+        this.createElement(baseId + 2, className, text2, locationInfo2, "text", baseId);
+        this.createTimeline([text2, text2Swap], 0, baseId + 2, this.runAndCommentaryAnimationInfo)
       };
-    });
-
+      this.createElement(baseId + 1, className, text, locationInfo, "text", baseId);
+      this.createTimeline([text, textSwap], 0, baseId + 1, this.runAndCommentaryAnimationInfo)
+    }
   };
+
+  // setGenres = () => {  // Note: removed in FM2021
+  //   var id = "genreBorder";
+  //   var layoutLocation = "genre";
+  //   var locationInfo = this.getLocationInfo(id, id);
+  //   if (locationInfo.alt) {  // todo: have "alt" be a key in genres instead of a location property
+  //     id += "Stacked";
+  //     layoutLocation += "Stacked";
+  //   }
+  //
+  //   const className = "border";
+  //   const src = "baseLayoutLayers/" + id + ".png";
+  //
+  //   this.createElement(id, className, src, locationInfo, "img", "genres"); // future: lazy paste in over the existing border; works as is, in the future will create (BG dependent on the fills)
+  //
+  //   var skipGenre = "";
+  //
+  //   if (this.fields.otherGenres !== "N/A") {
+  //     skipGenre = locationInfo.alt ? "needle" : "gimmick"; // future: choose where to replace (input in the dashboard)
+  //     const otherId = sanitize(this.fields.otherGenres);
+  //     const otherClassName = "genre bright";
+  //     const otherSrc = "genreIcons/" + otherId + ".png";
+  //     const otherGenreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][skipGenre]);
+  //     this.createElement(otherId, otherClassName, otherSrc, otherGenreLocationInfo, "img", "genres");
+  //   };
+  //
+  //   const gameGenres = this.fields.genres.split("; ");
+  //   fieldGroups.gameInfo.fields.find(field => field.fieldName === "Genres").options.forEach(field => {
+  //     const id = sanitize(field);
+  //     if (id !== skipGenre) {
+  //       var className = "genre";
+  //       const src = "genreIcons/" + id + ".png";
+  //
+  //       const genreLocationInfo = this.getOffsetLocationInfo(locationInfo, layouts.offsets[layoutLocation][id]);
+  //       if (gameGenres.includes(field)) {
+  //         className += " bright";
+  //       } else {
+  //         className += " dim";
+  //       };
+  //       this.createElement(id, className, src, genreLocationInfo, "img", "genres");
+  //     };
+  //   });
+  //
+  // };
 
   getImage = () => { // future: see XMLHttpRequest in global
 
@@ -458,15 +482,15 @@ class Layout {
     this.setBorder("titleCard");
     if (layouts[this.fields.numberOfPlayers + "P"][this.fields.resolution]["borders"]["titleCard2"]) this.setBorder("titleCard2");
     this.setBorder("timer");
-    this.setBorder("genres");  // future: lazy creation in under the pasted border; works as is, in the future will create (BG dependent on the fills)
+    // this.setBorder("genres");  // Note: removed in FM2021 // future: lazy creation in under the pasted border; works as is, in the future will create (BG dependent on the fills)
   };
 
   setBorder = (type, playerNumber = false) => {
     const { left: sL, top: sT, alt } = this.getLocationInfo("start", type, playerNumber);
     const { left: oL, top: oT } = this.getLocationInfo("offset", type, playerNumber);
-    if (type === "genres" && alt) {
-      this.setBorder("genresStacked");
-    }
+    // if (type === "genres" && alt) {
+    //   this.setBorder("genresStacked");  // Note: removed in FM2021
+    // }
 
     // console.log(type, playerNumber, sL, sT, oL, oT)
 
@@ -522,13 +546,18 @@ class Layout {
     const tClassName = "primary twitchIcon";
     const twitchSrc = "baseLayoutLayers/" + tId + ".png";
 
-    for (let playerNumber = 1; playerNumber <= players; playerNumber++) {
+    for (let playerNumber = 1; playerNumber <= players; playerNumber++) {``
       const pIdIcon = tId + playerNumber;
       const pIdText = "player" + playerNumber;
       const pClassName = "primary";
-      let twitchHandle = this.fields["player" + playerNumber + "_twitchHandle"];
-      let displayName = this.fields["player" + playerNumber + "_displayName"] || twitchHandle;
+      const twitchHandle = this.fields["player" + playerNumber + "_twitchHandle"];
+      const pronouns = this.fields["player" + playerNumber + "_pronouns"];
+      const pb = this.fields["player" + playerNumber + "_pb"];
+      const displayName = this.fields["player" + playerNumber + "_displayName"] || twitchHandle;
       const avatarSrc = "avatars/" + twitchHandle + ".png";
+
+      const text = displayName + " (" + pronouns + ")";
+      const textSwap = "PB: " + pb + " - " + twitchHandle;
 
       const tLocationInfo = this.getLocationInfo(tId, "player", playerNumber);
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
@@ -554,8 +583,8 @@ class Layout {
 
       this.createElement(pIdIcon, tClassName, twitchSrc,  tLocationInfo, "img", "player");
       this.createElement(pIdText, pClassName, twitchHandle, pLocationInfo, "text", "player");
-      this.createTimeline([twitchHandle, displayName], 0, pIdText, animationInfo);
-      this.createTimeline([twitchSrc, avatarSrc], 0, pIdIcon, iconAnimationInfo);
+      this.createTimeline([text, textSwap], 0, pIdText, animationInfo);
+      this.createTimeline([avatarSrc, twitchSrc], 0, pIdIcon, iconAnimationInfo);
     };
   };
 
@@ -597,13 +626,12 @@ class Layout {
       case "gameBorder":
         return layout["player" + playerNumber][type][id];
         break;
-      case "genreBorder":
-        return layout["borders"]["genres"]["start"];
-        break;
-      case "genreBorderStacked": // todo: cleanup
-        console.log("location", layout["borders"]["genresStacked"])
-        return layout["borders"]["genresStacked"]["start"];
-        break;
+      // case "genreBorder":  // Note: removed in FM2021
+      //   return layout["borders"]["genres"]["start"];
+      //   break;
+      // case "genreBorderStacked":  // Note: removed in FM2021
+      //   return layout["borders"]["genresStacked"]["start"];
+      //   break;
       case "titleCard":
       case "titleCard2":
       case "timer":

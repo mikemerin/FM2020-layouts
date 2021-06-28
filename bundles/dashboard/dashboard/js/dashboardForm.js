@@ -185,6 +185,8 @@ class DashboardForm {
       click: (e) => {
         e.preventDefault();
         this.saveFields();
+        this.saveFields();
+        this.saveFields();
       }
     });
 

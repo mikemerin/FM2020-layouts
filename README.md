@@ -1,6 +1,6 @@
-#Fangame Marathon 2020 Layouts
+#Fangame Marathon 2021 Layouts
 
-This is a program to dynamically generate layouts for FM2020.
+This is a program to dynamically generate layouts for FM2021.
 
 To get started:
 
@@ -15,7 +15,7 @@ Once there you will see a few tabs
 
 * All Runs
   * This is where you can see all runs.
-  * The run order is fetched from the official FM2020 run list on [Oengus' API](https://oengus.io/api/marathon/fm2020/schedule)
+  * The run order is fetched from the official FM2021 run list on [Oengus' API](https://oengus.io/api/marathon/fm2021/schedule)
   * The rest of the information is stored in the program
   * On the left side you can click to either edit the info or load the run into its own URL
 * Main

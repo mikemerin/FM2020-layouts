@@ -26,7 +26,7 @@
       {
         "name": "Player Info",
         "title": "Player Info",
-        "width": 4,
+        "width": 5,
         "file": "playerInfo.html",
         "headerColor": "#0D80A4",
         "workspace": "Main"

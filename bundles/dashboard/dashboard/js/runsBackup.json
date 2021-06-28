@@ -1,4 +1,44 @@
 {
+  "iWannaBeTheBoshy": {
+    "gameInfo": {
+      "gameName": "I Wanna Be the Boshy",
+      "resolution": "608",
+      "createdBy": "Solgryn",
+      "genres": "Adventure; Trap",
+      "otherGenres": "N/A"
+    },
+    "playerInfo": {
+      "numberOfPlayers": "2",
+      "player1_twitchHandle": "Anuj071",
+      "player1_displayName": "Anuj071",
+      "player1_camera": true,
+      "player1_pb": "1:13:24",
+      "player2_twitchHandle": "placements",
+      "player2_displayName": "Placements",
+      "player2_camera": true,
+      "player2_pb": "1:25:00
+      ",
+      "player3_twitchHandle": "",
+      "player3_displayName": "",
+      "player3_camera": false,
+      "player3_pb": "",
+      "player4_twitchHandle": "",
+      "player4_displayName": "",
+      "player4_camera": false,
+      "player4_pb": "",
+      "commentators": ""
+    },
+    "runInfo": {
+      "category": "100%",
+      "estimate": "1:10:00",
+      "runType": "Race",
+      "worldRecord": "0:48:23",
+      "wrHolder": "BBF_"
+    },
+    "adminPanel": {
+      "backgroundOpacity": ".3"
+    }
+  },
   "iWannaBeTheSalt": {
     "gameInfo": {
       "gameName": "I Wanna Be the Salt",

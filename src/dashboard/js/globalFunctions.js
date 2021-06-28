@@ -91,7 +91,7 @@ const initFieldValues = () => {
 
 const initRuns = () => {
 
-  const url = "https://oengus.io/api/marathon/fm2020/schedule";
+  const url = "https://oengus.io/api/marathons/fm2021/schedule";
   fetch(url).then(resp => resp.json()).then(res => {
     // var mrl = nodecg.Replicant("oengusRunOrder");
     // mrl.value = res.lines; // todo: implement this correctly
@@ -102,7 +102,6 @@ const initRuns = () => {
     nodecg.readReplicant(name, namespace, replicantValues => {
       NodeCG.masterRunList.replicantValues = replicantValues;
       updateMasterRunList();
-      // console.log("replicantValuesMasterRunList:", NodeCG.masterRunList.replicantValues);
     })
   })
 

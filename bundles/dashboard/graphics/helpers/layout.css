@@ -50,13 +50,16 @@ img, .fill, .marquee {
   position: absolute;
 }
 
-.runInfo {
+.runInfo, .commentInfo {
   font-size: 24px;
 }
 
-.announcement {
-  text-align: center;
+.announcement, .runInfo, .commentInfo {
   vertical-align: middle;
+}
+
+.announcement, .runInfo {
+  text-align: center;
 }
 
 .announcement, .letter {
