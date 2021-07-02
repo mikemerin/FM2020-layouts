@@ -477,6 +477,7 @@ class DashboardField {
     $("#masterRunListTable tbody").remove();
 
     var values = NodeCG.masterRunList.replicantValues;
+    console.log(values)
     NodeCG.masterRunList.schedule.order.filter(x => x).forEach((game, i) => {
       // debugger
       var row = $("<tr>", {
@@ -487,6 +488,7 @@ class DashboardField {
       const replicantGameValues = values[sanitize(game)];
       const body = $("<tbody>");
       // debugger
+      // console.log(game, replicantGameValues)
       if (replicantGameValues) {
         var rowSpan = replicantGameValues.playerInfo.numberOfPlayers;
         row.append($("<td>", {
