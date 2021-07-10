@@ -72,7 +72,7 @@ var fieldGroups = {
       {
         "fieldName": "Category",
         "type": "text",
-        "placeholder": "any%"
+        "placeholder": "Any%"
       },
       {
         "fieldName": "Estimate",

@@ -153,8 +153,8 @@ class Layout {
 
   createTimeline = (lines, line, id, animationInfo) => {
     const { animationType, elementType, direction } = animationInfo;
-    // var primaryOffset = 1000;
-    var primaryOffset = 10000; // TODO: change back
+    var primaryOffset = 1000;
+    // var primaryOffset = 10000; // TODO: change back
     var wrapper = document.querySelector(`#${id}`);
     if (elementType === "text") wrapper.innerText = lines[line]; // todo: wrap the elementType in a function, link with complete
     if (elementType === "image") wrapper.src = "/assets/dashboard/" + lines[line];
@@ -368,9 +368,9 @@ class Layout {
     const className = `${baseId} primary`;
     const locationInfo = this.getLocationInfo(baseId);
 
-    const createdByText = "created by:"
-    const estimateText = "estimate: " + estimate;
-    const wrText = "WR " + worldRecord + " by " + wrHolder;
+    const createdByText = "Created By"
+    const estimateText = "Estimate " + estimate;
+    const wrText = "WR " + worldRecord + " - " + wrHolder;
 
     let text = gameName;
     let textSwap = category;
@@ -404,7 +404,7 @@ class Layout {
       const className = `${baseId} primary`;
       const locationInfo = this.getLocationInfo(baseId);
 
-      const commentaryByText = "Commentary By:";
+      const commentaryByText = "Commentary By";
 
       let text = commentaryByText;
       const textSwap = '', text2Swap = '';
@@ -412,9 +412,9 @@ class Layout {
       const runInfoLines = this.getLocationInfo("runInfoLines");
 
       if (runInfoLines === 1) { // todo: clean up and make all have 1 2 or 3, with the tests be if > 1, if > 2, etc
-        text = gameName + " (" + category + ") - estimate: " + estimate;
+        text = gameName + " (" + category + ") - Estimate " + estimate;
         // textSwap = "Created By " + createdBy + " - " + category + " WR " + worldRecord + " by " + wrHolder;
-        textSwap = "Estimate: " + estimate + " - " + category + " WR " + worldRecord + " by " + wrHolder;
+        textSwap = "Estimate " + estimate + " - " + category + " WR " + worldRecord + " by " + wrHolder;
       } else {
         const text2 = commentators;
         let locationInfo2 = this.getOffsetLocationInfo(locationInfo, layouts.offsets.runInfo2);
@@ -557,7 +557,7 @@ class Layout {
       const avatarSrc = "avatars/" + twitchHandle + ".png";
 
       const text = displayName + " (" + pronouns + ")";
-      const textSwap = "PB: " + pb + " - " + twitchHandle;
+      const textSwap = "PB " + pb + " - " + twitchHandle;
 
       const tLocationInfo = this.getLocationInfo(tId, "player", playerNumber);
       const offsetInfo = this.getLocationInfo("offset", "player", playerNumber);
