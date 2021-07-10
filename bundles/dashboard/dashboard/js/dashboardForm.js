@@ -185,8 +185,7 @@ class DashboardForm {
       click: (e) => {
         e.preventDefault();
         this.saveFields();
-        this.saveFields();
-        this.saveFields();
+        this.saveFields(); // NOTE: two are needed to ensure it saves
       }
     });
 
@@ -477,7 +476,7 @@ class DashboardField {
     $("#masterRunListTable tbody").remove();
 
     var values = NodeCG.masterRunList.replicantValues;
-    console.log(values)
+    console.log(values) // TODO: comment this if not debugging
     NodeCG.masterRunList.schedule.order.filter(x => x).forEach((game, i) => {
       // debugger
       var row = $("<tr>", {

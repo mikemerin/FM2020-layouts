@@ -705,7 +705,7 @@
     },
     "touhouMakukaSaiFantasticDanmakuFestival": {
         "gameInfo": {
-            "gameName": "Touhou Makuka Sai - Fantastic Danmaku Festival",
+            "gameName": "Touhou Makuka Sai ~ Fantastic Danmaku Festival",
             "resolution": "600",
             "createdBy": "東方幕華祭制作组",
             "genres": null,
@@ -2808,7 +2808,7 @@
             "otherGenres": null
         },
         "playerInfo": {
-            "numberOfPlayers": null,
+            "numberOfPlayers": "2",
             "player1_twitchHandle": null,
             "player1_displayName": null,
             "player1_camera": false,
@@ -2980,6 +2980,7 @@
             "otherGenres": "Sudoku"
         },
         "playerInfo": {
+          "numberOfPlayers": "4",
           "player1_twitchHandle": "Patrickgh3",
           "player1_displayName": "Patrick",
           "player1_camera": false,

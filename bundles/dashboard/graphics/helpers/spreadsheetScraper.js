@@ -7,12 +7,13 @@ gamesByName = {};
 sanitize = (str) => {
   var replace = {
     "#": "number",
-	'"': "",
+	  '"': "",
     ":": "",
     "-": "",
     ".": "",
     "'": "",
-    "!": ""
+    "!": "",
+    "~": "",
   };
   str = str.trim().toString().toLowerCase().replace(/[#:\-\.'!]/g, (matched) => replace[matched]);
   str = str.replace(/ {1,}/g, " ");
@@ -123,9 +124,7 @@ defaultGameInfo = {
     "gameInfo": {
       "gameName": null,
       "resolution": null,
-      "createdBy": null,
-      "genres": null,
-      "otherGenres": null
+      "createdBy": null
     },
     "playerInfo": {
       "numberOfPlayers": null,

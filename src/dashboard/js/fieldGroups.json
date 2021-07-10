@@ -20,50 +20,6 @@ var fieldGroups = {
         ],
         "other": true
       },
-      {
-        "fieldName": "Genres",
-        "type": "checkbox",
-        "options": [
-          "100F",
-          "Adventure",
-          "Avoidance",
-          "Gimmick",
-          "Medley",
-          "Needle",
-          "Trap"
-        ]
-      },
-      {
-        "fieldName": "Other Genres",
-        "type": "radio",
-        "options": [
-          "N/A",
-          ["Primary"],
-          "Blind",
-          "Creative",
-          "Meme",
-          "Miku",
-          "Music",
-          "Puzzle",
-          "Quiz Show",
-          "Relay",
-          "Sudoku",
-          ["Game"],
-          "Anime",
-          "Celeste",
-          "Doom",
-          "Initial D",
-          "Mario",
-          "Mega Man",
-          "Metroid",
-          "Rabi-Ribi",
-          "Sonic",
-          "Touhou",
-          "WAAAAGH",
-          "Zelda"
-        ],
-        "defaultValue": "N/A"
-      }
     ]
   },
   "runInfo": {
@@ -84,12 +40,6 @@ var fieldGroups = {
         "optional": true,
         "type": "text",
         "placeholder": "0:10:00"
-      },
-      {
-        "fieldName": "WR Holder",
-        "optional": true,
-        "type": "text",
-        "placeholder": "Stonk"
       },
       {
         "fieldName": "Run Type",

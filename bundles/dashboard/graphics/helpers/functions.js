@@ -635,10 +635,10 @@ class Layout {
       case "titleCard":
       case "titleCard2":
       case "timer":
-      case "genres":
-      case "genresStacked":
-        return layout["borders"][type][id];
-        break;
+      // case "genres":  // Note: removed in FM2021
+      // case "genresStacked":  // Note: removed in FM2021
+      //   return layout["borders"][type][id];
+      //   break;
       default:
         return layout[id]
         break;
