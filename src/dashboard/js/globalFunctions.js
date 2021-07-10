@@ -139,11 +139,13 @@ class SetReplicant {
     })
   };
 
-  forceSet(value = {}) {
-    this.runsReplicant.value = value; // warning: use only when needed as this overwrites the replicant permanently
-    // this.runsReplicant.value =
-    console.log("Force Set New Value")
-    console.log("this.runsReplicant.value:", this.runsReplicant.value);
+  forceSet(value) {
+    if (value) {
+      this.runsReplicant.value = value; // warning: use only when needed as this overwrites the replicant permanently
+      // this.runsReplicant.value =
+      console.log("Force Set New Value")
+      console.log("this.runsReplicant.value:", this.runsReplicant.value);
+    }
   };
 
   loadRunIntoDashboard(gameName) {
