@@ -395,7 +395,7 @@
             "backgroundOpacity": ".3"
         }
     },
-    "superTalkingTimeBros25TheLastLevels": {
+    "superTalkingTimeBros25": {
         "gameInfo": {
             "gameName": "Super Talking Time Bros. 2.5 The Last Levels",
             "resolution": "600",
@@ -1099,9 +1099,9 @@
             "backgroundOpacity": ".3"
         }
     },
-    "piecesFungameFunanzapalooza": {
+    "piecesFangameFunanzapalooza": {
         "gameInfo": {
-            "gameName": "Piece's Fungame Funanzapalooza",
+            "gameName": "Piece's Fangame Funanzapalooza",
             "resolution": "16:9",
             "createdBy": "pieceofcheese87",
             "genres": null,
@@ -2756,9 +2756,9 @@
             "backgroundOpacity": ".3"
         }
     },
-    "blindIWannaMaker": {
+    "blindIwmRace": {
         "gameInfo": {
-            "gameName": "Blind I Wanna Maker",
+            "gameName": "Blind I Wanna Maker Race",
             "resolution": "608",
             "createdBy": null,
             "genres": null,

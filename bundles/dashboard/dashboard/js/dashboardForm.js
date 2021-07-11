@@ -485,6 +485,7 @@ class DashboardField {
       });
 
       const replicantGameValues = values[sanitize(game)];
+      console.log(!!replicantGameValues, sanitize(game), game)
       const body = $("<tbody>");
       // debugger
       // console.log(game, replicantGameValues)
@@ -567,6 +568,7 @@ class DashboardField {
 
         });
       } else {
+        console.log('missing', game)
         row.addClass("missingGame");
         row.append($("<td>", {
           id: game,

@@ -10,9 +10,10 @@ const sanitize = (str) => {
     "-": "",
     ".": "",
     "'": "",
-    "!": ""
+    "!": "",
+    "~": "",
   };
-  str = str.trim().toString().toLowerCase().replace(/[#:\-\.'!]/g, (matched) => replace[matched]);
+  str = str.trim().toString().toLowerCase().replace(/[#:\-\.'!~]/g, (matched) => replace[matched]);
   str = str.replace(/ {1,}/g, " ");
   return str.replace(/\s([\w|\d])/g, ($1) => $1[1].toUpperCase());
 };
