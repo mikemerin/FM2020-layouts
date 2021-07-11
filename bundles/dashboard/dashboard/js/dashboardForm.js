@@ -472,11 +472,10 @@ class DashboardField {
   }
 
   updateMasterRunList = (fromReplicant = false) => {
-    console.log("updateMaster:");
     $("#masterRunListTable tbody").remove();
 
     var values = NodeCG.masterRunList.replicantValues;
-    console.log(values) // TODO: comment this if not debugging
+    // console.log(values) // TODO: comment this if not debugging
     NodeCG.masterRunList.schedule.order.filter(x => x).forEach((game, i) => {
       // debugger
       var row = $("<tr>", {
@@ -485,7 +484,6 @@ class DashboardField {
       });
 
       const replicantGameValues = values[sanitize(game)];
-      console.log(!!replicantGameValues, sanitize(game), game)
       const body = $("<tbody>");
       // debugger
       // console.log(game, replicantGameValues)
@@ -568,7 +566,6 @@ class DashboardField {
 
         });
       } else {
-        console.log('missing', game)
         row.addClass("missingGame");
         row.append($("<td>", {
           id: game,
